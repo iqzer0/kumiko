@@ -804,14 +804,14 @@ private:
 
         //Clear Terminal && Reset and Clear Terminal
         registerActionWithSettings(group, ACTION_PREFIX, ACTION_RESET, gsShortcuts, delegate(GVariant value, SimpleAction sa) {
-            vte.reset(false, false);
+            resetVte(false, false);
             if (isSynchronizedInput()) {
                 SyncInputEvent se = SyncResetEvent(_terminalUUID);
                 onSyncInput.emit(this, se);
             }
         });
         registerActionWithSettings(group, ACTION_PREFIX, ACTION_RESET_AND_CLEAR, gsShortcuts, delegate(GVariant value, SimpleAction sa) {
-            vte.reset(true, true);
+            resetVte(true, true);
             // Clear history of prompts
             checkPromptBuffer();
             if (isSynchronizedInput()) {
@@ -2275,6 +2275,24 @@ private:
      */
     gulong scrollEventHandlerId;
 
+    /**
+     * True once the profile has switched VTE's alternate-scroll mode off.
+     * The mode lives inside the emulator, so a reset turns it back on and
+     * resetVte() has to restore it.
+     */
+    bool alternateScrollDisabled;
+
+    /**
+     * Reset the emulator, then restore emulator state that belongs to the
+     * profile rather than to the running program.
+     */
+    void resetVte(bool clearTabstops, bool clearHistory) {
+        vte.reset(clearTabstops, clearHistory);
+        if (alternateScrollDisabled) {
+            vte.feed(cast(ubyte[]) alternateScrollSequence(false).dup);
+        }
+    }
+
     /// Dispatch a preference change through the registry.
     void applyPreference(string key) {
         if (vte is null) return;
@@ -2354,6 +2372,19 @@ private:
 
         prefRegistry.register([SETTINGS_PROFILE_SCROLL_ON_INPUT_KEY], {
             vte.setScrollOnKeystroke(gsProfile.getBoolean(SETTINGS_PROFILE_SCROLL_ON_INPUT_KEY));
+        });
+
+        prefRegistry.register([SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY], {
+            // With the mode on, the wheel on the alternate screen types Up/Down
+            // keys. A tab left on the alternate screen by a program or ssh
+            // session that died without restoring it then echoes ^[OA into
+            // whatever runs next, and no terminal can tell that state apart
+            // from a live pager. VTE's default is on, so nothing is fed until
+            // the profile turns it off.
+            bool enabled = gsProfile.getBoolean(SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY);
+            if (enabled != alternateScrollDisabled) return;
+            alternateScrollDisabled = !enabled;
+            vte.feed(cast(ubyte[]) alternateScrollSequence(enabled).dup);
         });
 
         prefRegistry.register([SETTINGS_PROFILE_SCROLLBACK_LINES_KEY], {
@@ -3612,10 +3643,10 @@ public:
                 vte.event(newEvent);
             },
             (SyncResetEvent e) {
-                vte.reset(false, false);
+                resetVte(false, false);
             },
             (SyncResetAndClearEvent e) {
-                vte.reset(true, true);
+                resetVte(true, true);
                 checkPromptBuffer();
             }
         );

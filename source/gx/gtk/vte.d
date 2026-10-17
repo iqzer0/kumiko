@@ -90,6 +90,24 @@ bool isVTEHandledKeystroke(uint keyval, ModifierType modifier) {
 }
 
 /**
+ * The control sequence that sets VTE's alternate-scroll mode (xterm private
+ * mode 1007). While it is set, the mouse wheel on the alternate screen is
+ * turned into Up/Down key presses unless the program there has requested
+ * mouse events. VTE enables it by default and a full reset re-enables it.
+ *
+ * VTE has no API for this mode, so the terminal sets it the way a program
+ * would: by feeding this sequence to the emulator.
+ */
+string alternateScrollSequence(bool enabled) {
+    return enabled ? "\x1b[?1007h" : "\x1b[?1007l";
+}
+
+unittest {
+    assert(alternateScrollSequence(true) == "\x1b[?1007h");
+    assert(alternateScrollSequence(false) == "\x1b[?1007l");
+}
+
+/**
  * Check if the VTE version is the same or higher then requested
  */
 bool checkVTEVersionNumber(uint requiredMajor, uint requiredMinor) {
