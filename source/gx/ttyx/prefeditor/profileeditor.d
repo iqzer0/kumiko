@@ -1089,7 +1089,7 @@ private:
         add(cbScrollOnKeystroke);
 
         CheckButton cbAlternateScroll = CheckButton.newWithLabel(_("Mouse wheel sends arrow keys in full-screen programs"));
-        cbAlternateScroll.setTooltipText(_("Lets the wheel scroll less, man and other full-screen programs that do not use the mouse. Turn off if scrolling types ^[OA into commands after a program or SSH session exits uncleanly."));
+        cbAlternateScroll.setTooltipText(_("Lets the wheel scroll less, man and other full-screen programs that do not use the mouse. Off by default because a program or SSH session that exits without restoring the screen leaves the wheel typing ^[OA into the next command. less scrolls with the wheel either way when started with --mouse."));
         bh.bind(SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY, cbAlternateScroll, "active", SettingsBindFlags.Default);
         add(cbAlternateScroll);
 
