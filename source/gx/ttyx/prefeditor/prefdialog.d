@@ -1738,6 +1738,7 @@ private:
         row++;
 
         CheckButton cbWarnMultiline = CheckButton.newWithLabel(_("Show review dialog for multi-line paste"));
+        cbWarnMultiline.setTooltipText(_("Skipped when the program receiving the paste has bracketed paste on, as zsh, bash 5.1+ and fish do at the prompt: nothing then runs until you press Enter."));
         bh.bind(SETTINGS_WARN_MULTILINE_PASTE_KEY, cbWarnMultiline, "active", SettingsBindFlags.Default);
         grid.attach(cbWarnMultiline, 0, row, 2, 1);
         row++;

@@ -18,7 +18,7 @@ The headline difference. ttyx_ adds a **Preferences → Advanced → Security** 
 ### Paste protection
 
 - **Bracketed paste escape stripping** silently removes `ESC[200~` / `ESC[201~` sequences that could break out of the shell's paste-mode and inject commands. Always active, no option to disable.
-- **Multi-line paste review** shows a review dialog before pasting multi-line content, so you can inspect and edit before the text reaches the shell. Default: on.
+- **Multi-line paste review** shows a review dialog before pasting multi-line content into a program that would run it line by line, so you can inspect and edit before the text reaches the shell. Programs with bracketed paste on, such as modern shells at the prompt, skip the dialog because they run nothing until Enter. Default: on.
 - **Dangerous command detection** flags pastes containing `sudo`, `su`, `rm -rf`, `curl | bash`, `dd if=`, `mkfs`, `chmod 777`, fork bombs, and similar patterns.
 - **Per-paste warnings** — the unsafe-paste warning now appears every time, not just once per session.
 

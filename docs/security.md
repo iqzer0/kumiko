@@ -29,9 +29,11 @@ Always on, no setting. ttyx_ strips `ESC[200~` / `ESC[201~` sequences from clipb
 
 ### Multi-line paste review
 
-When the clipboard contains multi-line content, ttyx_ shows a review dialog before sending anything to the shell. You can inspect, edit, or cancel — no text reaches the shell until you click **Paste**.
+When the clipboard contains multi-line content and the receiving program would treat each line break as Enter, ttyx_ shows a review dialog before sending anything. You can inspect, edit, or cancel — no text reaches the program until you click **Paste**.
 
-A single line followed only by a line break — what a triple-click selection or a web page's "copy" button usually gives you — is not sent to review. ttyx_ pastes it without the trailing line break, so it waits at the prompt until you press Enter. If the line contains any other control character it still goes to review: without bracketed paste the shell's line editor acts on control characters as keystrokes, and some of them submit the line. With review turned off, pastes are sent unchanged, trailing line break included.
+The dialog is skipped when the receiving program has turned on *bracketed paste*: it then takes the whole paste as one block and runs none of it until you press Enter. Shells turn it on at the prompt — zsh, bash 5.1 and later, fish — and over SSH it is the remote program's setting that counts. VTE has no API for the mode, so ttyx_ checks it at paste time by sending an empty bracketed paste, which the program discards. The dialog still appears under synchronized input, where the other terminals receive the text without bracketing, and — if you enabled the dangerous-command alert below — whenever the text matches one of its patterns. One caveat: a program that exits without turning bracketed paste off leaves it set, and a program that does not understand it would then run the pasted lines.
+
+A single line followed only by a line break — what a triple-click selection or a web page's "copy" button usually gives you — is pasted without the trailing line break, so it waits at the prompt until you press Enter. A line that contains any other control character is handled by the multi-line rules above instead. (VTE 0.84 shows pasted control characters as visible symbols — Ctrl+O arrives as `␏` — rather than passing them on as keystrokes; older VTE versions may not.) With review turned off, pastes are sent unchanged, trailing line break included.
 
 - GSetting: `warn-multiline-paste` (boolean)
 - Default: **on**
@@ -44,7 +46,7 @@ When the pasted text matches patterns for privilege escalation, destructive file
 - Destructive file operations: `rm -rf`, `rm -fr`, `mkfs`, `dd if=`, `chmod 777`, `chmod -R 777`
 - Remote code execution: piping to a shell — `| bash`, `|bash`, `| sh`, `|sh` (so `curl ... | bash` and `wget ... | sh` both match), and the classic fork bomb `:(){ :|:& };:`
 
-Matching is plain substring matching against the pasted text, and it only fires when the text also contains a line break (`\n` or `\r`) — without one, nothing auto-executes on paste. Being substring-based, it both over-matches (`visudo` contains `sudo`) and is trivially evaded by an adversary who knows about it. It is a guard against *your own* careless paste, not a security boundary; the always-on escape stripping and the multi-line review dialog are the load-bearing protections.
+Matching is plain substring matching against the pasted text, and it only fires when the text also contains a line break (`\n` or `\r`) — without one, nothing auto-executes on paste. Being substring-based, it both over-matches (`visudo` contains `sudo`) and is trivially evaded by an adversary who knows about it. It is a guard against *your own* careless paste, not a security boundary; the always-on escape stripping, bracketed paste and the multi-line review dialog are the load-bearing protections.
 
 When enabled, the warning fires **every time** a dangerous pattern is detected — unlike some terminal emulators that show it once per session and then suppress it.
 

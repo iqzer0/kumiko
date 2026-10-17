@@ -64,7 +64,7 @@ import gx.ttyx.constants : USE_COMMIT_SYNCHRONIZATION;
 import gx.ttyx.preferences;
 import gx.ttyx.terminal.advpaste;
 import gx.ttyx.terminal.context;
-import gx.ttyx.terminal.exvte : vtePasteText;
+import gx.ttyx.terminal.exvte : isBracketedPasteActive, vtePasteText;
 import gx.ttyx.terminal.types;
 
 /// Module-level auto-clear state. Shared across all ClipboardHandler instances
@@ -257,6 +257,25 @@ private:
     void delegate() _scrollToBottom;
     void delegate() _focusTerminal;
 
+    /**
+     * Whether a multi-line paste has to be reviewed before it is sent.
+     *
+     * Not when the receiving program has bracketed paste on: it takes the
+     * text as one block and runs none of it until the user presses Enter,
+     * which is the protection the dialog exists to give. Shells turn it on
+     * at the prompt (zsh, bash 5.1+, fish), and over SSH the mode VTE holds
+     * is the remote program's. Still reviewed:
+     *  - under synchronized input, because the other terminals are fed the
+     *    text raw, without bracketing;
+     *  - when the opt-in unsafe-paste alert is on and the text matches one
+     *    of its patterns.
+     */
+    bool multilineNeedsReview(string text) {
+        if (_sync.isSynchronizedInput()) return true;
+        if (_ctx.contextGsSettings().getBoolean(SETTINGS_UNSAFE_PASTE_ALERT_KEY) && isPasteUnsafe(text)) return true;
+        return !isBracketedPasteActive(_ctx.contextVte());
+    }
+
 public:
     /**
      * Construct a ClipboardHandler.
@@ -377,7 +396,7 @@ public:
 
         // Multi-line paste: show review dialog (takes precedence over sudo warning
         // since the review dialog already flags unsafe content and lets the user edit)
-        if (containsLineBreak(pasteText) && reviewMultiline) {
+        if (containsLineBreak(pasteText) && reviewMultiline && multilineNeedsReview(pasteText)) {
             AdvancedPasteDialog dialog = new AdvancedPasteDialog(
                 cast(Window) _ctx.toplevelWidget(), pasteText, isPasteUnsafe(pasteText));
             scope(exit) {
