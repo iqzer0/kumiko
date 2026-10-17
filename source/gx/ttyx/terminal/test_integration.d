@@ -358,3 +358,37 @@ unittest {
     // run the order should be consistent. We just verify all were called.
     assert(order.length == 3);
 }
+
+// ---------------------------------------------------------------------------
+// Integration tests for isBracketedPasteActive (real VTE)
+// ---------------------------------------------------------------------------
+
+/// Test: the empty-paste probe follows DECSET/DECRST 2004.
+unittest {
+    if (!gtkInitialized()) return;
+
+    import core.time : MonoTime, msecs;
+    import gtk.global : mainIterationDo;
+    import gtk.offscreen_window : OffscreenWindow;
+    import gx.ttyx.terminal.exvte : ExtendedVTE, isBracketedPasteActive;
+
+    auto vte = new ExtendedVTE();
+    auto win = new OffscreenWindow();
+    win.add(vte);
+    win.showAll();
+    scope(exit) win.destroy();
+
+    // VTE parses fed bytes on a timeout, not synchronously.
+    void settle() {
+        auto end = MonoTime.currTime + 300.msecs;
+        while (MonoTime.currTime < end) mainIterationDo(false);
+    }
+
+    assert(!isBracketedPasteActive(vte));
+    vte.feed(cast(ubyte[]) "\x1b[?2004h".dup);
+    settle();
+    assert(isBracketedPasteActive(vte));
+    vte.feed(cast(ubyte[]) "\x1b[?2004l".dup);
+    settle();
+    assert(!isBracketedPasteActive(vte));
+}
