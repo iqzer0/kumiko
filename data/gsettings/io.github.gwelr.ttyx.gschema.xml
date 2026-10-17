@@ -772,6 +772,11 @@
       <summary>Whether to scroll to the bottom when there's new output</summary>
       <description>If true, whenever there's new output the terminal will scroll to the bottom.</description>
     </key>
+    <key name="alternate-scroll" type="b">
+      <default>true</default>
+      <summary>Whether the mouse wheel sends arrow keys in full-screen programs</summary>
+      <description>If true, scrolling the mouse wheel on the alternate screen (used by less, man and other full-screen programs that do not request mouse events) sends Up/Down arrow keys to the program. If false, the wheel sends nothing there, so a terminal left on the alternate screen by a program or SSH session that exited uncleanly no longer types escape sequences such as ^[OA into the next command. Programs that request mouse reporting receive wheel events either way.</description>
+    </key>
     <!-- Compatibility -->
     <key name="backspace-binding" enum="io.github.gwelr.ttyx.EraseBinding">
       <default>'ascii-delete'</default>
