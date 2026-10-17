@@ -31,6 +31,8 @@ Always on, no setting. ttyx_ strips `ESC[200~` / `ESC[201~` sequences from clipb
 
 When the clipboard contains multi-line content, ttyx_ shows a review dialog before sending anything to the shell. You can inspect, edit, or cancel — no text reaches the shell until you click **Paste**.
 
+A single line followed only by a line break — what a triple-click selection or a web page's "copy" button usually gives you — is not sent to review. ttyx_ pastes it without the trailing line break, so it waits at the prompt until you press Enter. If the line contains any other control character it still goes to review: without bracketed paste the shell's line editor acts on control characters as keystrokes, and some of them submit the line. With review turned off, pastes are sent unchanged, trailing line break included.
+
 - GSetting: `warn-multiline-paste` (boolean)
 - Default: **on**
 
