@@ -2379,8 +2379,9 @@ private:
             // keys. A tab left on the alternate screen by a program or ssh
             // session that died without restoring it then echoes ^[OA into
             // whatever runs next, and no terminal can tell that state apart
-            // from a live pager. VTE's default is on, so nothing is fed until
-            // the profile turns it off.
+            // from a live pager. The profile default is off and VTE's is on,
+            // so a new terminal normally feeds DECRST 1007 here, before its
+            // child is spawned; nothing is fed while both agree on on.
             bool enabled = gsProfile.getBoolean(SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY);
             if (enabled != alternateScrollDisabled) return;
             alternateScrollDisabled = !enabled;
