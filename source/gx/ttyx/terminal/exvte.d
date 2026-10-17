@@ -188,6 +188,29 @@ void vtePasteText(ExtendedVTE terminal, string text) {
     terminal.pasteText(text);
 }
 
+/**
+ * Whether the program reading the terminal has bracketed paste (DECSET 2004)
+ * turned on, so that it receives a paste as one marked block rather than as
+ * typed input.
+ *
+ * VTE has no getter for the mode, but it emits ::commit synchronously with
+ * everything a paste sends to the child. An empty paste therefore answers
+ * the question: with the mode on VTE sends only the two markers, an empty
+ * paste the program discards; with it off it sends nothing at all.
+ */
+bool isBracketedPasteActive(ExtendedVTE terminal) {
+    import std.algorithm : startsWith;
+    import gobject.global : signalHandlerDisconnect;
+
+    bool active;
+    gulong id = terminal.connectCommit(delegate(string text, Terminal t) {
+        if (text.startsWith("\x1b[200~")) active = true;
+    });
+    scope(exit) signalHandlerDisconnect(terminal, id);
+    terminal.pasteText("");
+    return active;
+}
+
 private:
 
 // vte_terminal_get/set_disable_bg_draw exist only in patched VTE builds
