@@ -1,8 +1,8 @@
-# Contributing to ttyx_
+# Contributing to Kumiko
 
-Thanks for your interest in contributing to ttyx_!
+Thanks for your interest in contributing to Kumiko!
 
-The [online documentation](https://github.com/iqzer0/ttyx_) has install instructions, a user manual, and a changelog. This file covers what you need to **work on ttyx_ itself** — setting up a dev environment, running the test suite, submitting changes.
+The [online documentation](https://github.com/iqzer0/kumiko) has install instructions, a user manual, and a changelog. This file covers what you need to **work on Kumiko itself** — setting up a dev environment, running the test suite, submitting changes.
 
 ## Prerequisites
 
@@ -10,11 +10,11 @@ The [online documentation](https://github.com/iqzer0/ttyx_) has install instruct
 - **GTK 3.18+** and **VTE 0.46+** (0.76+ recommended — some features like triggers depend on newer VTE releases) with development headers (`libgtk-3-dev`, `libvte-2.91-dev`, `libsecret-1-dev` on Debian/Ubuntu).
 - The GUI bindings are [giD](https://github.com/Kymorphia/gid) (`gid:gtk3`, `gid:vte2`, `gid:secret1`) — a source-only Dub package fetched from the registry and compiled in; nothing D-specific to install system-wide.
 
-See the [Install page](https://github.com/iqzer0/ttyx_/blob/master/docs/install.md) for the full system-dependency list.
+See the [Install page](https://github.com/iqzer0/kumiko/blob/master/docs/install.md) for the full system-dependency list.
 
 ## Build
 
-ttyx_ builds with Dub (the Meson build was retired together with the GtkD bindings):
+Kumiko builds with Dub (the Meson build was retired together with the GtkD bindings):
 
 ```bash
 dub build --compiler=ldc2                     # debug by default
@@ -25,36 +25,36 @@ The first build compiles the giD binding packages from source and caches them un
 
 ## Run from the build dir
 
-The freshly built `./ttyx` doesn't know where to find GSettings schemas or the compiled gresource unless you point it at them:
+The freshly built `./kumiko` doesn't know where to find GSettings schemas or the compiled gresource unless you point it at them:
 
 ```bash
 glib-compile-schemas data/gsettings/
 export GSETTINGS_SCHEMA_DIR="$PWD/data/gsettings"
 
-# The app looks for ttyx/resources/ttyx.gresource under each XDG data dir;
+# The app looks for kumiko/resources/kumiko.gresource under each XDG data dir;
 # compile the gresource into such a location:
-mkdir -p "$PWD/.rundata/ttyx/resources"
+mkdir -p "$PWD/.rundata/kumiko/resources"
 glib-compile-resources --sourcedir=data/resources \
-  --target="$PWD/.rundata/ttyx/resources/ttyx.gresource" \
-  data/resources/ttyx.gresource.xml
+  --target="$PWD/.rundata/kumiko/resources/kumiko.gresource" \
+  data/resources/kumiko.gresource.xml
 export XDG_DATA_DIRS="$PWD/.rundata:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
-./ttyx --new-process
+./kumiko --new-process
 ```
 
-Or use the bundled wrapper `debug-ttyx.sh`, which does all of the above plus launches the binary under gdb with sensible defaults.
+Or use the bundled wrapper `debug-kumiko.sh`, which does all of the above plus launches the binary under gdb with sensible defaults.
 
-### Using `debug-ttyx.sh`
+### Using `debug-kumiko.sh`
 
 ```bash
-./debug-ttyx.sh              # debug run under gdb
-./debug-ttyx.sh --rebuild    # rebuild first, then debug
-./debug-ttyx.sh --core       # open most recent coredump via coredumpctl
+./debug-kumiko.sh              # debug run under gdb
+./debug-kumiko.sh --rebuild    # rebuild first, then debug
+./debug-kumiko.sh --core       # open most recent coredump via coredumpctl
 ```
 
-ttyx_ is a GTK single-instance application (via D-Bus activation), so the wrapper kills any running `ttyx` before launching under gdb — otherwise the new process would hand off to the existing one and gdb would attach to nothing.
+Kumiko is a GTK single-instance application (via D-Bus activation), so the wrapper kills any running `kumiko` before launching under gdb — otherwise the new process would hand off to the existing one and gdb would attach to nothing.
 
-**Gotcha — `ttyx -a <action>` doesn't work against a `debug-ttyx.sh` instance.** The wrapper adds `--new-process`, which disables GApplication's session-bus registration. As a side effect, later `ttyx -a session-add-right …` invocations can't discover the debug instance on the bus, so they fall through to creating a new window and print "No ttyx_ instance registered on the session bus…". If you're testing CLI actions, launch ttyx_ normally (without the wrapper).
+**Gotcha — `kumiko -a <action>` doesn't work against a `debug-kumiko.sh` instance.** The wrapper adds `--new-process`, which disables GApplication's session-bus registration. As a side effect, later `kumiko -a session-add-right …` invocations can't discover the debug instance on the bus, so they fall through to creating a new window and print "No Kumiko instance registered on the session bus…". If you're testing CLI actions, launch Kumiko normally (without the wrapper).
 
 ## Tests
 
@@ -72,7 +72,7 @@ CI also runs `desktop-file-validate` against the `.desktop` file (via `install.s
 
 ## Debugging
 
-`debug-ttyx.sh` launches gdb with:
+`debug-kumiko.sh` launches gdb with:
 
 - `handle SIG32 SIG33 SIG34 SIG35 SIGPIPE nostop noprint pass` — glibc and GLib use these real-time signals internally (thread cancellation, posix timer expirations, async signal delivery, broken pipe). They're not interesting unless you're specifically hunting a signal bug; the handles let gdb pass them straight through to the app.
 - `set print pretty on`, `set pagination off`, `set confirm off` for a friendlier session.
@@ -85,11 +85,11 @@ Useful gdb commands once you hit a crash:
 - `info threads` — list threads
 - `continue` — resume after a breakpoint
 
-For a post-mortem on a crash that already happened, `./debug-ttyx.sh --core` opens the most recent ttyx_ coredump via `coredumpctl debug`.
+For a post-mortem on a crash that already happened, `./debug-kumiko.sh --core` opens the most recent Kumiko coredump via `coredumpctl debug`.
 
 ## Translations
 
-ttyx_ ships 46 locales under `po/`. The gettext template is **generated, not
+Kumiko ships 46 locales under `po/`. The gettext template is **generated, not
 tracked** — `po/*.pot` is deliberately absent from the repository, so run the
 extractor to produce it:
 
@@ -97,13 +97,13 @@ extractor to produce it:
 ./extract-strings.sh
 ```
 
-That regenerates `po/ttyx.pot` from the D sources (via xgettext's Vala mode,
+That regenerates `po/kumiko.pot` from the D sources (via xgettext's Vala mode,
 since xgettext has no D backend), the Glade `.ui` files, the `.desktop` and
 appdata templates and the Nautilus extension, then `msgmerge`s the result into
 every existing `.po` and refreshes `po/LINGUAS`.
 
 **Adding a language:** create `po/<locale>.po` from the generated template
-(`msginit -i po/ttyx.pot -l <locale>`), translate, and re-run
+(`msginit -i po/kumiko.pot -l <locale>`), translate, and re-run
 `./extract-strings.sh` so `LINGUAS` picks it up.
 
 **Updating a language:** run the extractor first so your `.po` is merged
@@ -159,9 +159,9 @@ Key conventions worth knowing:
 - `source/secret/`, `source/secretc/` — libsecret D and C bindings.
 - `source/x11/` — X11 D bindings.
 - `data/` — GSettings schema, color schemes, icons, desktop file, AppStream metadata, scripts.
-- `docs/` — Jekyll site content published at <https://github.com/iqzer0/ttyx_>.
+- `docs/` — Jekyll site content published at <https://github.com/iqzer0/kumiko>.
 - `po/` — gettext translations.
 
 ## License
 
-ttyx_ is licensed under [MPL-2.0](LICENSE). Contributions are licensed under the same terms.
+Kumiko is licensed under [MPL-2.0](LICENSE). Contributions are licensed under the same terms.

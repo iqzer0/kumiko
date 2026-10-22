@@ -9,7 +9,7 @@ permalink: /manual/
 
 # Manual
 
-Topic-by-topic reference for ttyx_ features. Content adapted from the [Tilix manual](https://gnunn1.github.io/tilix-web/manual/) by Gerald Nunn.
+Topic-by-topic reference for Kumiko features. Content adapted from the [Tilix manual](https://gnunn1.github.io/tilix-web/manual/) by Gerald Nunn.
 
 ## Contents
 
@@ -22,5 +22,5 @@ Topic-by-topic reference for ttyx_ features. Content adapted from the [Tilix man
 - [Custom links]({{ site.baseurl }}/manual/customlinks/) — make your own clickable patterns in terminal output
 - [Margin indicators]({{ site.baseurl }}/manual/margin/) — visual markers at column positions
 - [VTE configuration]({{ site.baseurl }}/manual/vteconfig/) — low-level terminal emulator tuning
-- [CLI actions]({{ site.baseurl }}/manual/cliactions/) — invoke ttyx_ actions from the command line
+- [CLI actions]({{ site.baseurl }}/manual/cliactions/) — invoke Kumiko actions from the command line
 - [Splits and pane layout]({{ site.baseurl }}/manual/splits/) — equal-size panes on split/close, and how to disable it

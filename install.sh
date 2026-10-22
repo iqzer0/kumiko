@@ -18,8 +18,8 @@ if [ "$PREFIX" = "/usr" ] && [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-if [ ! -f ttyx ]; then
-    echo "The ttyx executable does not exist, please run 'dub build --build=release' before using this script"
+if [ ! -f kumiko ]; then
+    echo "The kumiko executable does not exist, please run 'dub build --build=release' before using this script"
     exit 1
 fi
 
@@ -71,27 +71,27 @@ echo "Installing to prefix $PREFIX"
 
 # Copy and compile schema
 echo "Copying and compiling schema..."
-install -Dm 644 data/gsettings/io.github.gwelr.ttyx.gschema.xml -t "$PREFIX/share/glib-2.0/schemas/"
+install -Dm 644 data/gsettings/io.github.iqzer0.kumiko.gschema.xml -t "$PREFIX/share/glib-2.0/schemas/"
 glib-compile-schemas "$PREFIX/share/glib-2.0/schemas/"
 
-export TTYX_SHARE="$PREFIX/share/ttyx"
+export KUMIKO_SHARE="$PREFIX/share/kumiko"
 
 # Compile and install the gresource bundle. --sourcedir lets us build straight
 # into $BUILD_DIR instead of cd-ing into data/resources and emitting the
 # artifact next to its own source.
 echo "Building and copy resources..."
 glib-compile-resources --sourcedir=data/resources \
-    --target="$BUILD_DIR/ttyx.gresource" \
-    data/resources/ttyx.gresource.xml
-install -Dm 644 "$BUILD_DIR/ttyx.gresource" -t "$TTYX_SHARE/resources/"
+    --target="$BUILD_DIR/kumiko.gresource" \
+    data/resources/kumiko.gresource.xml
+install -Dm 644 "$BUILD_DIR/kumiko.gresource" -t "$KUMIKO_SHARE/resources/"
 
 # Copy shell integration script
 echo "Copying scripts..."
-install -Dm 755 data/scripts/* -t "$TTYX_SHARE/scripts/"
+install -Dm 755 data/scripts/* -t "$KUMIKO_SHARE/scripts/"
 
 # Copy color schemes
 echo "Copying color schemes..."
-install -Dm 644 data/schemes/* -t "$TTYX_SHARE/schemes/"
+install -Dm 644 data/schemes/* -t "$KUMIKO_SHARE/schemes/"
 
 # Note: po/LINGUAS is deliberately NOT regenerated here. It is a tracked file
 # that nothing in this script reads, and extract-strings.sh — which owns the
@@ -105,7 +105,7 @@ for f in po/*.po; do
     LOCALE=$(basename "$f" .po)
     # Transient .mo went into the repo root before; keep it in $BUILD_DIR.
     msgfmt "$f" -o "$BUILD_DIR/$LOCALE.mo"
-    install -Dm 644 "$BUILD_DIR/$LOCALE.mo" "$PREFIX/share/locale/$LOCALE/LC_MESSAGES/ttyx.mo"
+    install -Dm 644 "$BUILD_DIR/$LOCALE.mo" "$PREFIX/share/locale/$LOCALE/LC_MESSAGES/kumiko.mo"
     rm -f "$BUILD_DIR/$LOCALE.mo"
 done
 
@@ -115,10 +115,10 @@ done
 # the top of this script, so the old trailing `if [ $? -ne 0 ]` could never
 # run: msgfmt failing aborted the whole install instead of falling back to a
 # plain copy, which is exactly the case the fallback existed to handle.
-DESKTOP_OUT="$BUILD_DIR/io.github.gwelr.ttyx.desktop"
-if ! msgfmt --desktop --template=data/pkg/desktop/io.github.gwelr.ttyx.desktop.in -d po -o "$DESKTOP_OUT"; then
+DESKTOP_OUT="$BUILD_DIR/io.github.iqzer0.kumiko.desktop"
+if ! msgfmt --desktop --template=data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in -d po -o "$DESKTOP_OUT"; then
     echo "Note that localizing the desktop file requires a newer version of gettext, copying instead"
-    cp data/pkg/desktop/io.github.gwelr.ttyx.desktop.in "$DESKTOP_OUT"
+    cp data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in "$DESKTOP_OUT"
 fi
 
 desktop-file-validate "$DESKTOP_OUT"
@@ -130,13 +130,13 @@ desktop-file-validate "$DESKTOP_OUT"
 # string extraction). Without this step the *installed* appdata shipped with no
 # release history at all, so software centres showed no version information.
 # Optional, like the po4a man pages: skipped cleanly when appstreamcli is absent.
-APPDATA_IN=data/metainfo/io.github.gwelr.ttyx.appdata.xml.in
+APPDATA_IN=data/metainfo/io.github.iqzer0.kumiko.appdata.xml.in
 APPDATA_SRC="$APPDATA_IN"
 # The intermediate keeps the .appdata.xml.in suffix: msgfmt --xml picks its ITS
 # translation rules from the file NAME, and anything else (e.g. a .rel.in tail)
 # makes it fail with "cannot locate ITS rules".
-APPDATA_REL="$BUILD_DIR/io.github.gwelr.ttyx.rel.appdata.xml.in"
-APPDATA_OUT="$BUILD_DIR/io.github.gwelr.ttyx.appdata.xml"
+APPDATA_REL="$BUILD_DIR/io.github.iqzer0.kumiko.rel.appdata.xml.in"
+APPDATA_OUT="$BUILD_DIR/io.github.iqzer0.kumiko.appdata.xml"
 if type appstreamcli >/dev/null 2>&1; then
     echo "Injecting release history from NEWS into appdata..."
     if appstreamcli news-to-metainfo NEWS "$APPDATA_IN" "$APPDATA_REL" >/dev/null 2>&1; then
@@ -157,10 +157,10 @@ rm -f "$APPDATA_REL"
 
 # Copying Nautilus extension
 echo "Copying Nautilus extension"
-install -Dm 644 data/nautilus/open-ttyx.py -t "$PREFIX/share/nautilus-python/extensions/"
+install -Dm 644 data/nautilus/open-kumiko.py -t "$PREFIX/share/nautilus-python/extensions/"
 
 # Copy D-Bus service descriptor
-install -Dm 644 data/dbus/io.github.gwelr.ttyx.service -t "$PREFIX/share/dbus-1/services/"
+install -Dm 644 data/dbus/io.github.iqzer0.kumiko.service -t "$PREFIX/share/dbus-1/services/"
 
 # Copy man page (quoted: an unquoted command substitution here word-split on
 # any repository path containing whitespace)
@@ -177,7 +177,7 @@ done
 cd ../../..
 
 # Copy executable, desktop and appdata file
-install -Dm 755 ttyx -t "$PREFIX/bin/"
+install -Dm 755 kumiko -t "$PREFIX/bin/"
 
 install -Dm 644 "$DESKTOP_OUT" -t "$PREFIX/share/applications/"
 install -Dm 644 "$APPDATA_OUT" -t "$PREFIX/share/metainfo/"

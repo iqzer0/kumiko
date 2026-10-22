@@ -20,7 +20,7 @@
  *
  * giD does not bind the GDK X11 backend, and its xlib2 binding lacks the raw
  * event types (XClientMessageEvent / XSendEvent). So this port:
- *   - reuses ttyx_'s vendored, GtkD-free x11.X / x11.Xlib bindings for raw Xlib;
+ *   - reuses Kumiko's vendored, GtkD-free x11.X / x11.Xlib bindings for raw Xlib;
  *   - declares the four gdk_x11_* backend helpers (plus gdk_x11_window_get_xid)
  *     directly as extern(C) — they resolve at link time from libgdk-3, so no
  *     runtime Linker is needed (GtkD had to dlsym them);

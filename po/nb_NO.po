@@ -18,78 +18,78 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.8-dev\n"
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:4
-#: data/pkg/desktop/io.github.gwelr.ttyx.desktop.in:3
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:4
+#: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:3
 #: source/gx/ttyx/application.d:370 source/gx/ttyx/appwindow.d:1769
-msgid "ttyx_"
+msgid "Kumiko"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:5
-#: data/pkg/desktop/io.github.gwelr.ttyx.desktop.in:4
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:5
+#: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:4
 msgid "A tiling terminal for Linux, forked from Tilix"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:9
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:9
 msgid ""
 "ttyx_ is an actively maintained fork of Tilix, the tiling terminal emulator."
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:12
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:12
 msgid "It lets you:"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:14
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:14
 msgid ""
 "Layout terminals in any fashion by splitting them horizontally or vertically"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:15
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:15
 msgid ""
 "Terminals can be re-arranged using drag and drop both within and between "
 "windows"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:16
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:16
 msgid "Terminals can be detached into a new window via drag and drop"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:17
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:17
 msgid ""
 "Input can be synchronized between terminals so commands typed in one "
 "terminal are replicated to the others"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:18
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:18
 msgid "The grouping of terminals can be saved and loaded from disk"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:19
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:19
 msgid "Terminals support custom titles"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:20
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:20
 msgid ""
 "Color schemes are stored in files and custom color schemes can be created by "
 "simply creating a new file"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:21
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:21
 msgid "Transparent background"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:22
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:22
 msgid "Supports notifications when processes are completed out of view"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:42
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:61
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:89
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:111
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:135
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:42
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:61
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:89
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:111
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:135
 msgid "This release adds the following features:"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:44
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:44
 msgid ""
 "The application is now built on the actively-maintained giD bindings "
 "(gid:gtk3 / gid:vte2) instead of the unmaintained GtkD, completing ROADMAP "
@@ -97,7 +97,7 @@ msgid ""
 "validation period exists to prove exactly that"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:45
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:45
 msgid ""
 "The unsafe-paste alert (dangerous-command patterns in pasted text) now ships "
 "default-off — it interrupted legitimate admin pastes more than it protected; "
@@ -106,118 +106,118 @@ msgid ""
 "review remain enabled by default"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:47
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:69
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:101
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:117
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:150
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:47
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:69
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:101
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:117
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:150
 msgid "This release fixes the following bugs:"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:49
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:49
 msgid ""
 "Remote 'ttyx -a <action>' invocations executed their action but hung instead "
 "of exiting immediately"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:50
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:50
 msgid ""
 "Release builds with plain ldc2 failed on a DMD-only -inline flag; this also "
 "kept CI red since the build swap"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:52
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:79
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:123
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:156
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:52
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:79
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:123
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:156
 msgid "This release includes the following changes:"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:54
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:54
 msgid "Dub is now the single build system; Meson is retired"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:55
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:55
 msgid ""
 "Flatpak packaging dropped — building from source is the supported "
 "distribution channel"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:63
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:63
 msgid ""
 "OSC 11 dynamic background color — apps like neovim and theme-switching "
 "scripts can now change the terminal background at runtime via the OSC 11 "
 "escape sequence; reset with OSC 111"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:64
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:64
 msgid ""
 "enable-wide-handle defaults to true so the splitter between split terminals "
 "is easier to see and grab on dark themes and HiDPI displays"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:65
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:65
 msgid "Auto-equalize panes on split and close, sway-style"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:66
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:66
 msgid "Documentation site at https://gwelr.github.io/ttyx_/"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:67
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:67
 msgid ""
 "Sensitive values redaction: passwords, tokens and proxy credentials are "
 "stripped from trace logs, command-line argv and hyperlink click events "
 "before reaching any log sink"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:71
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:71
 msgid ""
 "Maximized terminal now correctly restores when loading a saved session; "
 "fixes a long-standing bug pre-existing since the upstream Tilix 2017 "
 "implementation"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:72
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:72
 msgid ""
 "Trigger templates: $0 now correctly substitutes the whole match (was shifted "
 "by one due to a size_t underflow); user templates relying on the bugged "
 "behaviour need indices shifted up by one"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:73
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:73
 msgid ""
 "Triggers with an unrecognised action name are now skipped with a warning "
 "instead of silently rewritten to UpdateState"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:74
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:74
 msgid ""
 "Paste hardening: strip OSC, DCS, APC and PM escape sequences from clipboard "
 "content before paste"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:75
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:75
 msgid "Robust /proc/[pid]/stat parser with bounds validation"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:76
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:76
 msgid ""
 "Password manager delete now correctly reports keyring failures and handles "
 "legacy Tilix-schema entries"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:77
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:77
 msgid ""
 "Proxy URL builder: percent-encode userinfo and drop the redundant leading @; "
 "HTTPS proxy now receives credentials when configured"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:81
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:81
 msgid "First beta of the 1.2.0 release; validation period before GA"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:82
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:82
 msgid ""
 "Internal refactors using D SumType for compile-time exhaustiveness: "
 "TerminalRegex (BuiltinRegex/CustomRegex), SyncInputEvent, and a typed "
@@ -225,266 +225,266 @@ msgid ""
 "serialisation"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:83
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:83
 msgid ""
 "CI: install LDC from the upstream tarball; build GtkD from source on Debian "
 "Testing where the apt package was removed"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:91
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:91
 msgid ""
 "Security: restored sessions now ask for confirmation before running an "
 "embedded per-terminal command, instead of executing it silently on load"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:92
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:92
 msgid ""
 "Security: custom-link and trigger commands shell-quote all substituted match "
 "tokens and terminal variables, closing a shell-injection hole in values "
 "drawn from terminal output or remote-settable OSC variables"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:93
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:93
 msgid ""
 "Security: paste sanitization is now applied on every paste path; the default "
 "path previously fell through to pasting the raw clipboard text"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:94
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:94
 msgid ""
 "Security: bracketed-paste escape stripping loops to a fixed point so split "
 "or overlapping markers cannot reassemble after removal"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:95
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:95
 msgid ""
 "Security: carriage return now counts as a command submitter in the paste "
 "safety checks, matching newline handling"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:96
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:96
 msgid ""
 "Security: OSC 8 hyperlinks are restricted to an allow-listed set of URI "
 "schemes before being handed to the desktop URI handler"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:97
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:97
 msgid ""
 "Security: trigger regex matching input is bounded as defense-in-depth "
 "against catastrophic-backtracking UI hangs on adversarial output"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:98
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:98
 msgid ""
 "Security: spawn-failure logs redact proxy credentials; log redaction covers "
 "more sensitive key names and strips URL userinfo from all values"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:99
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:99
 msgid "Security: retrieved keyring passwords are kept in non-pageable memory"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:103
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:103
 msgid "Crash reading the host shell from a malformed passwd entry (Flatpak)"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:104
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:104
 msgid "Crash loading a session file with a corrupt paned orientation value"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:105
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:105
 msgid "Crash reading a child process name from a malformed /proc stat entry"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:113
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:113
 msgid ""
 "Automatic config migration from Tilix — on first run, ~/.config/tilix/ is "
 "copied to ~/.config/ttyx/ with the original kept as backup"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:114
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:114
 msgid ""
 "Password manager reads legacy com.gexperts.tilix.Password schema for "
 "backwards compatibility; new passwords are saved under the ttyx schema"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:115
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:115
 msgid ""
 "TTYX_ID environment variable set in shells alongside TILIX_ID for backwards "
 "compatibility with existing shell integrations"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:119
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:119
 msgid ""
 "Color scheme loader no longer shows duplicates; user config now wins over "
 "system defaults when a scheme filename exists in both"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:120
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:120
 msgid ""
 "Post-install script writes a minimal index.theme at the install prefix so "
 "gtk-update-icon-cache can generate a valid icon cache"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:121
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:121
 msgid "AppStream metadata no longer includes stale Tilix release entries"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:125
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:125
 msgid ""
 "Rename user-visible Tilix references: Nautilus menu, shortcuts window, "
 "GSettings descriptions, icon filenames, log and temp paths"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:126
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:126
 msgid ""
 "Rewrite man page under ttyx_ identity; drop 30 stale translations that "
 "referenced Tilix-branded msgids"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:127
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:127
 msgid ""
 "Release process simplified: drop hand-assembled binary tarball, ship only "
 "Flatpak bundle with signed checksums"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:128
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:128
 msgid "Add Troubleshooting section to README (stale icon cache, Wayland Quake)"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:129
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:129
 msgid "Add ROADMAP.md documenting vision and phase plan"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:137
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:137
 msgid "Security: enforce in-memory-only scrollback, capped at 256-999999 lines"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:138
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:138
 msgid "Security: core dump protection via prctl PR_SET_DUMPABLE"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:139
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:139
 msgid "Security: Secure Clear action (Ctrl+Shift+L) to wipe scrollback buffer"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:140
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:140
 msgid ""
 "Security: SSH session detection indicator for ssh, scp, sftp, mosh, sshfs"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:141
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:141
 msgid "Security: clipboard auto-clear after configurable timeout"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:142
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:142
 msgid "Security: strip bracketed paste escape sequences to prevent injection"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:143
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:143
 msgid "Security: multi-line paste review dialog before execution"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:144
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:144
 msgid ""
 "Security: expanded dangerous command detection (sudo, rm -rf, curl|bash, "
 "etc.)"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:145
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:145
 msgid "Security: per-paste unsafe warning (no longer permanently dismissed)"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:146
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:146
 msgid ""
 "Security: all options consolidated in Advanced preferences with descriptions"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:147
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:147
 msgid "Flatpak packaging with GNOME 48 SDK and bundled LDC compiler"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:148
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:148
 msgid "ProcessMonitor optimization: idle CPU reduced from 1.4% to 0.1%"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:152
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:152
 msgid "Fix GC crash when opening preferences on GLib 2.84+"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:153
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:153
 msgid "Fix SSH and root indicators not clearing when process exits"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:154
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:154
 msgid "Fix color scheme test when schemes not installed in XDG paths"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:158
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:158
 msgid "Major terminal.d decomposition into extracted components"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:159
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:159
 msgid "Replace applyPreference switch with PreferenceRegistry pattern"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:160
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:160
 msgid "119 unit tests covering security, clipboard, rendering, and monitoring"
 msgstr ""
 
-#: data/metainfo/io.github.gwelr.ttyx.appdata.xml.rel.in:161
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:161
 msgid "CI: add xvfb support for GTK integration tests"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:119
+#: data/nautilus/open-kumiko.py:119
 msgid "Open Remote ttyx"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:120
+#: data/nautilus/open-kumiko.py:120
 #, python-brace-format
 msgid "Open Remote ttyx In {}"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:126
+#: data/nautilus/open-kumiko.py:126
 msgid "Open In ttyx"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:127
+#: data/nautilus/open-kumiko.py:127
 #, python-brace-format
-msgid "Open ttyx In {}"
+msgid "Open Kumiko In {}"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:138
+#: data/nautilus/open-kumiko.py:138
 msgid "Open Remote ttyx Here"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:139
+#: data/nautilus/open-kumiko.py:139
 msgid "Open Remote ttyx In This Directory"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:144
+#: data/nautilus/open-kumiko.py:144
 msgid "Open ttyx Here"
 msgstr ""
 
-#: data/nautilus/open-ttyx.py:145
-msgid "Open ttyx In This Directory"
+#: data/nautilus/open-kumiko.py:145
+msgid "Open Kumiko In This Directory"
 msgstr ""
 
-#: data/pkg/desktop/io.github.gwelr.ttyx.desktop.in:5
+#: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:5
 msgid "shell;prompt;command;commandline;cmd;terminal;tiling;"
 msgstr ""
 
-#: data/pkg/desktop/io.github.gwelr.ttyx.desktop.in:16
+#: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:16
 #: source/gx/ttyx/appwindow.d:750 source/gx/ttyx/prefeditor/prefdialog.d:1649
 msgid "New Window"
 msgstr "Nytt vindu"
 
-#: data/pkg/desktop/io.github.gwelr.ttyx.desktop.in:20
+#: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:20
 #: source/gx/ttyx/prefeditor/prefdialog.d:1649 source/gx/ttyx/session.d:1720
 msgid "New Session"
 msgstr "Ny økt"
 
-#: data/pkg/desktop/io.github.gwelr.ttyx.desktop.in:24
+#: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:24
 #: source/gx/ttyx/appwindow.d:767 source/gx/ttyx/prefeditor/prefdialog.d:334
 #: source/gx/ttyx/prefeditor/prefdialog.d:486
 msgid "Preferences"
@@ -1032,7 +1032,7 @@ msgstr "Versjoner"
 
 #: source/app.d:296
 #, fuzzy, c-format
-msgid "ttyx_ version: %s"
+msgid "Kumiko version: %s"
 msgstr "Tilix-versjon: %s"
 
 #: source/app.d:297
@@ -1047,7 +1047,7 @@ msgstr "GTK-versjon: %d.%d.%d"
 
 #: source/app.d:299
 #, fuzzy
-msgid "ttyx_ Special Features"
+msgid "Kumiko Special Features"
 msgstr "Tilix-spesialfunksjoner"
 
 #: source/app.d:300
@@ -1124,7 +1124,7 @@ msgid "ACTION_NAME"
 msgstr ""
 
 #: source/gx/ttyx/application.d:744
-msgid "Send an action to current ttyx_ instance"
+msgid "Send an action to current Kumiko instance"
 msgstr ""
 
 #: source/gx/ttyx/application.d:746
@@ -1180,11 +1180,11 @@ msgid ""
 msgstr ""
 
 #: source/gx/ttyx/application.d:755
-msgid "Show ttyx_ and dependent component versions"
+msgid "Show Kumiko and dependent component versions"
 msgstr ""
 
 #: source/gx/ttyx/application.d:756
-msgid "Show the ttyx_ preferences dialog directly"
+msgid "Show the Kumiko preferences dialog directly"
 msgstr ""
 
 #: source/gx/ttyx/application.d:757
@@ -1193,7 +1193,7 @@ msgstr ""
 
 #: source/gx/ttyx/application.d:757
 msgid ""
-"Group ttyx_ instances into different processes (Experimental, not "
+"Group Kumiko instances into different processes (Experimental, not "
 "recommended)"
 msgstr ""
 
@@ -1283,7 +1283,7 @@ msgstr "Snarveier"
 
 #: source/gx/ttyx/appwindow.d:769
 #, fuzzy
-msgid "About ttyx_"
+msgid "About Kumiko"
 msgstr "Tilix"
 
 #: source/gx/ttyx/appwindow.d:776
@@ -1519,7 +1519,7 @@ msgstr ""
 
 #: source/gx/ttyx/cmdparams.d:209
 msgid ""
-"No ttyx_ instance registered on the session bus to receive the action. "
+"No Kumiko instance registered on the session bus to receive the action. "
 "(Instances started with --new-process are not bus-registered.)"
 msgstr ""
 
@@ -1549,11 +1549,11 @@ msgid ""
 msgstr ""
 
 #: source/gx/ttyx/constants.d:72
-msgid "Gerald Nunn and the Tilix contributors, whose work ttyx_ is built upon"
+msgid "Gerald Nunn and the Tilix contributors, whose work Kumiko is built upon"
 msgstr ""
 
 #: source/gx/ttyx/constants.d:73
-msgid "GTK VTE widget team, ttyx_ would not be possible without their work"
+msgid "GTK VTE widget team, Kumiko would not be possible without their work"
 msgstr ""
 
 #: source/gx/ttyx/constants.d:74
@@ -1896,7 +1896,7 @@ msgstr ""
 
 #: source/gx/ttyx/prefeditor/prefdialog.d:192
 #, fuzzy
-msgid "ttyx_ Preferences"
+msgid "Kumiko Preferences"
 msgstr "Innstillinger"
 
 #: source/gx/ttyx/prefeditor/prefdialog.d:209
@@ -2366,7 +2366,7 @@ msgstr ""
 #: source/gx/ttyx/prefeditor/prefdialog.d:1777
 msgid ""
 "Core dump protection prevents debuggers and other processes from reading "
-"terminal memory. Disable this if you need to debug ttyx_ with GDB or "
+"terminal memory. Disable this if you need to debug Kumiko with GDB or "
 "generate core dumps."
 msgstr ""
 
@@ -3218,7 +3218,7 @@ msgstr "Gjenopprett"
 
 #: source/gx/ttyx/terminal/terminal.d:1789
 #, fuzzy
-msgid "ttyx_ Custom Notification"
+msgid "Kumiko Custom Notification"
 msgstr "Merknader påskrudd=%b"
 
 #: source/gx/ttyx/terminal/terminal.d:1892

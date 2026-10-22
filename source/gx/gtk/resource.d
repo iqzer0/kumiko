@@ -96,7 +96,7 @@ CssProvider addCssProvider(string filename, ProviderPriority priority, string[st
                 StyleContext.addProviderForScreen(screen, provider, priority);
                 return provider;
             } else {
-                warning("Default screen is null, no CSS provider added and as a result ttyx_ UI may appear incorrect");
+                warning("Default screen is null, no CSS provider added and as a result Kumiko UI may appear incorrect");
                 return null;
             }
         }

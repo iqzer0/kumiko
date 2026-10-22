@@ -1,4 +1,4 @@
-/** Radiance specific CSS to fix Ubuntu problems so the rest of us can have nice things **/
+/** Ambiance specific CSS to fix Ubuntu problems so the rest of us can have nice things **/
 
 /* Fix Ubuntu Popover label borders, see #217 */
 GtkBox > .label.separator {
@@ -8,25 +8,24 @@ GtkBox > .label.separator {
 }
 
 /* Attempt to improve scrollbars */
-.ttyx-terminal-scrollbar:hover:not(.slider),
-.ttyx-terminal-scrollbar.dragging:not(.slider) {
+.kumiko-terminal-scrollbar:hover:not(.slider),
+.kumiko-terminal-scrollbar.dragging:not(.slider) {
     background-color: alpha(@scrollbar_track_color, 0.4);
 }
 
 /* Since .hovering class is not working here, we always use the same radius */
-.ttyx-terminal-scrollbar.slider.hovering,
-.ttyx-terminal-scrollbar.slider.dragging {
-    /*border-radius: 1px;*/
+.kumiko-terminal-scrollbar.slider.hovering,
+.kumiko-terminal-scrollbar.slider.dragging {
     border-left: 0px;
 }
 
-.ttyx-terminal-scrollbar.vertical:hover:dir(ltr),
-.ttyx-terminal-scrollbar.vertical.dragging:dir(ltr) {
+.kumiko-terminal-scrollbar.vertical:hover:dir(ltr),
+.kumiko-terminal-scrollbar.vertical.dragging:dir(ltr) {
     margin-left: 0px;
 }
 
-.ttyx-terminal-scrollbar.vertical:hover:dir(rtl),
-.ttyx-terminal-scrollbar.vertical.dragging:dir(rtl) {
+.kumiko-terminal-scrollbar.vertical:hover:dir(rtl),
+.kumiko-terminal-scrollbar.vertical.dragging:dir(rtl) {
     margin-right: 0px;
 }
 
@@ -40,6 +39,7 @@ GtkPaned.wide {
 }
 
 /* Fix split header bar colors */
-.ttyx-title-separator {
+.kumiko-title-separator {
+	border-color: #333333;
 	background-color: #AEA79F;
 }

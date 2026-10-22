@@ -26,7 +26,7 @@ fi
 # Not an interactive shell?
 [[ $- == *i* ]] || return 0
 
-__ttyx_urlencode() (
+__kumiko_urlencode() (
   # This is important to make sure string manipulation is handled
   # byte-by-byte.
   LC_ALL=C
@@ -42,17 +42,18 @@ __ttyx_urlencode() (
   done
 )
 
-__ttyx_osc7() (
+__kumiko_osc7() (
   local previous_exit_status=$?
-  printf "\033]7;file://%s%s\007" "${HOSTNAME:-}" "$(__ttyx_urlencode "${PWD}")"
+  printf "\033]7;file://%s%s\007" "${HOSTNAME:-}" "$(__kumiko_urlencode "${PWD}")"
   return $previous_exit_status
 )
 
 if [[ $PROMPT_COMMAND != *"__vte_prompt_command"* ]]
 then
-    if [ "$TTYX_SILENT" != "1" ]; then
-        echo "Adding ttyx_ osc7"
+    # TTYX_SILENT is still honoured for setups written for ttyx_.
+    if [ "${KUMIKO_SILENT:-$TTYX_SILENT}" != "1" ]; then
+        echo "Adding Kumiko osc7"
     fi
-    [ -n "$BASH_VERSION" ] && PROMPT_COMMAND="__ttyx_osc7"
-    [ -n "$ZSH_VERSION"  ] && precmd_functions+=(__ttyx_osc7)
+    [ -n "$BASH_VERSION" ] && PROMPT_COMMAND="__kumiko_osc7"
+    [ -n "$ZSH_VERSION"  ] && precmd_functions+=(__kumiko_osc7)
 fi

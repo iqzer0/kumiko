@@ -189,7 +189,7 @@ private:
 
     void createUI() {
 
-        setTitle(_("ttyx_ Preferences"));
+        setTitle(_("Kumiko Preferences"));
 
         createSplitHeaders();
 
@@ -336,7 +336,7 @@ private:
         Box bTitle = new Box(Orientation.Horizontal, 0);
         bTitle.add(hbSide);
         Separator sTitle = new Separator(Orientation.Vertical);
-        sTitle.getStyleContext().addClass("ttyx-title-separator");
+        sTitle.getStyleContext().addClass("kumiko-title-separator");
         bTitle.add(sTitle);
         bTitle.add(hbMain);
 
@@ -1780,7 +1780,7 @@ private:
         row++;
 
         // -- Memory protection --
-        grid.attach(createDescriptionLabel(_("Core dump protection prevents debuggers and other processes from reading terminal memory. Disable this if you need to debug ttyx_ with GDB or generate core dumps.")), 0, row, 2, 1);
+        grid.attach(createDescriptionLabel(_("Core dump protection prevents debuggers and other processes from reading terminal memory. Disable this if you need to debug Kumiko with GDB or generate core dumps.")), 0, row, 2, 1);
         row++;
 
         CheckButton cbCoreDump = CheckButton.newWithLabel(_("Protect against memory dumps (disable core dumps)"));
