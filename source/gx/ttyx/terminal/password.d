@@ -7,7 +7,7 @@
  * giD port of source/gx/ttyx/terminal/password.d. Differences from GtkD:
  *
  *   VENDORED libsecret → gid:secret1 (the headline change of this port):
- *   - The original used ttyx_'s vendored GtkD-style bindings (import secret.* /
+ *   - The original used Kumiko's vendored GtkD-style bindings (import secret.* /
  *     secretc.* from source/secret{,c}/). Those are NOT reused; this port uses
  *     giD's native libsecret binding (dub dependency gid:secret1), whose
  *     secret.* module names shadow the vendored ones by coincidence only.
@@ -177,8 +177,15 @@ private:
     enum COLUMN_NAME = 0;
     enum COLUMN_ID = 1;
 
-    enum SCHEMA_NAME = "io.github.gwelr.ttyx.Password";
-    enum LEGACY_SCHEMA_NAME = "com.gexperts.tilix.Password";
+    enum SCHEMA_NAME = "io.github.iqzer0.kumiko.Password";
+    /// Schemas of the projects Kumiko descends from: ttyx_, then Tilix.
+    /// Their saved passwords stay usable; new ones are stored under SCHEMA_NAME.
+    static immutable string[] LEGACY_SCHEMA_NAMES = ["io.github.gwelr.ttyx.Password", "com.gexperts.tilix.Password"];
+
+    static bool isOwnSchema(string name) {
+        import std.algorithm : canFind;
+        return name == SCHEMA_NAME || LEGACY_SCHEMA_NAMES.canFind(name);
+    }
 
     enum ATTRIBUTE_ID = "id";
     enum ATTRIBUTE_DESCRIPTION = "description";
@@ -188,7 +195,7 @@ private:
 
     enum DEFAULT_COLLECTION = "default";
 
-    enum DESCRIPTION_VALUE = "ttyx_ Password";
+    enum DESCRIPTION_VALUE = "Kumiko Password";
 
     SearchEntry se;
     TreeView tv;
@@ -197,6 +204,7 @@ private:
     GSettings gsSettings;
 
     Schema schema;
+    Schema[] legacySchemas;
     // These are populated asynchronously
     Service service;
     Collection collection;
@@ -317,7 +325,7 @@ private:
                 if (pd.run() == ResponseType.Ok) {
                     Item[] items = collection.getItems();
                     foreach (item; items) {
-                        if (item.getSchemaName() == SCHEMA_NAME || item.getSchemaName() == LEGACY_SCHEMA_NAME) {
+                        if (isOwnSchema(item.getSchemaName())) {
                             string itemID = item.getAttributes().get(ATTRIBUTE_ID, null);
                             trace("ItemID " ~ itemID);
                             if (id == itemID) {
@@ -345,7 +353,7 @@ private:
             try {
                 foreach (item; collection.getItems()) {
                     string schemaName = item.getSchemaName();
-                    if (schemaName != SCHEMA_NAME && schemaName != LEGACY_SCHEMA_NAME) continue;
+                    if (!isOwnSchema(schemaName)) continue;
                     string itemID = item.getAttributes().get(ATTRIBUTE_ID, null);
                     if (itemID == id) {
                         if (item.deleteSync(null)) deleted = true;
@@ -402,7 +410,7 @@ private:
         Item[] items = collection.getItems();
         rows.length = 0;
         foreach (item; items) {
-            if (item.getSchemaName() == SCHEMA_NAME || item.getSchemaName() == LEGACY_SCHEMA_NAME) {
+            if (isOwnSchema(item.getSchemaName())) {
                 string id = item.getAttributes().get(ATTRIBUTE_ID, null);
                 rows ~= [item.getLabel(), id];
             }
@@ -427,6 +435,12 @@ private:
         schema = newSchema(SCHEMA_NAME, SchemaFlags.None,
                            [ATTRIBUTE_ID: SchemaAttributeType.String,
                             ATTRIBUTE_DESCRIPTION: SchemaAttributeType.String]);
+        legacySchemas.length = 0;
+        foreach (name; LEGACY_SCHEMA_NAMES) {
+            legacySchemas ~= newSchema(name, SchemaFlags.None,
+                                       [ATTRIBUTE_ID: SchemaAttributeType.String,
+                                        ATTRIBUTE_DESCRIPTION: SchemaAttributeType.String]);
+        }
     }
 
     void createService() {
@@ -505,6 +519,12 @@ public:
             // memory that libsecret keeps out of swap, rather than in ordinary
             // pageable memory that could be written to disk.
             string password = passwordLookupNonpageableSync(schema, [ATTRIBUTE_ID: id], null);
+            // A schema lookup only matches items stored under that schema
+            // name, so passwords saved by ttyx_ or Tilix need their own.
+            foreach (legacy; legacySchemas) {
+                if (password !is null) break;
+                password = passwordLookupNonpageableSync(legacy, [ATTRIBUTE_ID: id], null);
+            }
             if (gsSettings.getBoolean(SETTINGS_PASSWORD_INCLUDE_RETURN_KEY)) {
                 password ~= '\n';
             }

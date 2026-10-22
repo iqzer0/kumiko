@@ -1,4 +1,4 @@
-ttyx_ Release Process
+Kumiko Release Process
 =====================
 
 ## Pre-release
@@ -49,7 +49,7 @@ ttyx_ Release Process
     ```
     dub build --build=release --compiler=ldc2
     dub test --compiler=ldc2
-    ./install.sh /tmp/ttyx-install-check/usr && rm -r /tmp/ttyx-install-check
+    ./install.sh /tmp/kumiko-install-check/usr && rm -r /tmp/kumiko-install-check
     ```
 
 ## Sign and checksum
@@ -57,9 +57,9 @@ ttyx_ Release Process
 8. Create the source archive and signed checksums (the signed git tag is
    the primary integrity anchor; the checksums cover the exported archive):
     ```
-    git archive --format=tar.gz --prefix=ttyx-X.Y.Z/ -o /tmp/ttyx-X.Y.Z.tar.gz vX.Y.Z
-    sha256sum /tmp/ttyx-X.Y.Z.tar.gz > /tmp/ttyx-X.Y.Z_SHA256SUMS
-    gpg --clearsign /tmp/ttyx-X.Y.Z_SHA256SUMS
+    git archive --format=tar.gz --prefix=kumiko-X.Y.Z/ -o /tmp/kumiko-X.Y.Z.tar.gz vX.Y.Z
+    sha256sum /tmp/kumiko-X.Y.Z.tar.gz > /tmp/kumiko-X.Y.Z_SHA256SUMS
+    gpg --clearsign /tmp/kumiko-X.Y.Z_SHA256SUMS
     ```
 
 ## Publish
@@ -68,12 +68,12 @@ ttyx_ Release Process
     upload assets after creation — GitHub's immutable releases will
     block subsequent uploads):
     ```
-    gh release create vX.Y.Z -R gwelr/ttyx_ \
-      --title "ttyx_ vX.Y.Z" \
+    gh release create vX.Y.Z -R iqzer0/kumiko \
+      --title "Kumiko vX.Y.Z" \
       --target master \
       --notes-file /path/to/release-notes.md \
-      /tmp/ttyx-X.Y.Z.tar.gz \
-      /tmp/ttyx-X.Y.Z_SHA256SUMS.asc
+      /tmp/kumiko-X.Y.Z.tar.gz \
+      /tmp/kumiko-X.Y.Z_SHA256SUMS.asc
     ```
 
 ## Post-release
@@ -95,8 +95,8 @@ Users can verify release integrity with:
 git verify-tag vX.Y.Z
 
 # Or verify the archive: signature, then checksum
-gpg --verify ttyx-X.Y.Z_SHA256SUMS.asc
-sha256sum -c ttyx-X.Y.Z_SHA256SUMS.asc 2>/dev/null
+gpg --verify kumiko-X.Y.Z_SHA256SUMS.asc
+sha256sum -c kumiko-X.Y.Z_SHA256SUMS.asc 2>/dev/null
 ```
 
 Users install from source — see the Install page (`docs/install.md`).

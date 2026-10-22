@@ -1,16 +1,16 @@
 #!/bin/bash
-# Debug launcher for ttyx_
-# Runs ttyx_ under GDB with GTK debug flags
+# Debug launcher for Kumiko
+# Runs Kumiko under GDB with GTK debug flags
 #
 # Usage:
-#   ./debug-ttyx.sh              # normal debug run
-#   ./debug-ttyx.sh --rebuild    # rebuild first, then debug
-#   ./debug-ttyx.sh --core       # analyze most recent core dump
+#   ./debug-kumiko.sh              # normal debug run
+#   ./debug-kumiko.sh --rebuild    # rebuild first, then debug
+#   ./debug-kumiko.sh --core       # analyze most recent core dump
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BINARY="$SCRIPT_DIR/ttyx"
+BINARY="$SCRIPT_DIR/kumiko"
 SCHEMAS_DIR="$SCRIPT_DIR/data/gsettings"
 RUNDATA_DIR="$SCRIPT_DIR/.rundata"
 
@@ -28,8 +28,8 @@ case "${1:-}" in
         shift
         ;;
     --core)
-        echo -e "${YELLOW}Opening most recent ttyx_ core dump...${NC}"
-        coredumpctl debug ttyx
+        echo -e "${YELLOW}Opening most recent Kumiko core dump...${NC}"
+        coredumpctl debug kumiko
         exit $?
         ;;
 esac
@@ -40,10 +40,10 @@ if [ ! -f "$BINARY" ]; then
     exit 1
 fi
 
-# Kill any running ttyx_ instance (GTK single-instance via D-Bus)
-if pgrep -x ttyx > /dev/null 2>&1; then
-    echo -e "${YELLOW}Killing existing ttyx_ instance (GTK single-instance mode)...${NC}"
-    killall ttyx 2>/dev/null || true
+# Kill any running Kumiko instance (GTK single-instance via D-Bus)
+if pgrep -x kumiko > /dev/null 2>&1; then
+    echo -e "${YELLOW}Killing existing Kumiko instance (GTK single-instance mode)...${NC}"
+    killall kumiko 2>/dev/null || true
     sleep 1
 fi
 
@@ -55,22 +55,22 @@ if [ -d "$SCHEMAS_DIR" ]; then
 fi
 
 # Make the compiled gresource findable via XDG_DATA_DIRS.
-# The app searches for ttyx/resources/ttyx.gresource under each XDG data dir;
+# The app searches for kumiko/resources/kumiko.gresource under each XDG data dir;
 # compile it into a local run-data dir (dub has no data build step).
 echo -e "${YELLOW}Compiling gresource...${NC}"
-mkdir -p "$RUNDATA_DIR/ttyx/resources"
+mkdir -p "$RUNDATA_DIR/kumiko/resources"
 glib-compile-resources --sourcedir="$SCRIPT_DIR/data/resources" \
-    --target="$RUNDATA_DIR/ttyx/resources/ttyx.gresource" \
-    "$SCRIPT_DIR/data/resources/ttyx.gresource.xml"
+    --target="$RUNDATA_DIR/kumiko/resources/kumiko.gresource" \
+    "$SCRIPT_DIR/data/resources/kumiko.gresource.xml"
 export XDG_DATA_DIRS="$RUNDATA_DIR:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
 # Enable core dumps for this session
 ulimit -c unlimited 2>/dev/null || true
 
-echo -e "${GREEN}Launching ttyx_ under GDB...${NC}"
+echo -e "${GREEN}Launching Kumiko under GDB...${NC}"
 echo ""
 echo -e "  ${YELLOW}Useful GDB commands:${NC}"
-echo "    run              - start ttyx_"
+echo "    run              - start Kumiko"
 echo "    bt               - backtrace after crash"
 echo "    bt full          - backtrace with local variables"
 echo "    info threads     - list all threads"
@@ -89,10 +89,10 @@ echo ""
 # export G_DEBUG=fatal-criticals
 
 # --new-process disables GApplication session-bus registration so we get a
-# fresh instance under gdb. Tradeoff: `ttyx -a <action>` invocations from
-# a shell cannot discover this instance and will print "No ttyx_ instance
-# registered on the session bus...". Launch ttyx_ without this wrapper if
-# you need to test CLI actions. See CONTRIBUTING.md > Using debug-ttyx.sh.
+# fresh instance under gdb. Tradeoff: `kumiko -a <action>` invocations from
+# a shell cannot discover this instance and will print "No Kumiko instance
+# registered on the session bus...". Launch Kumiko without this wrapper if
+# you need to test CLI actions. See CONTRIBUTING.md > Using debug-kumiko.sh.
 exec gdb \
     -ex "set print pretty on" \
     -ex "set pagination off" \

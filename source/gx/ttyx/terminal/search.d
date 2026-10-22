@@ -128,7 +128,7 @@ private:
         seSearch.setWidthChars(1);
         seSearch.setMaxWidthChars(30);
         if (checkVersion(3, 20, 0).length != 0) {
-            seSearch.getStyleContext().addClass("ttyx-search-entry");
+            seSearch.getStyleContext().addClass("kumiko-search-entry");
         }
         seSearch.connectSearchChanged(delegate() {
             setTerminalSearchCriteria();
@@ -192,7 +192,7 @@ private:
         Frame frame = new Frame();
         frame.add(bSearch);
         frame.setShadowType(ShadowType.None);
-        frame.getStyleContext().addClass("ttyx-search-frame");
+        frame.getStyleContext().addClass("kumiko-search-frame");
         add(frame);
     }
 

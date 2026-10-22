@@ -156,7 +156,7 @@ unittest {
 }
 
 /**
- * URI schemes ttyx_ is willing to hand to the desktop URI handler when a link
+ * URI schemes Kumiko is willing to hand to the desktop URI handler when a link
  * is opened. Covers the schemes the built-in link regexes produce
  * (`gx.ttyx.terminal.regex`) plus `mailto` and `file`. Anything outside this
  * set — e.g. a scriptable custom scheme delivered via an OSC 8 hyperlink — is

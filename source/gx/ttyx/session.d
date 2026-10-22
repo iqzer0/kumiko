@@ -173,7 +173,7 @@ unittest {
     // The regression this exists for: session-name defaults to "${title}",
     // and with no active terminal it used to reach the titlebar verbatim.
     assert(blankTerminalVariables(VARIABLE_TERMINAL_TITLE) == "");
-    assert(blankTerminalVariables("ttyx_: " ~ VARIABLE_TERMINAL_TITLE) == "ttyx_: ");
+    assert(blankTerminalVariables("Kumiko: " ~ VARIABLE_TERMINAL_TITLE) == "Kumiko: ");
 }
 
 unittest {
@@ -255,10 +255,10 @@ private:
 
     void createBaseUI() {
         stackGroup = new Box(Orientation.Vertical, 0);
-        stackGroup.getStyleContext().addClass("ttyx-background");
+        stackGroup.getStyleContext().addClass("kumiko-background");
         addNamed(stackGroup, STACK_GROUP_NAME);
         stackMaximized = new Box(Orientation.Vertical, 0);
-        stackMaximized.getStyleContext().addClass("ttyx-background");
+        stackMaximized.getStyleContext().addClass("kumiko-background");
         addNamed(stackMaximized, STACK_MAX_NAME);
         groupChild = new Box(Orientation.Vertical, 0);
         stackGroup.add(groupChild);
@@ -1139,7 +1139,7 @@ private:
         //    that resolves terminal variables, so the default session name
         //    "${title}" reached the titlebar as a literal. An interactive load
         //    self-corrected because the window was already focused; a fresh
-        //    `ttyx --session <file>` process computed its title first and kept
+        //    `kumiko --session <file>` process computed its title first and kept
         //    the literal (the known issue from the v1.3.0-beta.1 smoke pass).
         //  - focusRestore() is a no-op on a null currentTerminal, so a loaded
         //    session could come up with focus in no terminal at all.
@@ -1181,7 +1181,7 @@ private:
         gsSettings.connectChanged(null, delegate(string key) {
             applyPreference(key);
         });
-        getStyleContext.addClass("ttyx-background");
+        getStyleContext.addClass("kumiko-background");
 
         connectDraw(&onDraw);
     }

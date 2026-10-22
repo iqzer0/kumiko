@@ -44,7 +44,7 @@ public:
 
 ShortcutsWindow getShortcutWindow() {
     Builder builder = new Builder();
-    builder.setTranslationDomain(TTYX_DOMAIN);
+    builder.setTranslationDomain(GETTEXT_DOMAIN);
     try {
         if (!builder.addFromResource(SHORTCUT_UI_RESOURCE)) {
             error("Could not load shortcuts from " ~ SHORTCUT_UI_RESOURCE);
@@ -92,5 +92,5 @@ ShortcutsWindow getShortcutWindow() {
         trace("Didn't find profile ShortcutGroup");
     }
 
-    return cast(ShortcutsWindow) builder.getObject("shortcuts-ttyx");
+    return cast(ShortcutsWindow) builder.getObject("shortcuts-kumiko");
 }

@@ -1,13 +1,13 @@
-.ttyx-search-entry {
+.kumiko-search-entry {
     padding-bottom: 6px;
     padding-top: 6px;
 }
 
-.ttyx-search-frame {
+.kumiko-search-frame {
     border-bottom: 1px solid @borders;
 }
 
-.ttyx-notification-counter {
+.kumiko-notification-counter {
     background-color: @theme_fg_color;
     color: @theme_bg_color;
     border: 1px solid @borders;
@@ -15,7 +15,7 @@
     font-size: 0.8em;
 }
 
-.ttyx-tab-notification-counter {
+.kumiko-tab-notification-counter {
     background-color: @theme_selected_bg_color;
     color: @theme_selected_fg_color;
     border: 1px solid @borders;
@@ -27,47 +27,47 @@
     font-size: 0.8em;
 }
 
-.ttyx-small-button {
+.kumiko-small-button {
     padding: 2px 4px;
 }
 
-.ttyx-notebook-page {
+.kumiko-notebook-page {
     background-color: @theme_bg_color;
 }
 
 /* Used to give backgrounds to widgets that end up transparent
    due to transparent window */
-.ttyx-background {
+.kumiko-background {
     background-color: @theme_bg_color;
 }
 
 /* Only used when CSD is disabled */
-.ttyx-toolbar {
+.kumiko-toolbar {
     background-color: @theme_bg_color;
     border-bottom: 1px solid @borders;
 }
 
-.ttyx-notification-count {
+.kumiko-notification-count {
     background-image: -gtk-gradient(radial, center center, 0, center center, 0.5, to(@theme_selected_bg_color), to(transparent)), -gtk-gradient(radial, center center, 0, center center, 0.5, to(rgba(255, 255, 255, 0.76923)), to(transparent));
     color: @theme_selected_fg_color;
     font-size: smaller;
 }
 
-.ttyx-notification-count > label {
+.kumiko-notification-count > label {
     color: @theme_selected_fg_color;
 }
 
-.ttyx-session-index {
+.kumiko-session-index {
     background-image: -gtk-gradient(radial, center center, 0, center center, 0.5, to(@theme_fg_color), to(transparent)), -gtk-gradient(radial, center center, 0, center center, 0.5, to(rgba(255, 255, 255, 0.76923)), to(transparent));
     color: @theme_bg_color;
     font-size: smaller;
 }
 
-.ttyx-session-index > label {
+.kumiko-session-index > label {
   color: @theme_bg_color;
 }
 
-.ttyx-session-sidebar {
+.kumiko-session-sidebar {
     background-color: @theme_bg_color;
 }
 
@@ -79,15 +79,15 @@ revealer.right > scrolledwindow {
     border-width: 0 0 0 1px;
 }
 
-.ttyx-terminal-scrolledwindow > undershoot.top {
+.kumiko-terminal-scrolledwindow > undershoot.top {
     background-image: none;
 }
 
-.ttyx-terminal-scrolledwindow > undershoot.bottom {
+.kumiko-terminal-scrolledwindow > undershoot.bottom {
     background-image: none;
 }
 
-.ttyx-session-name {
+.kumiko-session-name {
     color: @theme_bg_color;
     background-color: @theme_fg_color;
     border-radius: 8px 8px 8px 8px / 50% 50% 50% 50%;
@@ -106,13 +106,13 @@ revealer.right > scrolledwindow {
 	padding: 0px;
 }
 
-.ttyx-sidebar-close-button {
+.kumiko-sidebar-close-button {
     border: 0px;
     padding: 0px;
     margin: 0px;
 }
 
-.ttyx-session-switcher {
+.kumiko-session-switcher {
     background-color: @theme_bg_color;
 }
 
@@ -134,23 +134,23 @@ revealer.right > scrolledwindow {
     80%  {-gtk-icon-transform: translateX(1px);}
 }
 
-.ttyx-root-indicator {
+.kumiko-root-indicator {
   color: #CC0000;
   font-weight: bold;
 }
 
-.ttyx-ssh-indicator {
+.kumiko-ssh-indicator {
   color: #1A5FB4;
   font-weight: bold;
 }
 
-.ttyx-bell {
+.kumiko-bell {
   background: none;
   opacity: 0;
   -gtk-icon-source: -gtk-icontheme("alarm-symbolic");
 }
 
-.ttyx-bell:checked {
+.kumiko-bell:checked {
     opacity: 1;
     animation: shake 1s linear infinite;
 }
@@ -162,21 +162,21 @@ revealer.right > scrolledwindow {
 }
 
 /* Remove rounded corners when disable-csd set to true */
-.ttyx-embedded-headerbar {
+.kumiko-embedded-headerbar {
     border-radius: 0;
 }
 
 /* Quake window border */
-.ttyx-quake-frame {
+.kumiko-quake-frame {
     border: 1px solid rgba(0, 0, 0, .7);
 }
 
 /*
-.ttyx-quake-frame > border {
+.kumiko-quake-frame > border {
     border-width: 0px;
 }
 */
 
-.ttyx-error {
+.kumiko-error {
     color: @error_color;
 }

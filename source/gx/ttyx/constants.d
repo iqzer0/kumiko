@@ -24,7 +24,7 @@ immutable bool USE_PIXBUF_DND = false;
 immutable bool CLIPBOARD_BTN_IN_CONTEXT = false;
 
 /**
- * All logs go to the file /tmp/ttyx.log, useful
+ * All logs go to the file /tmp/kumiko.log, useful
  * when debugging launchers or other spots where
  * stdout isn't easily viewed.
  */
@@ -51,26 +51,27 @@ enum GTK_VERSION_PATCH = 0;
 enum GTK_SCROLLEDWINDOW_VERSION = 22;
 
 // GetText Domain
-enum TTYX_DOMAIN = "ttyx";
+enum GETTEXT_DOMAIN = "kumiko";
 
 /**
  * Application ID
  */
-enum APPLICATION_ID = "io.github.gwelr.ttyx";
+enum APPLICATION_ID = "io.github.iqzer0.kumiko";
 
 // Application values used in About Dialog
-enum APPLICATION_NAME = "ttyx_";
+enum APPLICATION_NAME = "Kumiko";
 enum APPLICATION_VERSION = "1.3.0-beta.1";
-enum APPLICATION_AUTHOR = "gwelr";
+enum APPLICATION_AUTHOR = "iqzer0";
 enum APPLICATION_COPYRIGHT = "Copyright \xc2\xa9 2026 " ~ APPLICATION_AUTHOR;
 enum APPLICATION_COMMENTS = N_("A tiling terminal emulator for Linux, forked from Tilix");
 enum APPLICATION_LICENSE = N_("This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.");
-enum APPLICATION_ICON_NAME = "io.github.gwelr.ttyx";
+enum APPLICATION_ICON_NAME = "io.github.iqzer0.kumiko";
 
 immutable string[] APPLICATION_AUTHORS = [APPLICATION_AUTHOR];
 string[] APPLICATION_CREDITS = [
-    N_("Gerald Nunn and the Tilix contributors, whose work ttyx_ is built upon"),
-    N_("GTK VTE widget team, ttyx_ would not be possible without their work"),
+    N_("gwelr, whose ttyx_ fork of Tilix Kumiko is built on"),
+    N_("Gerald Nunn and the Tilix contributors, whose work Kumiko is built upon"),
+    N_("GTK VTE widget team, Kumiko would not be possible without their work"),
     N_("GtkD for providing such an excellent GTK wrapper"),
     N_("Dlang.org for such an excellent language, D")
 ];
@@ -101,16 +102,16 @@ enum ACTION_SHORTCUTS = "shortcuts";
 enum ACTION_NEW_WINDOW = "new-window";
 
 //Config Folder
-enum APPLICATION_CONFIG_FOLDER = "ttyx";
+enum APPLICATION_CONFIG_FOLDER = "kumiko";
 
 //RESOURCES
-enum APPLICATION_RESOURCES = buildPath(APPLICATION_CONFIG_FOLDER, "resources/ttyx.gresource");
-enum APPLICATION_RESOURCE_ROOT = "/io/github/gwelr/ttyx";
-immutable string[] APPLICATION_CSS_RESOURCES = ["css/ttyx.base.css","css/ttyx.base320.css"];
-immutable string[] THEME_CSS_RESOURCES = ["css/ttyx.base.theme.css"];
+enum APPLICATION_RESOURCES = buildPath(APPLICATION_CONFIG_FOLDER, "resources/kumiko.gresource");
+enum APPLICATION_RESOURCE_ROOT = "/io/github/iqzer0/kumiko";
+immutable string[] APPLICATION_CSS_RESOURCES = ["css/kumiko.base.css","css/kumiko.base320.css"];
+immutable string[] THEME_CSS_RESOURCES = ["css/kumiko.base.theme.css"];
 
 /**
- * Prefix shared by every CSS file in data/resources/ttyx.gresource.xml.
+ * Prefix shared by every CSS file in data/resources/kumiko.gresource.xml.
  *
  * The GTK-theme-specific CSS lookups are built at runtime from the theme
  * name, so they cannot be listed in the arrays above. Three call sites had
@@ -120,7 +121,7 @@ immutable string[] THEME_CSS_RESOURCES = ["css/ttyx.base.theme.css"];
  * scrollbars. Both URIs are built here now so the prefix has exactly one
  * definition.
  */
-private enum CSS_RESOURCE_PREFIX = "css/ttyx.";
+private enum CSS_RESOURCE_PREFIX = "css/kumiko.";
 
 /// Resource URI of the CSS override for GTK theme `theme`, if one is shipped.
 string themeCssResourceURI(string theme) {
@@ -134,11 +135,11 @@ string scrollbarCssResourceURI(string theme) {
 
 unittest {
     // Guards the rebrand regression: the prefix must match the file names in
-    // data/resources/ttyx.gresource.xml, not the upstream `tilix.` ones.
+    // data/resources/kumiko.gresource.xml, not the upstream `tilix.` ones.
     assert(themeCssResourceURI("Ambiance")
-        == "/io/github/gwelr/ttyx/css/ttyx.Ambiance.css");
+        == "/io/github/iqzer0/kumiko/css/kumiko.Ambiance.css");
     assert(scrollbarCssResourceURI("Arc-Dark")
-        == "/io/github/gwelr/ttyx/css/ttyx.Arc-Dark.scrollbar.css");
+        == "/io/github/iqzer0/kumiko/css/kumiko.Arc-Dark.scrollbar.css");
 }
 
 immutable string SHORTCUT_UI_RESOURCE = APPLICATION_RESOURCE_ROOT ~ "/ui/shortcuts.ui";

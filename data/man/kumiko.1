@@ -1,21 +1,21 @@
-.\" Manpage for ttyx_.
-.\" add issues at https://github.com/iqzer0/ttyx_ to correct errors or typos.
-.TH TTYX 1 "2026-04-17" "1.1.1" "ttyx Commands"
+.\" Manpage for Kumiko.
+.\" add issues at https://github.com/iqzer0/kumiko to correct errors or typos.
+.TH KUMIKO 1 "2026-04-17" "1.1.1" "kumiko Commands"
 .SH NAME
-\fBttyx\fP \- Tiling GTK3 terminal emulator for GNOME (forked from Tilix)
+\fBkumiko\fP \- Tiling GTK3 terminal emulator for GNOME (built on ttyx_ and Tilix)
 .SH SYNOPSIS
-.B ttyx
+.B kumiko
 .RI [ options ]
 .SH DESCRIPTION
-\fBttyx\fP is an advanced GTK3 tiling terminal emulator designed to adhere to GNOME Human Interface Guidelines, forked from Tilix.
+\fBkumiko\fP is an advanced GTK3 tiling terminal emulator designed to adhere to GNOME Human Interface Guidelines, built on ttyx_, itself a fork of Tilix.
 .SH OPTIONS
-The \fBttyx\fP application accepts the following command line parameters:
+The \fBkumiko\fP application accepts the following command line parameters:
 .TP
 .B \-h \-\-help
 Show help options.
 .TP
 .B \-v \-\-version
-Show the version of ttyx_ as well as the versions of dependent components.
+Show the version of Kumiko as well as the versions of dependent components.
 .TP
 .B \-w \-\-working-directory=DIRECTORY
 Set the working directory of the terminal.
@@ -30,7 +30,7 @@ Set the title of the new terminal.
 Specify a previously saved session to re-load the layout and layout options from. This will not restore the terminal to where it was left off, rather new terminals are created.
 .TP
 .B \-a \-\-action=ACTION_NAME
-Perform one of the following actions in the current ttyx instance:
+Perform one of the following actions in the current kumiko instance:
 .IP
 .B session-add-right
 Add a new terminal rightwards of the current one.
@@ -39,10 +39,10 @@ Add a new terminal rightwards of the current one.
 Add a new terminal below the current terminal.
 .IP
 .B app-new-session
-Create a new ttyx session within the current window.
+Create a new kumiko session within the current window.
 .IP
 .B app-new-window
-Create a new ttyx window.
+Create a new kumiko window.
 .TP
 .B \-e \-\-command=COMMAND
 Execute all text after this parameter as a command, thus this parameter must be the last parameter.
@@ -75,7 +75,7 @@ Do not show client side decorations and toolbar.
 Do not show window borders.
 .TP
 .B \-\-new\-process
-Start an additional ttyx instance as a new process. By default and as per GTK+ version 3 guidelines, ttyx maintains a single process that all windows belong to. This option forces ttyx to start as a separate process. This is not recommended and only intended for debugging purposes. Its use will prevent different ttyx windows from communicating with each other.
+Start an additional kumiko instance as a new process. By default and as per GTK+ version 3 guidelines, kumiko maintains a single process that all windows belong to. This option forces kumiko to start as a separate process. This is not recommended and only intended for debugging purposes. Its use will prevent different kumiko windows from communicating with each other.
 .TP
 .B \-\-geometry=GEOMETRY
 Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X+Y).
@@ -84,13 +84,13 @@ Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X+Y).
 Open a window in Quake mode or toggle existing Quake mode window visibility.
 .TP
 .B \-\-preferences
-Show the ttyx preferences dialog directly.
+Show the kumiko preferences dialog directly.
 .TP
 .B \-\-display=DISPLAY
 Use the specified X display.
 .SH SEE ALSO
 None
 .SH BUGS
-See bugs at https://github.com/iqzer0/ttyx_/issues
+See bugs at https://github.com/iqzer0/kumiko/issues
 .SH AUTHOR
-gwelr and other contributors. Forked from Tilix by Gerald Nunn.
+iqzer0. Built on ttyx_ by gwelr (https://github.com/gwelr/ttyx_), itself a fork of Tilix by Gerald Nunn (https://github.com/gnunn1/tilix).

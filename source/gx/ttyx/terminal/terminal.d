@@ -421,8 +421,8 @@ private:
         indicatorCssInstalled = true;
 
         static immutable string[] rules = [
-            ".ttyx-root-title { background: rgba(204, 0, 0, 0.45); }",
-            ".ttyx-ssh-title { background: rgba(26, 95, 180, 0.50); }",
+            ".kumiko-root-title { background: rgba(204, 0, 0, 0.45); }",
+            ".kumiko-ssh-title { background: rgba(26, 95, 180, 0.50); }",
         ];
 
         Screen screen = Display.getDefault().getDefaultScreen();
@@ -464,7 +464,7 @@ private:
         bTitle.setVexpand(false);
 
         lblTitle = new Label(_("Terminal"));
-        lblTitle.getStyleContext().addClass("ttyx-terminal-title");
+        lblTitle.getStyleContext().addClass("kumiko-terminal-title");
         lblTitle.setEllipsize(EllipsizeMode.Start);
         lblTitle.setUseMarkup(true);
 
@@ -555,7 +555,7 @@ private:
         spBell = new Spinner();
         spBell.setNoShowAll(true);
         spBell.setTooltipText(_("Terminal bell"));
-        spBell.getStyleContext().addClass("ttyx-bell");
+        spBell.getStyleContext().addClass("kumiko-bell");
         bTitle.packEnd(spBell, false, false, 0);
 
         EventBox evtTitle = new EventBox();
@@ -1012,11 +1012,11 @@ private:
      */
     GMenuItem createAddButtons() {
         GMenuItem addH = new GMenuItem(null, "session.add-right");
-        addH.setAttributeValue("verb-icon", new GVariant("ttyx-add-horizontal-symbolic"));
+        addH.setAttributeValue("verb-icon", new GVariant("kumiko-add-horizontal-symbolic"));
         addH.setAttributeValue("label", new GVariant(_("Add Right")));
 
         GMenuItem addV = new GMenuItem(null, "session.add-down");
-        addV.setAttributeValue("verb-icon", new GVariant("ttyx-add-vertical-symbolic"));
+        addV.setAttributeValue("verb-icon", new GVariant("kumiko-add-vertical-symbolic"));
         addV.setAttributeValue("label", new GVariant(_("Add Down")));
 
         GMenu addSection = new GMenu();
@@ -1277,7 +1277,7 @@ private:
             // giD binds no ScrolledWindow(child) convenience ctor.
             sw = new ScrolledWindow();
             sw.add(vte);
-            sw.getStyleContext.addClass("ttyx-terminal-scrolledwindow");
+            sw.getStyleContext.addClass("kumiko-terminal-scrolledwindow");
             sw.setPropagateNaturalHeight(true);
             sw.setPropagateNaturalWidth(true);
             sw.getVadjustment().connectValueChanged(&updateNewOutputIndicator);
@@ -1294,7 +1294,7 @@ private:
         // overlay scrollbars look awesome with VTE
         if (!useOverlayScrollbar) {
             sb = new Scrollbar(Orientation.Vertical, vte.getVadjustment());
-            sb.getStyleContext().addClass("ttyx-terminal-scrollbar");
+            sb.getStyleContext().addClass("kumiko-terminal-scrollbar");
             sb.getAdjustment().connectValueChanged(&updateNewOutputIndicator);
             terminalBox.add(sb);
 
@@ -1793,7 +1793,7 @@ private:
             case TriggerAction.SEND_NOTIFICATION:
                 string[string] parameters = parsePairs(replaceMatchTokens(params, groups));
                 tracef("Parameters count: %d", parameters.length);
-                string title = _("ttyx_ Custom Notification");
+                string title = _("Kumiko Custom Notification");
                 string _body;
                 if ("title" in parameters) title = parameters["title"];
                 if ("body" in parameters) _body = parameters["body"];
@@ -2719,9 +2719,11 @@ private:
                 flags = cast(SpawnFlags)(flags | SpawnFlags.FileAndArgvZero);
             }
         }
-        string[] envv = ["TTYX_ID=" ~ uuid, "TILIX_ID=" ~ uuid];
+        // TTYX_* and TILIX_* are kept for shell scripts written for the
+        // projects Kumiko descends from.
+        string[] envv = ["KUMIKO_ID=" ~ uuid, "TTYX_ID=" ~ uuid, "TILIX_ID=" ~ uuid];
         if (tilix.isQuake) {
-            envv ~= ["TTYX_QUAKE=1", "TILIX_QUAKE=1"];
+            envv ~= ["KUMIKO_QUAKE=1", "TTYX_QUAKE=1", "TILIX_QUAKE=1"];
         }
         foreach (arg; args)
             trace("Argument: " ~ arg);
@@ -3280,20 +3282,20 @@ private:
         if (lblSSHIndicator !is null) {
             if (showSSH) {
                 lblSSHIndicator.show();
-                bTitle.getStyleContext().addClass("ttyx-ssh-title");
+                bTitle.getStyleContext().addClass("kumiko-ssh-title");
             } else {
                 lblSSHIndicator.hide();
-                bTitle.getStyleContext().removeClass("ttyx-ssh-title");
+                bTitle.getStyleContext().removeClass("kumiko-ssh-title");
             }
         }
 
         if (lblRootIndicator !is null) {
             if (showRoot) {
                 lblRootIndicator.show();
-                bTitle.getStyleContext().addClass("ttyx-root-title");
+                bTitle.getStyleContext().addClass("kumiko-root-title");
             } else {
                 lblRootIndicator.hide();
-                bTitle.getStyleContext().removeClass("ttyx-root-title");
+                bTitle.getStyleContext().removeClass("kumiko-root-title");
             }
         }
     }

@@ -36,8 +36,8 @@ enum SETTINGS_MONOSPACE_FONT_KEY = "monospace-font-name";
 enum SETTINGS_PROXY_ID = "org.gnome.system.proxy";
 
 //Preference Constants
-enum SETTINGS_ID = "io.github.gwelr.ttyx.Settings";
-enum SETTINGS_BASE_PATH = "/io/github/gwelr/ttyx";
+enum SETTINGS_ID = "io.github.iqzer0.kumiko.Settings";
+enum SETTINGS_BASE_PATH = "/io/github/iqzer0/kumiko";
 
 // Settings for links and triggers that can be set at both global and profile level
 enum SETTINGS_ALL_CUSTOM_HYPERLINK_KEY = "custom-hyperlinks";
@@ -168,8 +168,8 @@ enum SETTINGS_CORE_DUMP_PROTECTION = "core-dump-protection";
 enum SETTINGS_SET_PROXY_ENV_KEY = "set-proxy-env";
 
 //Profile Preference Constants
-enum SETTINGS_PROFILE_LIST_ID = "io.github.gwelr.ttyx.ProfilesList";
-enum SETTINGS_PROFILE_ID = "io.github.gwelr.ttyx.Profile";
+enum SETTINGS_PROFILE_LIST_ID = "io.github.iqzer0.kumiko.ProfilesList";
+enum SETTINGS_PROFILE_ID = "io.github.iqzer0.kumiko.Profile";
 enum SETTINGS_PROFILE_PATH = SETTINGS_BASE_PATH ~ "/profiles/";
 enum SETTINGS_PROFILE_DEFAULT_KEY = "default";
 enum SETTINGS_PROFILE_LIST_KEY = "list";
@@ -265,7 +265,7 @@ enum SETTINGS_PROFILE_NOTIFY_SILENCE_THRESHOLD_KEY = "notify-silence-threshold";
 enum SETTINGS_PROFILE_MARGIN_KEY = "draw-margin";
 
 //Shortcuts
-enum SETTINGS_KEY_BINDINGS_ID = "io.github.gwelr.ttyx.Keybindings";
+enum SETTINGS_KEY_BINDINGS_ID = "io.github.iqzer0.kumiko.Keybindings";
 
 /**
  * The default value to use for the name of the default profile

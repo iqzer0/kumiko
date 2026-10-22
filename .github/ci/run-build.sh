@@ -1,10 +1,10 @@
 #!/bin/sh
 set -e
 
-# This script is supposed to run inside the ttyx Docker container
+# This script is supposed to run inside the kumiko Docker container
 # on the CI system.
 #
-# ttyx builds with dub against the giD bindings (a source-only dub
+# kumiko builds with dub against the giD bindings (a source-only dub
 # package fetched from the dub registry); meson was retired with the
 # GtkD -> giD migration. install.sh performs the data install that
 # meson's subdirs used to do (schemas, gresource, icons, po, desktop).

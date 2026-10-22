@@ -7,7 +7,7 @@ layout: default
 
 ## Overview
 
-ttyx_ lets you define custom hyperlinks using regular expressions. Any text matching a configured pattern becomes clickable in the terminal; clicking launches a command with the match (or its capture groups) as arguments.
+Kumiko lets you define custom hyperlinks using regular expressions. Any text matching a configured pattern becomes clickable in the terminal; clicking launches a command with the match (or its capture groups) as arguments.
 
 ## Configuration
 

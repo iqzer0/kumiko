@@ -14,7 +14,7 @@ fi
 
 # Every path below is quoted. Unquoted "${PREFIX}" word-split on any prefix
 # containing whitespace, so `./uninstall.sh "/opt/my prefix"` expanded
-# `rm -rf ${PREFIX}/share/ttyx` into `rm -rf /opt/my prefix/share/ttyx` — as
+# `rm -rf ${PREFIX}/share/kumiko` into `rm -rf /opt/my prefix/share/kumiko` — as
 # root, that deleted /opt/my.
 #
 # Deliberately no `set -o errexit`: an uninstall should keep going past files a
@@ -30,24 +30,24 @@ prune() {
 
 echo "Uninstalling from prefix ${PREFIX}"
 
-rm -f "${PREFIX}/bin/ttyx"
-rm -f "${PREFIX}/share/glib-2.0/schemas/io.github.gwelr.ttyx.gschema.xml"
+rm -f "${PREFIX}/bin/kumiko"
+rm -f "${PREFIX}/share/glib-2.0/schemas/io.github.iqzer0.kumiko.gschema.xml"
 if [ -d "${PREFIX}/share/glib-2.0/schemas" ]; then
     glib-compile-schemas "${PREFIX}/share/glib-2.0/schemas/"
 fi
-rm -rf "${PREFIX}/share/ttyx"
+rm -rf "${PREFIX}/share/kumiko"
 
-prune "${PREFIX}/share/locale" "ttyx.mo"
-prune "${PREFIX}/share/icons/hicolor" "io.github.gwelr.ttyx.png"
-prune "${PREFIX}/share/icons/hicolor" "io.github.gwelr.ttyx*.svg"
+prune "${PREFIX}/share/locale" "kumiko.mo"
+prune "${PREFIX}/share/icons/hicolor" "io.github.iqzer0.kumiko.png"
+prune "${PREFIX}/share/icons/hicolor" "io.github.iqzer0.kumiko*.svg"
 
-rm -f "${PREFIX}/share/nautilus-python/extensions/open-ttyx.py"
-rm -f "${PREFIX}/share/dbus-1/services/io.github.gwelr.ttyx.service"
-rm -f "${PREFIX}/share/applications/io.github.gwelr.ttyx.desktop"
-rm -f "${PREFIX}/share/metainfo/io.github.gwelr.ttyx.appdata.xml"
+rm -f "${PREFIX}/share/nautilus-python/extensions/open-kumiko.py"
+rm -f "${PREFIX}/share/dbus-1/services/io.github.iqzer0.kumiko.service"
+rm -f "${PREFIX}/share/applications/io.github.iqzer0.kumiko.desktop"
+rm -f "${PREFIX}/share/metainfo/io.github.iqzer0.kumiko.appdata.xml"
 
 # Man pages, including the po4a-translated ones under share/man/<locale>/man1.
-# The old `rm ${PREFIX}/share/man/*/man1/ttyx.1.gz` failed whenever no
+# The old `rm ${PREFIX}/share/man/*/man1/kumiko.1.gz` failed whenever no
 # translated pages were installed: an unmatched glob stays literal in POSIX sh,
 # so rm was handed a path that does not exist.
-prune "${PREFIX}/share/man" "ttyx.1.gz"
+prune "${PREFIX}/share/man" "kumiko.1.gz"

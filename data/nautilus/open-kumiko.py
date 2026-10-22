@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # This example is contributed by Martin Enlund
-# Example modified for ttyx (originally Tilix)
+# Example modified for kumiko (originally Tilix)
 # Shortcuts Provider was inspired by captain nemo extension
 
 from gettext import gettext, textdomain
@@ -21,11 +21,11 @@ if hasattr(Nautilus, "LocationWidgetProvider"):
     from gi.repository import Gtk
 
 
-TERMINAL = shutil.which("ttyx")
-TTYX_KEYBINDINGS = "io.github.gwelr.ttyx.Keybindings"
+TERMINAL = shutil.which("kumiko")
+KUMIKO_KEYBINDINGS = "io.github.iqzer0.kumiko.Keybindings"
 GSETTINGS_OPEN_TERMINAL = "nautilus-open"
 REMOTE_URI_SCHEME = ['ftp', 'sftp']
-textdomain("ttyx")
+textdomain("kumiko")
 _ = gettext
 
 def _checkdecode(s):
@@ -40,13 +40,13 @@ def open_terminal_in_file(filename):
 
 # Nautilus 43 doesn't offer the LocationWidgetProvider any more
 if hasattr(Nautilus, "LocationWidgetProvider"):
-    class OpenTtyxShortcutProvider(GObject.GObject,
+    class OpenKumikoShortcutProvider(GObject.GObject,
                                     Nautilus.LocationWidgetProvider):
 
         def __init__(self):
             source = Gio.SettingsSchemaSource.get_default()
-            if source.lookup(TTYX_KEYBINDINGS, True):
-                self._gsettings = Gio.Settings.new(TTYX_KEYBINDINGS)
+            if source.lookup(KUMIKO_KEYBINDINGS, True):
+                self._gsettings = Gio.Settings.new(KUMIKO_KEYBINDINGS)
                 self._gsettings.connect("changed", self._bind_shortcut)
                 self._create_accel_group()
             self._window = None
@@ -78,7 +78,7 @@ if hasattr(Nautilus, "LocationWidgetProvider"):
             return None
 
 
-class OpenTtyxExtension(GObject.GObject, Nautilus.MenuProvider):
+class OpenKumikoExtension(GObject.GObject, Nautilus.MenuProvider):
 
     def _open_terminal(self, file_):
         if file_.get_uri_scheme() in REMOTE_URI_SCHEME:
@@ -116,15 +116,15 @@ class OpenTtyxExtension(GObject.GObject, Nautilus.MenuProvider):
             if file_.get_uri_scheme() in REMOTE_URI_SCHEME:
                 uri = _checkdecode(file_.get_uri())
                 item = Nautilus.MenuItem(name='NautilusPython::open_remote_item',
-                                         label=_(u'Open Remote ttyx'),
-                                         tip=_(u'Open Remote ttyx In {}').format(uri))
+                                         label=_(u'Open Remote kumiko'),
+                                         tip=_(u'Open Remote kumiko In {}').format(uri))
                 item.connect('activate', self._menu_activate_cb, file_)
                 items.append(item)
 
             filename = _checkdecode(file_.get_name())
             item = Nautilus.MenuItem(name='NautilusPython::open_file_item',
-                                     label=_(u'Open In ttyx'),
-                                     tip=_(u'Open ttyx In {}').format(filename))
+                                     label=_(u'Open In kumiko'),
+                                     tip=_(u'Open Kumiko In {}').format(filename))
             item.connect('activate', self._menu_activate_cb, file_)
             items.append(item)
 
@@ -135,14 +135,14 @@ class OpenTtyxExtension(GObject.GObject, Nautilus.MenuProvider):
         items = []
         if file_.get_uri_scheme() in REMOTE_URI_SCHEME:
             item = Nautilus.MenuItem(name='NautilusPython::open_bg_remote_item',
-                                     label=_(u'Open Remote ttyx Here'),
-                                     tip=_(u'Open Remote ttyx In This Directory'))
+                                     label=_(u'Open Remote kumiko Here'),
+                                     tip=_(u'Open Remote kumiko In This Directory'))
             item.connect('activate', self._menu_activate_cb, file_)
             items.append(item)
 
         item = Nautilus.MenuItem(name='NautilusPython::open_bg_file_item',
-                                 label=_(u'Open ttyx Here'),
-                                 tip=_(u'Open ttyx In This Directory'))
+                                 label=_(u'Open kumiko Here'),
+                                 tip=_(u'Open Kumiko In This Directory'))
         item.connect('activate', self._menu_background_activate_cb, file_)
         items.append(item)
         return items
