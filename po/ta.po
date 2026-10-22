@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-08 22:38+0800\n"
+"POT-Creation-Date: 2026-10-22 20:02+0500\n"
 "PO-Revision-Date: 2025-04-20 22:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/tilix/translations/"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:4
 #: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:3
-#: source/gx/ttyx/application.d:370 source/gx/ttyx/appwindow.d:1769
+#: source/gx/ttyx/application.d:371 source/gx/ttyx/appwindow.d:1796
 msgid "Kumiko"
 msgstr ""
 
@@ -32,20 +32,28 @@ msgstr "க்னோமுக்கு ஒரு டைலிங் முனை
 
 #: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:9
 msgid ""
-"ttyx_ is an actively maintained fork of Tilix, the tiling terminal emulator."
+"Kumiko is an actively maintained fork of Tilix, the tiling terminal emulator "
+"for Linux. It keeps Tilix's tiling model — split terminals horizontally or "
+"vertically, nest them arbitrarily, save and restore layouts — and adds a "
+"focus on security hardening for people who spend the day on remote shells."
 msgstr ""
 
 #: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:12
+msgid ""
+"Kumiko is built on ttyx_ by gwelr, itself a fork of Tilix by Gerald Nunn."
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:13
 msgid "It lets you:"
 msgstr "இது உங்களை அனுமதிக்கிறது:"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:14
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:15
 msgid ""
 "Layout terminals in any fashion by splitting them horizontally or vertically"
 msgstr ""
 "எந்தவொரு பாணியிலும் தளவமைப்பு முனையங்கள் கிடைமட்டமாக அல்லது செங்குத்தாக பிரிப்பதன் மூலம்"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:15
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:16
 msgid ""
 "Terminals can be re-arranged using drag and drop both within and between "
 "windows"
@@ -53,11 +61,11 @@ msgstr ""
 "சாளரங்களுக்கு உள்ளேயும் இடையில் இழுவை மற்றும் கைவிடுதல் ஆகியவற்றைப் பயன்படுத்தி "
 "டெர்மினல்களை மீண்டும் ஏற்பாடு செய்யலாம்"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:16
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:17
 msgid "Terminals can be detached into a new window via drag and drop"
 msgstr "இழுவை வழியாக டெர்மினல்களை புதிய சாளரத்தில் பிரிக்கலாம்"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:17
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:18
 msgid ""
 "Input can be synchronized between terminals so commands typed in one "
 "terminal are replicated to the others"
@@ -65,15 +73,15 @@ msgstr ""
 "உள்ளீட்டை முனையங்களுக்கிடையில் ஒத்திசைக்க முடியும், எனவே ஒரு முனையத்தில் தட்டச்சு "
 "செய்யப்பட்ட கட்டளைகள் மற்றவர்களுக்கு நகலெடுக்கப்படுகின்றன"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:18
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:20
 msgid "The grouping of terminals can be saved and loaded from disk"
 msgstr "டெர்மினல்களின் தொகுப்பை வட்டிலிருந்து சேமித்து ஏற்றலாம்"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:19
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:21
 msgid "Terminals support custom titles"
 msgstr "டெர்மினல்கள் தனிப்பயன் தலைப்புகளை ஆதரிக்கின்றன"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:20
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:22
 msgid ""
 "Color schemes are stored in files and custom color schemes can be created by "
 "simply creating a new file"
@@ -81,23 +89,110 @@ msgstr ""
 "வண்ணத் திட்டங்கள் கோப்புகளில் சேமிக்கப்படுகின்றன மற்றும் புதிய கோப்பை உருவாக்குவதன் மூலம் "
 "தனிப்பயன் வண்ணத் திட்டங்களை உருவாக்கலாம்"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:21
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:24
 msgid "Transparent background"
 msgstr "வெளிப்படையான பின்னணி"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:22
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:25
 msgid "Supports notifications when processes are completed out of view"
 msgstr "செயல்முறைகள் பார்வைக்கு வெளியே இருக்கும்போது அறிவிப்புகளை ஆதரிக்கிறது"
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:42
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:61
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:89
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:111
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:135
-msgid "This release adds the following features:"
-msgstr "இந்த வெளியீடு பின்வரும் அம்சங்களைச் சேர்க்கிறது:"
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:46
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:80
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:106
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:149
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:180
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:212
+msgid "Features"
+msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:44
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:48
+msgid ""
+"ttyx_ is now Kumiko: new name, command (kumiko), app ID "
+"(io.github.iqzer0.kumiko) and repository. Settings, sessions and saved "
+"passwords from ttyx_ carry over on first run, as do Tilix sessions and "
+"passwords"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:51
+msgid ""
+"Packages for the major distributions: .deb for Ubuntu and Debian, .rpm for "
+"Fedora and openSUSE, and AUR packages for Arch, each installed and launched "
+"on a clean image of every supported release before it ships"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:54
+msgid ""
+"Signed package repositories (kumiko-packages, see the install guide) keep "
+"Kumiko updated with apt, dnf and zypper"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:56
+msgid ""
+"The paste review appears only when a paste could run something: programs "
+"with bracketed paste (zsh, bash 5.1+, fish) and single lines with a trailing "
+"newline paste straight in"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:58
+msgid ""
+"New profile option \"Mouse wheel sends arrow keys in full-screen programs\", "
+"off by default, so a tab left on the alternate screen no longer types ^[OA "
+"into commands"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:61
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:90
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:119
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:170
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:189
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:227
+msgid "Bugfixes"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:63
+msgid ""
+"Kumiko starts on systems without gsettings-desktop-schemas (minimal "
+"installs, some non-GNOME desktops) instead of aborting"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:65
+msgid "kumiko --version works without a display"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:66
+msgid ""
+"Wayland is detected reliably under compositors started from a TTY, such as "
+"sway and Hyprland"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:67
+msgid ""
+"Passwords saved by Tilix were listed but could not be used; they work now, "
+"as do ttyx_ ones"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:69
+msgid ""
+"Test code was linked into the application and initialised GTK before startup"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:71
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:97
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:136
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:197
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:233
+msgid "Miscellaneous"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:73
+msgid ""
+"Continuous integration builds, tests and launches Kumiko under X11 and "
+"Wayland on Ubuntu 22.04/24.04/26.04, Debian 12/13/testing, Fedora, Arch "
+"Linux and openSUSE Tumbleweed/Leap"
+msgstr ""
+
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:82
 msgid ""
 "The application is now built on the actively-maintained giD bindings "
 "(gid:gtk3 / gid:vte2) instead of the unmaintained GtkD, completing ROADMAP "
@@ -105,7 +200,7 @@ msgid ""
 "validation period exists to prove exactly that"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:45
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:85
 msgid ""
 "The unsafe-paste alert (dangerous-command patterns in pasted text) now ships "
 "default-off — it interrupted legitimate admin pastes more than it protected; "
@@ -114,119 +209,106 @@ msgid ""
 "review remain enabled by default"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:47
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:69
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:101
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:117
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:150
-msgid "This release fixes the following bugs:"
-msgstr "இந்த வெளியீடு பின்வரும் பிழைகளை சரிசெய்கிறது:"
-
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:49
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:92
 msgid ""
 "Remote 'ttyx -a <action>' invocations executed their action but hung instead "
 "of exiting immediately"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:50
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:94
 msgid ""
 "Release builds with plain ldc2 failed on a DMD-only -inline flag; this also "
 "kept CI red since the build swap"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:52
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:79
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:123
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:156
-#, fuzzy
-msgid "This release includes the following changes:"
-msgstr "இந்த வெளியீடு பின்வரும் பிழைகளை சரிசெய்கிறது:"
-
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:54
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:99
 msgid "Dub is now the single build system; Meson is retired"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:55
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:100
 msgid ""
 "Flatpak packaging dropped — building from source is the supported "
 "distribution channel"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:63
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:108
 msgid ""
 "OSC 11 dynamic background color — apps like neovim and theme-switching "
 "scripts can now change the terminal background at runtime via the OSC 11 "
 "escape sequence; reset with OSC 111"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:64
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:110
 msgid ""
 "enable-wide-handle defaults to true so the splitter between split terminals "
 "is easier to see and grab on dark themes and HiDPI displays"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:65
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:112
 msgid "Auto-equalize panes on split and close, sway-style"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:66
-msgid "Documentation site at https://gwelr.github.io/ttyx_/"
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:113
+msgid ""
+"A published documentation site covering install, the manual, security "
+"reference, migration guide and changelog (linked from the project homepage; "
+"a bare URL here trips AppStream's description-has-plaintext-url validation)"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:67
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:116
 msgid ""
 "Sensitive values redaction: passwords, tokens and proxy credentials are "
 "stripped from trace logs, command-line argv and hyperlink click events "
 "before reaching any log sink"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:71
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:121
 msgid ""
 "Maximized terminal now correctly restores when loading a saved session; "
 "fixes a long-standing bug pre-existing since the upstream Tilix 2017 "
 "implementation"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:72
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:123
 msgid ""
 "Trigger templates: $0 now correctly substitutes the whole match (was shifted "
 "by one due to a size_t underflow); user templates relying on the bugged "
 "behaviour need indices shifted up by one"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:73
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:126
 msgid ""
 "Triggers with an unrecognised action name are now skipped with a warning "
 "instead of silently rewritten to UpdateState"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:74
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:128
 msgid ""
 "Paste hardening: strip OSC, DCS, APC and PM escape sequences from clipboard "
 "content before paste"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:75
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:130
 msgid "Robust /proc/[pid]/stat parser with bounds validation"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:76
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:131
 msgid ""
 "Password manager delete now correctly reports keyring failures and handles "
 "legacy Tilix-schema entries"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:77
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:133
 msgid ""
 "Proxy URL builder: percent-encode userinfo and drop the redundant leading @; "
 "HTTPS proxy now receives credentials when configured"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:81
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:138
 msgid "First beta of the 1.2.0 release; validation period before GA"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:82
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:139
 msgid ""
 "Internal refactors using D SumType for compile-time exhaustiveness: "
 "TerminalRegex (BuiltinRegex/CustomRegex), SyncInputEvent, and a typed "
@@ -234,231 +316,231 @@ msgid ""
 "serialisation"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:83
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:142
 msgid ""
 "CI: install LDC from the upstream tarball; build GtkD from source on Debian "
 "Testing where the apt package was removed"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:91
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:151
 msgid ""
 "Security: restored sessions now ask for confirmation before running an "
 "embedded per-terminal command, instead of executing it silently on load"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:92
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:153
 msgid ""
 "Security: custom-link and trigger commands shell-quote all substituted match "
 "tokens and terminal variables, closing a shell-injection hole in values "
 "drawn from terminal output or remote-settable OSC variables"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:93
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:156
 msgid ""
 "Security: paste sanitization is now applied on every paste path; the default "
 "path previously fell through to pasting the raw clipboard text"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:94
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:158
 msgid ""
 "Security: bracketed-paste escape stripping loops to a fixed point so split "
 "or overlapping markers cannot reassemble after removal"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:95
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:160
 msgid ""
 "Security: carriage return now counts as a command submitter in the paste "
 "safety checks, matching newline handling"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:96
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:162
 msgid ""
 "Security: OSC 8 hyperlinks are restricted to an allow-listed set of URI "
 "schemes before being handed to the desktop URI handler"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:97
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:164
 msgid ""
 "Security: trigger regex matching input is bounded as defense-in-depth "
 "against catastrophic-backtracking UI hangs on adversarial output"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:98
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:166
 msgid ""
 "Security: spawn-failure logs redact proxy credentials; log redaction covers "
 "more sensitive key names and strips URL userinfo from all values"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:99
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:168
 msgid "Security: retrieved keyring passwords are kept in non-pageable memory"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:103
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:172
 msgid "Crash reading the host shell from a malformed passwd entry (Flatpak)"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:104
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:173
 msgid "Crash loading a session file with a corrupt paned orientation value"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:105
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:174
 msgid "Crash reading a child process name from a malformed /proc stat entry"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:113
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:182
 msgid ""
 "Automatic config migration from Tilix — on first run, ~/.config/tilix/ is "
 "copied to ~/.config/ttyx/ with the original kept as backup"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:114
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:184
 msgid ""
 "Password manager reads legacy com.gexperts.tilix.Password schema for "
 "backwards compatibility; new passwords are saved under the ttyx schema"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:115
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:186
 msgid ""
 "TTYX_ID environment variable set in shells alongside TILIX_ID for backwards "
 "compatibility with existing shell integrations"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:119
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:191
 msgid ""
 "Color scheme loader no longer shows duplicates; user config now wins over "
 "system defaults when a scheme filename exists in both"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:120
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:193
 msgid ""
 "Post-install script writes a minimal index.theme at the install prefix so "
 "gtk-update-icon-cache can generate a valid icon cache"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:121
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:195
 msgid "AppStream metadata no longer includes stale Tilix release entries"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:125
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:199
 msgid ""
 "Rename user-visible Tilix references: Nautilus menu, shortcuts window, "
 "GSettings descriptions, icon filenames, log and temp paths"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:126
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:201
 msgid ""
 "Rewrite man page under ttyx_ identity; drop 30 stale translations that "
 "referenced Tilix-branded msgids"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:127
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:203
 msgid ""
 "Release process simplified: drop hand-assembled binary tarball, ship only "
 "Flatpak bundle with signed checksums"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:128
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:205
 msgid "Add Troubleshooting section to README (stale icon cache, Wayland Quake)"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:129
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:206
 msgid "Add ROADMAP.md documenting vision and phase plan"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:137
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:214
 msgid "Security: enforce in-memory-only scrollback, capped at 256-999999 lines"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:138
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:215
 msgid "Security: core dump protection via prctl PR_SET_DUMPABLE"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:139
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:216
 msgid "Security: Secure Clear action (Ctrl+Shift+L) to wipe scrollback buffer"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:140
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:217
 msgid ""
 "Security: SSH session detection indicator for ssh, scp, sftp, mosh, sshfs"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:141
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:218
 msgid "Security: clipboard auto-clear after configurable timeout"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:142
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:219
 msgid "Security: strip bracketed paste escape sequences to prevent injection"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:143
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:220
 msgid "Security: multi-line paste review dialog before execution"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:144
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:221
 msgid ""
 "Security: expanded dangerous command detection (sudo, rm -rf, curl|bash, "
 "etc.)"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:145
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:222
 msgid "Security: per-paste unsafe warning (no longer permanently dismissed)"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:146
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:223
 msgid ""
 "Security: all options consolidated in Advanced preferences with descriptions"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:147
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:224
 msgid "Flatpak packaging with GNOME 48 SDK and bundled LDC compiler"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:148
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:225
 msgid "ProcessMonitor optimization: idle CPU reduced from 1.4% to 0.1%"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:152
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:229
 msgid "Fix GC crash when opening preferences on GLib 2.84+"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:153
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:230
 msgid "Fix SSH and root indicators not clearing when process exits"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:154
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:231
 msgid "Fix color scheme test when schemes not installed in XDG paths"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:158
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:235
 msgid "Major terminal.d decomposition into extracted components"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:159
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:236
 msgid "Replace applyPreference switch with PreferenceRegistry pattern"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:160
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:237
 msgid "119 unit tests covering security, clipboard, rendering, and monitoring"
 msgstr ""
 
-#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:161
+#: data/metainfo/io.github.iqzer0.kumiko.appdata.xml.rel.in:238
 msgid "CI: add xvfb support for GTK integration tests"
 msgstr ""
 
 #: data/nautilus/open-kumiko.py:119
 #, fuzzy
-msgid "Open Remote ttyx"
+msgid "Open Remote kumiko"
 msgstr "ரிமோட் டிலிக்ச் திறக்கவும்"
 
 #: data/nautilus/open-kumiko.py:120
 #, fuzzy, python-brace-format
-msgid "Open Remote ttyx In {}"
+msgid "Open Remote kumiko In {}"
 msgstr "{In இல் தொலைநிலை டிலிக்ச் திறக்கவும்"
 
 #: data/nautilus/open-kumiko.py:126
 #, fuzzy
-msgid "Open In ttyx"
-msgstr "டிலிக்சில் திறந்திருக்கும்"
+msgid "Open In kumiko"
+msgstr "{} இல் டிலிக்ச் திறக்கவும்"
 
 #: data/nautilus/open-kumiko.py:127
 #, fuzzy, python-brace-format
@@ -467,18 +549,18 @@ msgstr "{} இல் டிலிக்ச் திறக்கவும்"
 
 #: data/nautilus/open-kumiko.py:138
 #, fuzzy
-msgid "Open Remote ttyx Here"
+msgid "Open Remote kumiko Here"
 msgstr "தொலைதூரத்தில் இங்கே திறக்கவும்"
 
 #: data/nautilus/open-kumiko.py:139
 #, fuzzy
-msgid "Open Remote ttyx In This Directory"
-msgstr "இந்த கோப்பகத்தில் தொலைநிலை டிலிக்ச் திறக்கவும்"
+msgid "Open Remote kumiko In This Directory"
+msgstr "இந்த கோப்பகத்தில் டிலிக்ச் திறக்கவும்"
 
 #: data/nautilus/open-kumiko.py:144
 #, fuzzy
-msgid "Open ttyx Here"
-msgstr "இங்கே திறந்திருக்கும் டிலிக்ச்"
+msgid "Open kumiko Here"
+msgstr "{} இல் டிலிக்ச் திறக்கவும்"
 
 #: data/nautilus/open-kumiko.py:145
 #, fuzzy
@@ -491,17 +573,17 @@ msgid "shell;prompt;command;commandline;cmd;terminal;tiling;"
 msgstr "செல்; வரியில்; கட்டளை; கட்டளைவரி; கட்வ;"
 
 #: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:16
-#: source/gx/ttyx/appwindow.d:750 source/gx/ttyx/prefeditor/prefdialog.d:1649
+#: source/gx/ttyx/appwindow.d:762 source/gx/ttyx/prefeditor/prefdialog.d:1654
 msgid "New Window"
 msgstr "புதிய சாளரம்"
 
 #: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:20
-#: source/gx/ttyx/prefeditor/prefdialog.d:1649 source/gx/ttyx/session.d:1720
+#: source/gx/ttyx/prefeditor/prefdialog.d:1654 source/gx/ttyx/session.d:1845
 msgid "New Session"
 msgstr "புதிய அமர்வு"
 
 #: data/pkg/desktop/io.github.iqzer0.kumiko.desktop.in:24
-#: source/gx/ttyx/appwindow.d:767 source/gx/ttyx/prefeditor/prefdialog.d:334
+#: source/gx/ttyx/appwindow.d:779 source/gx/ttyx/prefeditor/prefdialog.d:334
 #: source/gx/ttyx/prefeditor/prefdialog.d:486
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
@@ -1005,75 +1087,75 @@ msgstr "திற"
 #: data/resources/ui/shortcuts.ui:631
 #, fuzzy
 msgctxt "shortcut window"
-msgid "Open in ttyx"
-msgstr "டிலிக்சில் திறந்திருக்கும்"
+msgid "Open in kumiko"
+msgstr "இணைப்பை திற"
 
 #: data/resources/ui/shortcuts.ui:642 data/resources/ui/shortcuts.ui:647
 msgctxt "shortcut window"
 msgid "Profile"
 msgstr "சுயவிவரம்"
 
-#: source/app.d:133 source/gx/gtk/dialog.d:48 source/gx/gtk/dialog.d:68
-#: source/gx/gtk/dialog.d:112 source/gx/ttyx/application.d:972
+#: source/app.d:135 source/gx/gtk/dialog.d:48 source/gx/gtk/dialog.d:68
+#: source/gx/gtk/dialog.d:112 source/gx/ttyx/application.d:988
 #, fuzzy
 msgid "_OK"
 msgstr "சரி"
 
-#: source/app.d:259
+#: source/app.d:279
 #, c-format
 msgid "Your GTK version is too old, you need at least GTK %d.%d.%d!"
 msgstr ""
 "உங்கள் சி.டி.கே பதிப்பு மிகவும் பழையது, உங்களுக்கு குறைந்தபட்சம் சி.டி.கே%d தேவை.%d."
 "%d!"
 
-#: source/app.d:269
+#: source/app.d:289
 #, c-format
 msgid "Your VTE version is too old, you need at least VTE %d.%d!"
 msgstr "உங்கள் VTE பதிப்பு மிகவும் பழையது, உங்களுக்கு குறைந்தபட்சம் VTE %d. %d தேவை!"
 
-#: source/app.d:285
+#: source/app.d:305
 msgid "Unexpected exception occurred"
 msgstr "எதிர்பாராத விதிவிலக்கு ஏற்பட்டது"
 
-#: source/app.d:286
+#: source/app.d:306
 msgid "Error: "
 msgstr "பிழை: "
 
-#: source/app.d:295
+#: source/app.d:315
 msgid "Versions"
 msgstr "பதிப்புகள்"
 
-#: source/app.d:296
+#: source/app.d:316
 #, fuzzy, c-format
 msgid "Kumiko version: %s"
 msgstr "டிலிக்ச் பதிப்பு: %s"
 
-#: source/app.d:297
+#: source/app.d:317
 #, c-format
 msgid "VTE version: %s"
 msgstr "VTE பதிப்பு: %s"
 
-#: source/app.d:298
+#: source/app.d:318
 #, c-format
 msgid "GTK Version: %d.%d.%d"
 msgstr "சி.டி.கே பதிப்பு:%d.%d.%d"
 
-#: source/app.d:299
+#: source/app.d:319
 #, fuzzy
 msgid "Kumiko Special Features"
 msgstr "டிலிக்ச் சிறப்பு நற்பொருத்தங்கள்"
 
-#: source/app.d:300
+#: source/app.d:320
 #, c-format
 msgid "Notifications enabled=%b"
 msgstr "அறிவிப்புகள் இயக்கப்பட்டன =%b"
 
-#: source/app.d:301
+#: source/app.d:321
 #, c-format
 msgid "Triggers enabled=%b"
 msgstr "தூண்டுதல்கள் இயக்கப்பட்டவை =%b"
 
-#: source/app.d:302
+#: source/app.d:322
 #, fuzzy, c-format
 msgid "Badges enabled=%b"
 msgstr "பேட்ச்கள் இயக்கப்பட்டவை =%பி"
@@ -1092,72 +1174,72 @@ msgid "Do not show this again"
 msgstr "இதை மீண்டும் காட்ட வேண்டாம்"
 
 #. TRANSLATORS: Please add your name to the list of translators if you want to be credited for the translations you have done.
-#: source/gx/ttyx/application.d:322
+#: source/gx/ttyx/application.d:323
 msgid "translator-credits"
 msgstr "மொழிபெயர்ப்பாளர்-வரவு"
 
-#: source/gx/ttyx/application.d:331
+#: source/gx/ttyx/application.d:332
 msgid "Credits"
 msgstr "வரவு"
 
-#: source/gx/ttyx/application.d:739
+#: source/gx/ttyx/application.d:747
 msgid "DIRECTORY"
 msgstr "அடைவு"
 
-#: source/gx/ttyx/application.d:739
+#: source/gx/ttyx/application.d:747
 msgid "Set the working directory of the terminal"
 msgstr "முனையத்தின் வேலை கோப்பகத்தை அமைக்கவும்"
 
-#: source/gx/ttyx/application.d:740
+#: source/gx/ttyx/application.d:748
 msgid "PROFILE_NAME"
 msgstr "சுயவிவரம்_பெயர்"
 
-#: source/gx/ttyx/application.d:740
+#: source/gx/ttyx/application.d:748
 msgid "Set the starting profile"
 msgstr "தொடக்க சுயவிவரத்தை அமைக்கவும்"
 
-#: source/gx/ttyx/application.d:741
+#: source/gx/ttyx/application.d:749
 msgid "Set the title of the new terminal"
 msgstr "புதிய முனையத்தின் தலைப்பை அமைக்கவும்"
 
-#: source/gx/ttyx/application.d:741
+#: source/gx/ttyx/application.d:749
 msgid "TITLE"
 msgstr "தலைப்பு"
 
-#: source/gx/ttyx/application.d:742
+#: source/gx/ttyx/application.d:750
 msgid "Open the specified session"
 msgstr "குறிப்பிட்ட அமர்வைத் திறக்கவும்"
 
-#: source/gx/ttyx/application.d:742
+#: source/gx/ttyx/application.d:750
 msgid "SESSION_NAME"
 msgstr "Session_name"
 
-#: source/gx/ttyx/application.d:744
+#: source/gx/ttyx/application.d:752
 msgid "ACTION_NAME"
 msgstr "Action_name"
 
-#: source/gx/ttyx/application.d:744
+#: source/gx/ttyx/application.d:752
 #, fuzzy
 msgid "Send an action to current Kumiko instance"
 msgstr "தற்போதைய டிலிக்ச் நிகழ்வுக்கு ஒரு செயலை அனுப்பவும்"
 
-#: source/gx/ttyx/application.d:746
+#: source/gx/ttyx/application.d:754
 msgid "COMMAND"
 msgstr "கட்டளை"
 
-#: source/gx/ttyx/application.d:746
+#: source/gx/ttyx/application.d:754
 msgid "Execute the parameter as a command"
 msgstr "அளவுருவை ஒரு கட்டளையாக இயக்கவும்"
 
-#: source/gx/ttyx/application.d:747
+#: source/gx/ttyx/application.d:755
 msgid "Maximize the terminal window"
 msgstr "முனைய சாளரத்தை அதிகரிக்கவும்"
 
-#: source/gx/ttyx/application.d:748
+#: source/gx/ttyx/application.d:756
 msgid "Minimize the terminal window"
 msgstr "முனைய சாளரத்தைக் குறைக்கவும்"
 
-#: source/gx/ttyx/application.d:749
+#: source/gx/ttyx/application.d:757
 msgid ""
 "Override the preferred window style to use, one of: normal,disable-"
 "csd,disable-csd-hide-toolbar,borderless"
@@ -1165,74 +1247,74 @@ msgstr ""
 "பயன்படுத்த விருப்பமான சாளர பாணியை மேலெழுதவும், அவற்றில் ஒன்று: இயல்பான, சி.எச்.டி "
 "முடக்கு,-சி.எச்.டி-மறைவை முடக்கு, எல்லையற்றது"
 
-#: source/gx/ttyx/application.d:749
+#: source/gx/ttyx/application.d:757
 msgid "WINDOW_STYLE"
 msgstr "சாளரம்_ச்டைல்"
 
-#: source/gx/ttyx/application.d:750
+#: source/gx/ttyx/application.d:758
 msgid "Full-screen the terminal window"
 msgstr "முனைய சாளரம் முழுத் திரை"
 
-#: source/gx/ttyx/application.d:751
+#: source/gx/ttyx/application.d:759
 msgid "Focus the existing window"
 msgstr "இருக்கும் சாளரத்தில் கவனம் செலுத்துங்கள்"
 
-#: source/gx/ttyx/application.d:752
+#: source/gx/ttyx/application.d:760
 msgid "Start additional instance as new process (Not Recommended)"
 msgstr "புதிய செயல்முறையாக கூடுதல் நிகழ்வைத் தொடங்கவும் (பரிந்துரைக்கப்படவில்லை)"
 
-#: source/gx/ttyx/application.d:753
+#: source/gx/ttyx/application.d:761
 msgid "GEOMETRY"
 msgstr "வடிவியல்"
 
-#: source/gx/ttyx/application.d:753
+#: source/gx/ttyx/application.d:761
 msgid ""
 "Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X+Y)"
 msgstr ""
 "சாளர அளவை அமைக்கவும்; எடுத்துக்காட்டாக: 80x24, அல்லது 80x24+200+200 (Colsxrows+x+y)"
 
-#: source/gx/ttyx/application.d:754
+#: source/gx/ttyx/application.d:762
 msgid ""
 "Opens a window in quake mode or toggles existing quake mode window visibility"
 msgstr ""
 "நிலநடுக்க பயன்முறையில் ஒரு சாளரத்தைத் திறக்கிறது அல்லது ஏற்கனவே உள்ள நிலநடுக்க பயன்முறை "
 "சாளரத் தெரிவுநிலையை மாற்றுகிறது"
 
-#: source/gx/ttyx/application.d:755
+#: source/gx/ttyx/application.d:763
 #, fuzzy
 msgid "Show Kumiko and dependent component versions"
 msgstr "டிலிக்ச் மற்றும் சார்பு கூறு பதிப்புகளைக் காட்டு"
 
-#: source/gx/ttyx/application.d:756
+#: source/gx/ttyx/application.d:764
 #, fuzzy
 msgid "Show the Kumiko preferences dialog directly"
 msgstr "டிலிக்ச் விருப்பத்தேர்வுகள் உரையாடலை நேரடியாகக் காட்டுங்கள்"
 
-#: source/gx/ttyx/application.d:757
+#: source/gx/ttyx/application.d:765
 msgid "GROUP_NAME"
 msgstr "குழு_பெயர்"
 
-#: source/gx/ttyx/application.d:757
+#: source/gx/ttyx/application.d:765
 #, fuzzy
 msgid ""
 "Group Kumiko instances into different processes (Experimental, not "
 "recommended)"
 msgstr "குழு டிலிக்ச் நிகழ்வுகள் வெவ்வேறு செயல்முறைகளாக (சோதனை, பரிந்துரைக்கப்படவில்லை)"
 
-#: source/gx/ttyx/application.d:760
+#: source/gx/ttyx/application.d:768
 msgid "Hidden argument to pass terminal UUID"
 msgstr "டெர்மினல் UUID ஐ கடக்க மறைக்கப்பட்ட உரையாடல்"
 
-#: source/gx/ttyx/application.d:760
+#: source/gx/ttyx/application.d:768
 msgid "TERMINAL_UUID"
 msgstr "டெர்மினல்_யூயிட்"
 
-#: source/gx/ttyx/application.d:776
+#: source/gx/ttyx/application.d:789
 #, c-format
 msgid "The application ID %s is not valid"
 msgstr "பயன்பாட்டு ஐடி %s செல்லுபடியாகாது"
 
-#: source/gx/ttyx/application.d:963
+#: source/gx/ttyx/application.d:979
 msgid ""
 "There appears to be an issue with the configuration of the terminal.\n"
 "This issue is not serious, but correcting it will improve your experience.\n"
@@ -1242,155 +1324,155 @@ msgstr ""
 " இந்த சிக்கல் தீவிரமானது அல்ல, ஆனால் அதை சரிசெய்வது உங்கள் அனுபவத்தை மேம்படுத்தும்.\n"
 " மேலும் தகவலுக்கு கீழே உள்ள இணைப்பைக் சொடுக்கு செய்க:"
 
-#: source/gx/ttyx/application.d:964
+#: source/gx/ttyx/application.d:980
 msgid "Configuration Issue Detected"
 msgstr "உள்ளமைவு சிக்கல் கண்டறியப்பட்டது"
 
-#: source/gx/ttyx/application.d:981
+#: source/gx/ttyx/application.d:999
 msgid "Do not show this message again"
 msgstr "இந்த செய்தியை மீண்டும் காட்ட வேண்டாம்"
 
-#: source/gx/ttyx/appwindow.d:381
+#: source/gx/ttyx/appwindow.d:386
 msgid "Create a new session"
 msgstr "புதிய அமர்வை உருவாக்கவும்"
 
-#: source/gx/ttyx/appwindow.d:395
+#: source/gx/ttyx/appwindow.d:400
 msgid "View session sidebar"
 msgstr "அமர்வு பக்கப்பட்டியைக் காண்க"
 
-#: source/gx/ttyx/appwindow.d:429
+#: source/gx/ttyx/appwindow.d:434
 msgid "Add terminal right"
 msgstr "முனைய வலதுபுறம் சேர்க்கவும்"
 
-#: source/gx/ttyx/appwindow.d:433
+#: source/gx/ttyx/appwindow.d:438
 msgid "Add terminal down"
 msgstr "முனையத்தைச் சேர்க்கவும்"
 
-#: source/gx/ttyx/appwindow.d:439
+#: source/gx/ttyx/appwindow.d:444
 msgid "Find text in terminal"
 msgstr "முனையத்தில் உரையைக் கண்டறியவும்"
 
-#: source/gx/ttyx/appwindow.d:669
+#: source/gx/ttyx/appwindow.d:679
 msgid "Enter a new name for the session"
 msgstr "அமர்வுக்கு புதிய பெயரை உள்ளிடவும்"
 
-#: source/gx/ttyx/appwindow.d:672
+#: source/gx/ttyx/appwindow.d:682
 msgid "Change Session Name"
 msgstr "அமர்வு பெயரை மாற்றவும்"
 
-#: source/gx/ttyx/appwindow.d:754
+#: source/gx/ttyx/appwindow.d:766
 msgid "Open…"
 msgstr "திற…"
 
-#: source/gx/ttyx/appwindow.d:755 source/gx/ttyx/appwindow.d:1633
+#: source/gx/ttyx/appwindow.d:767 source/gx/ttyx/appwindow.d:1660
 #: source/gx/ttyx/prefeditor/profileeditor.d:1005
-#: source/gx/ttyx/terminal/terminal.d:3170
+#: source/gx/ttyx/terminal/terminal.d:3218
 msgid "Save"
 msgstr "சேமி"
 
-#: source/gx/ttyx/appwindow.d:756
+#: source/gx/ttyx/appwindow.d:768
 msgid "Save As…"
 msgstr "சேமிக்கவும்…"
 
-#: source/gx/ttyx/appwindow.d:762
+#: source/gx/ttyx/appwindow.d:774
 msgid "Name…"
 msgstr "பெயர்…"
 
-#: source/gx/ttyx/appwindow.d:763
+#: source/gx/ttyx/appwindow.d:775
 msgid "Synchronize Input"
 msgstr "உள்ளீட்டை ஒத்திசைக்கவும்"
 
-#: source/gx/ttyx/appwindow.d:768
+#: source/gx/ttyx/appwindow.d:780
 msgid "Keyboard Shortcuts"
 msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
-#: source/gx/ttyx/appwindow.d:769
+#: source/gx/ttyx/appwindow.d:781
 #, fuzzy
 msgid "About Kumiko"
 msgstr "டிலிக்ச் பற்றி"
 
-#: source/gx/ttyx/appwindow.d:776
+#: source/gx/ttyx/appwindow.d:788
 msgid "GC"
 msgstr "சி.சி."
 
-#: source/gx/ttyx/appwindow.d:1154 source/gx/ttyx/prefeditor/prefdialog.d:1250
-#: source/gx/ttyx/session.d:1320
+#: source/gx/ttyx/appwindow.d:1168 source/gx/ttyx/prefeditor/prefdialog.d:1255
+#: source/gx/ttyx/session.d:1440
 msgid "Default"
 msgstr "இயல்புநிலை"
 
-#: source/gx/ttyx/appwindow.d:1263
+#: source/gx/ttyx/appwindow.d:1284
 msgid "There are multiple sessions open, close anyway?"
 msgstr "பல அமர்வுகள் திறக்கப்பட்டுள்ளன, எப்படியும் மூடவா?"
 
-#: source/gx/ttyx/appwindow.d:1527
+#: source/gx/ttyx/appwindow.d:1549
 #: source/gx/ttyx/prefeditor/profileeditor.d:1019
 msgid "All JSON Files"
 msgstr "அனைத்து சாதொபொகு கோப்புகளும்"
 
-#: source/gx/ttyx/appwindow.d:1531 source/gx/ttyx/prefeditor/prefdialog.d:1268
+#: source/gx/ttyx/appwindow.d:1553 source/gx/ttyx/prefeditor/prefdialog.d:1273
 #: source/gx/ttyx/prefeditor/profileeditor.d:1023
-#: source/gx/ttyx/terminal/terminal.d:3181
+#: source/gx/ttyx/terminal/terminal.d:3229
 msgid "All Files"
 msgstr "அனைத்து கோப்புகள்"
 
-#: source/gx/ttyx/appwindow.d:1540
+#: source/gx/ttyx/appwindow.d:1562
 #, c-format
 msgid "Filename '%s' does not exist"
 msgstr "கோப்பு பெயர் '%s' இல்லை"
 
-#: source/gx/ttyx/appwindow.d:1580 source/gx/ttyx/bookmark/bmchooser.d:165
+#: source/gx/ttyx/appwindow.d:1602 source/gx/ttyx/bookmark/bmchooser.d:165
 #: source/gx/ttyx/bookmark/bmeditor.d:186 source/gx/ttyx/closedialog.d:261
 #: source/gx/ttyx/prefeditor/advdialog.d:255
 #: source/gx/ttyx/prefeditor/advdialog.d:444
-#: source/gx/ttyx/prefeditor/profileeditor.d:1006 source/gx/ttyx/session.d:1723
+#: source/gx/ttyx/prefeditor/profileeditor.d:1006 source/gx/ttyx/session.d:1848
 #: source/gx/ttyx/terminal/advpaste.d:178 source/gx/ttyx/terminal/layout.d:72
-#: source/gx/ttyx/terminal/password.d:482
-#: source/gx/ttyx/terminal/password.d:606
-#: source/gx/ttyx/terminal/terminal.d:3171
+#: source/gx/ttyx/terminal/password.d:499
+#: source/gx/ttyx/terminal/password.d:629
+#: source/gx/ttyx/terminal/terminal.d:3219
 msgid "Cancel"
 msgstr "ரத்துசெய்"
 
-#: source/gx/ttyx/appwindow.d:1588
+#: source/gx/ttyx/appwindow.d:1610
 msgid "Load Session"
 msgstr "சுமை அமர்வு"
 
-#: source/gx/ttyx/appwindow.d:1588
+#: source/gx/ttyx/appwindow.d:1610
 msgid "Open"
 msgstr "திற"
 
-#: source/gx/ttyx/appwindow.d:1611
+#: source/gx/ttyx/appwindow.d:1633
 msgid "Could not load session due to unexpected error."
 msgstr "எதிர்பாராத பிழை காரணமாக அமர்வை ஏற்ற முடியவில்லை."
 
-#: source/gx/ttyx/appwindow.d:1611
+#: source/gx/ttyx/appwindow.d:1633
 msgid "Error Loading Session"
 msgstr "பிழை ஏற்றுதல் அமர்வு"
 
-#: source/gx/ttyx/appwindow.d:1633
+#: source/gx/ttyx/appwindow.d:1660
 msgid "Save Session"
 msgstr "அமர்வை சேமிக்கவும்"
 
-#: source/gx/ttyx/appwindow.d:1665 source/gx/ttyx/appwindow.d:1684
+#: source/gx/ttyx/appwindow.d:1692 source/gx/ttyx/appwindow.d:1711
 msgid "Could not save session due to unexpected error."
 msgstr "எதிர்பாராத பிழை காரணமாக அமர்வை சேமிக்க முடியவில்லை."
 
-#: source/gx/ttyx/appwindow.d:1665 source/gx/ttyx/appwindow.d:1684
+#: source/gx/ttyx/appwindow.d:1692 source/gx/ttyx/appwindow.d:1711
 msgid "Error Saving Session"
 msgstr "பிழை சேமிப்பு அமர்வு"
 
-#: source/gx/ttyx/appwindow.d:1798
+#: source/gx/ttyx/appwindow.d:1825
 msgid "Quake mode is not supported under Wayland, running as normal window"
 msgstr "சாதாரண சாளரமாக இயங்கும் வயலேண்டின் கீழ் நிலநடுக்க பயன்முறை ஆதரிக்கப்படவில்லை"
 
-#: source/gx/ttyx/appwindow.d:1800
+#: source/gx/ttyx/appwindow.d:1827
 msgid "Quake Mode Not Supported"
 msgstr "நிலநடுக்க பயன்முறை ஆதரிக்கப்படவில்லை"
 
-#: source/gx/ttyx/appwindow.d:2273
+#: source/gx/ttyx/appwindow.d:2300
 msgid "New output displayed"
 msgstr "புதிய வெளியீடு காட்டப்படும்"
 
-#: source/gx/ttyx/appwindow.d:2281
+#: source/gx/ttyx/appwindow.d:2308
 msgid "Close session"
 msgstr "அமர்வு மூடு"
 
@@ -1409,8 +1491,8 @@ msgstr "கோப்புறையைத் தேர்ந்தெடு"
 
 #: source/gx/ttyx/bookmark/bmchooser.d:164
 #: source/gx/ttyx/bookmark/bmeditor.d:185 source/gx/ttyx/closedialog.d:260
-#: source/gx/ttyx/session.d:1724 source/gx/ttyx/terminal/layout.d:71
-#: source/gx/ttyx/terminal/password.d:605
+#: source/gx/ttyx/session.d:1849 source/gx/ttyx/terminal/layout.d:71
+#: source/gx/ttyx/terminal/password.d:628
 msgid "OK"
 msgstr "சரி"
 
@@ -1431,9 +1513,9 @@ msgid "Edit Bookmark"
 msgstr "புக்மார்க்கைத் திருத்து"
 
 #: source/gx/ttyx/bookmark/bmeditor.d:271
-#: source/gx/ttyx/bookmark/bmtreeview.d:124 source/gx/ttyx/session.d:1682
-#: source/gx/ttyx/terminal/password.d:246
-#: source/gx/ttyx/terminal/password.d:538
+#: source/gx/ttyx/bookmark/bmtreeview.d:124 source/gx/ttyx/session.d:1807
+#: source/gx/ttyx/terminal/password.d:254
+#: source/gx/ttyx/terminal/password.d:561
 msgid "Name"
 msgstr "பெயர்"
 
@@ -1449,7 +1531,7 @@ msgstr "பாதையைத் தேர்ந்தெடுக்கவு�
 #: source/gx/ttyx/bookmark/bmeditor.d:468 source/gx/ttyx/bookmark/manager.d:713
 #: source/gx/ttyx/prefeditor/advdialog.d:159
 #: source/gx/ttyx/prefeditor/profileeditor.d:150
-#: source/gx/ttyx/prefeditor/profileeditor.d:1191
+#: source/gx/ttyx/prefeditor/profileeditor.d:1196
 #: source/gx/ttyx/terminal/layout.d:128
 msgid "Command"
 msgstr "கட்டளை"
@@ -1495,7 +1577,7 @@ msgstr "கோப்புறை"
 msgid "Remote"
 msgstr "தொலைநிலை"
 
-#: source/gx/ttyx/closedialog.d:167 source/gx/ttyx/constants.d:147
+#: source/gx/ttyx/closedialog.d:167 source/gx/ttyx/constants.d:180
 #: source/gx/ttyx/terminal/layout.d:93
 msgid "Title"
 msgstr "தலைப்பு"
@@ -1578,91 +1660,95 @@ msgstr ""
 "http://mozilla.org/mpl/2.0/."
 
 #: source/gx/ttyx/constants.d:72
-msgid "Gerald Nunn and the Tilix contributors, whose work Kumiko is built upon"
+msgid "gwelr, whose ttyx_ fork of Tilix Kumiko is built on"
 msgstr ""
 
 #: source/gx/ttyx/constants.d:73
+msgid "Gerald Nunn and the Tilix contributors, whose work Kumiko is built upon"
+msgstr ""
+
+#: source/gx/ttyx/constants.d:74
 #, fuzzy
 msgid "GTK VTE widget team, Kumiko would not be possible without their work"
 msgstr "சி.டி.கே வி.டி.இ விட்செட் குழு, டிலிக்ச் அவர்களின் வேலை இல்லாமல் சாத்தியமில்லை"
 
-#: source/gx/ttyx/constants.d:74
+#: source/gx/ttyx/constants.d:75
 msgid "GtkD for providing such an excellent GTK wrapper"
 msgstr "அத்தகைய சிறந்த சிடிகே ரேப்பரை வழங்கியதற்காகச் சிடிகேடி"
 
-#: source/gx/ttyx/constants.d:75
+#: source/gx/ttyx/constants.d:76
 msgid "Dlang.org for such an excellent language, D"
 msgstr "அத்தகைய சிறந்த மொழிக்கு dlang.org, டி"
 
-#: source/gx/ttyx/constants.d:148
+#: source/gx/ttyx/constants.d:181
 msgid "Icon title"
 msgstr "படவுரு தலைப்பு"
 
-#: source/gx/ttyx/constants.d:149 source/gx/ttyx/terminal/password.d:253
+#: source/gx/ttyx/constants.d:182 source/gx/ttyx/terminal/password.d:261
 msgid "ID"
 msgstr "ஐடி"
 
-#: source/gx/ttyx/constants.d:150
+#: source/gx/ttyx/constants.d:183
 msgid "Directory"
 msgstr "அடைவு"
 
-#: source/gx/ttyx/constants.d:151
+#: source/gx/ttyx/constants.d:184
 msgid "Hostname"
 msgstr "புரவலன்பெயர்"
 
-#: source/gx/ttyx/constants.d:152
+#: source/gx/ttyx/constants.d:185
 msgid "Username"
 msgstr "பயனர்பெயர்"
 
-#: source/gx/ttyx/constants.d:153
+#: source/gx/ttyx/constants.d:186
 msgid "Columns"
 msgstr "நெடுவரிசைகள்"
 
-#: source/gx/ttyx/constants.d:154
+#: source/gx/ttyx/constants.d:187
 msgid "Rows"
 msgstr "வரிசைகள்"
 
-#: source/gx/ttyx/constants.d:155
+#: source/gx/ttyx/constants.d:188
 msgid "Process"
 msgstr "செயல்முறை"
 
-#: source/gx/ttyx/constants.d:156
+#: source/gx/ttyx/constants.d:189
 msgid "Status.Read-Only"
 msgstr "Status.read- மட்டும்"
 
-#: source/gx/ttyx/constants.d:157
+#: source/gx/ttyx/constants.d:190
 msgid "Status.Silence"
 msgstr "நிலை.சிலென்ச்"
 
-#: source/gx/ttyx/constants.d:158
+#: source/gx/ttyx/constants.d:191
 msgid "Status.Input-Sync"
 msgstr "Status.input-sync"
 
-#: source/gx/ttyx/constants.d:173
+#: source/gx/ttyx/constants.d:206
 msgid "Terminal count"
 msgstr "முனைய எண்ணிக்கை"
 
-#: source/gx/ttyx/constants.d:174
+#: source/gx/ttyx/constants.d:207
 msgid "Terminal number"
 msgstr "முனைய எண்"
 
-#: source/gx/ttyx/constants.d:175
+#: source/gx/ttyx/constants.d:208
 msgid "Active terminal title"
 msgstr "செயலில் முனைய தலைப்பு"
 
-#: source/gx/ttyx/constants.d:192
+#: source/gx/ttyx/constants.d:225
 msgid "Application name"
 msgstr "பயன்பாட்டு பெயர்"
 
-#: source/gx/ttyx/constants.d:193
+#: source/gx/ttyx/constants.d:226
 msgid "Session name"
 msgstr "அமர்வு பெயர்"
 
-#: source/gx/ttyx/constants.d:194
+#: source/gx/ttyx/constants.d:227
 msgid "Session number"
 msgstr "அமர்வு எண்"
 
-#: source/gx/ttyx/constants.d:195
+#: source/gx/ttyx/constants.d:228
 msgid "Session count"
 msgstr "அமர்வு எண்ணிக்கை"
 
@@ -1816,15 +1902,15 @@ msgstr "வழக்கு உணர்வற்றது"
 
 #: source/gx/ttyx/prefeditor/advdialog.d:189
 #: source/gx/ttyx/prefeditor/advdialog.d:388
-#: source/gx/ttyx/prefeditor/profileeditor.d:1367
+#: source/gx/ttyx/prefeditor/profileeditor.d:1372
 msgid "Add"
 msgstr "கூட்டு"
 
 #: source/gx/ttyx/prefeditor/advdialog.d:197
 #: source/gx/ttyx/prefeditor/advdialog.d:395
 #: source/gx/ttyx/prefeditor/prefdialog.d:631
-#: source/gx/ttyx/prefeditor/profileeditor.d:1405
-#: source/gx/ttyx/terminal/password.d:334
+#: source/gx/ttyx/prefeditor/profileeditor.d:1410
+#: source/gx/ttyx/terminal/password.d:345
 msgid "Delete"
 msgstr "நீக்கு"
 
@@ -1842,7 +1928,7 @@ msgstr "தனிப்பயன் இணைப்புகளைத் தி�
 
 #: source/gx/ttyx/prefeditor/advdialog.d:254
 #: source/gx/ttyx/prefeditor/advdialog.d:443
-#: source/gx/ttyx/terminal/password.d:481
+#: source/gx/ttyx/terminal/password.d:498
 msgid "Apply"
 msgstr "இடு"
 
@@ -1902,8 +1988,8 @@ msgid ""
 msgstr ""
 
 #: source/gx/ttyx/prefeditor/common.d:62 source/gx/ttyx/prefeditor/common.d:93
-#: source/gx/ttyx/prefeditor/profileeditor.d:1386
-#: source/gx/ttyx/terminal/password.d:306
+#: source/gx/ttyx/prefeditor/profileeditor.d:1391
+#: source/gx/ttyx/terminal/password.d:317
 msgid "Edit"
 msgstr "தொகு"
 
@@ -1957,8 +2043,8 @@ msgstr "குறுக்குவழிகள்"
 #: source/gx/ttyx/prefeditor/prefdialog.d:236
 #: source/gx/ttyx/prefeditor/prefdialog.d:535
 #: source/gx/ttyx/prefeditor/prefdialog.d:758
-#: source/gx/ttyx/prefeditor/profileeditor.d:1142
-#: source/gx/ttyx/terminal/terminal.d:974
+#: source/gx/ttyx/prefeditor/profileeditor.d:1147
+#: source/gx/ttyx/terminal/terminal.d:999
 msgid "Encoding"
 msgstr "குறியாக்கம்"
 
@@ -1969,7 +2055,7 @@ msgstr "குறியாக்கம்"
 msgid "Advanced"
 msgstr "மேம்பட்ட"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:245 source/gx/ttyx/session.d:1693
+#: source/gx/ttyx/prefeditor/prefdialog.d:245 source/gx/ttyx/session.d:1818
 msgid "Profile"
 msgstr "சுயவிவரம்"
 
@@ -1982,7 +2068,7 @@ msgid "Delete profile"
 msgstr "சுயவிவரத்தை நீக்கு"
 
 #: source/gx/ttyx/prefeditor/prefdialog.d:355
-#: source/gx/ttyx/terminal/terminal.d:958
+#: source/gx/ttyx/terminal/terminal.d:983
 msgid "Profiles"
 msgstr "சுயவிவரங்கள்"
 
@@ -2038,365 +2124,371 @@ msgstr ""
 "குறுக்குவழி %s ஏற்கனவே %s க்கு ஒதுக்கப்பட்டுள்ளது.\n"
 " மற்ற செயலுக்கான குறுக்குவழியை முடக்கி, அதற்கு பதிலாக இங்கே ஒதுக்கவா?"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1221
+#: source/gx/ttyx/prefeditor/prefdialog.d:1226
 msgid "Window style"
 msgstr "சாளர நடை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1223
+#: source/gx/ttyx/prefeditor/prefdialog.d:1228
 msgid "Borderless"
 msgstr "எல்லையற்ற"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1223
+#: source/gx/ttyx/prefeditor/prefdialog.d:1228
 msgid "Disable CSD"
 msgstr "CSD ஐ முடக்கு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1223
+#: source/gx/ttyx/prefeditor/prefdialog.d:1228
 msgid "Disable CSD, hide toolbar"
 msgstr "CSD ஐ முடக்கு, கருவிப்பட்டியை மறைக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1223
-#: source/gx/ttyx/prefeditor/prefdialog.d:1237
+#: source/gx/ttyx/prefeditor/prefdialog.d:1228
+#: source/gx/ttyx/prefeditor/prefdialog.d:1242
 msgid "Normal"
 msgstr "சாதாரண"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1227
+#: source/gx/ttyx/prefeditor/prefdialog.d:1232
 msgid "Window restart required"
 msgstr "சாளர மறுதொடக்கம் தேவை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1236
+#: source/gx/ttyx/prefeditor/prefdialog.d:1241
 msgid "Terminal title style"
 msgstr "முனைய தலைப்பு நடை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1237
+#: source/gx/ttyx/prefeditor/prefdialog.d:1242
 #: source/gx/ttyx/prefeditor/profileeditor.d:499
 msgid "None"
 msgstr "எதுவுமில்லை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1237
+#: source/gx/ttyx/prefeditor/prefdialog.d:1242
 msgid "Small"
 msgstr "சிறிய"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1242
-#: source/gx/ttyx/prefeditor/prefdialog.d:1441
+#: source/gx/ttyx/prefeditor/prefdialog.d:1247
+#: source/gx/ttyx/prefeditor/prefdialog.d:1446
 msgid "Tab position"
 msgstr "தாவல் நிலை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1243
-#: source/gx/ttyx/prefeditor/prefdialog.d:1442
-#: source/gx/ttyx/prefeditor/prefdialog.d:1449
+#: source/gx/ttyx/prefeditor/prefdialog.d:1248
+#: source/gx/ttyx/prefeditor/prefdialog.d:1447
+#: source/gx/ttyx/prefeditor/prefdialog.d:1454
 msgid "Bottom"
 msgstr "கீழே"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1243
-#: source/gx/ttyx/prefeditor/prefdialog.d:1435
-#: source/gx/ttyx/prefeditor/prefdialog.d:1442
+#: source/gx/ttyx/prefeditor/prefdialog.d:1248
+#: source/gx/ttyx/prefeditor/prefdialog.d:1440
+#: source/gx/ttyx/prefeditor/prefdialog.d:1447
 msgid "Left"
 msgstr "இடது"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1243
-#: source/gx/ttyx/prefeditor/prefdialog.d:1435
-#: source/gx/ttyx/prefeditor/prefdialog.d:1442
+#: source/gx/ttyx/prefeditor/prefdialog.d:1248
+#: source/gx/ttyx/prefeditor/prefdialog.d:1440
+#: source/gx/ttyx/prefeditor/prefdialog.d:1447
 msgid "Right"
 msgstr "வலது"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1243
-#: source/gx/ttyx/prefeditor/prefdialog.d:1442
-#: source/gx/ttyx/prefeditor/prefdialog.d:1449
+#: source/gx/ttyx/prefeditor/prefdialog.d:1248
+#: source/gx/ttyx/prefeditor/prefdialog.d:1447
+#: source/gx/ttyx/prefeditor/prefdialog.d:1454
 msgid "Top"
 msgstr "மேலே"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1249
+#: source/gx/ttyx/prefeditor/prefdialog.d:1254
 msgid "Theme variant"
 msgstr "கருப்பொருள் மாறுபாடு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1250
+#: source/gx/ttyx/prefeditor/prefdialog.d:1255
 msgid "Dark"
 msgstr "இருண்ட"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1250
+#: source/gx/ttyx/prefeditor/prefdialog.d:1255
 msgid "Light"
 msgstr "ஒளி"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1256
+#: source/gx/ttyx/prefeditor/prefdialog.d:1261
 msgid "Background image"
 msgstr "பின்னணி படம்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1258
+#: source/gx/ttyx/prefeditor/prefdialog.d:1263
 msgid "Select Image"
 msgstr "படத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1261
+#: source/gx/ttyx/prefeditor/prefdialog.d:1266
 msgid "All Image Files"
 msgstr "அனைத்து படக் கோப்புகளும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1282
+#: source/gx/ttyx/prefeditor/prefdialog.d:1287
 msgid "Reset background image"
 msgstr "பின்னணி படத்தை மீட்டமைக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1288
-#: source/gx/ttyx/prefeditor/prefdialog.d:1435
+#: source/gx/ttyx/prefeditor/prefdialog.d:1293
+#: source/gx/ttyx/prefeditor/prefdialog.d:1440
 msgid "Center"
 msgstr "நடுவண்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1288
+#: source/gx/ttyx/prefeditor/prefdialog.d:1293
 msgid "Scale"
 msgstr "அளவு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1288
+#: source/gx/ttyx/prefeditor/prefdialog.d:1293
 msgid "Stretch"
 msgstr "நீட்டிக்க"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1288
+#: source/gx/ttyx/prefeditor/prefdialog.d:1293
 msgid "Tile"
 msgstr "ஓடு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1307
+#: source/gx/ttyx/prefeditor/prefdialog.d:1312
 msgid "Default session name"
 msgstr "இயல்புநிலை அமர்வு பெயர்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1322
+#: source/gx/ttyx/prefeditor/prefdialog.d:1327
 msgid "Application title"
 msgstr "பயன்பாட்டு தலைப்பு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1340
+#: source/gx/ttyx/prefeditor/prefdialog.d:1345
 msgid "Enable transparency, requires re-start"
 msgstr "வெளிப்படைத்தன்மையை இயக்கு, மறு தொடக்க தேவை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1346
+#: source/gx/ttyx/prefeditor/prefdialog.d:1351
 msgid "Use a wide handle for splitters"
 msgstr "பிளவுகளுக்கு பரந்த கைப்பிடியைப் பயன்படுத்தவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1351
+#: source/gx/ttyx/prefeditor/prefdialog.d:1356
 msgid "Equalize panes on split and close"
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1352
+#: source/gx/ttyx/prefeditor/prefdialog.d:1357
 msgid ""
 "When enabled, splitting or closing a terminal re-equalizes all same-"
 "orientation panes (e.g. three vertical splits become 33/33/33 instead of "
 "50/25/25). Overwrites any manual drag within the chain."
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1356
+#: source/gx/ttyx/prefeditor/prefdialog.d:1361
 msgid "Place the sidebar on the right"
 msgstr "பக்கப்பட்டியை வலதுபுறத்தில் வைக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1360
+#: source/gx/ttyx/prefeditor/prefdialog.d:1365
 msgid "Show the terminal title even if it's the only terminal"
 msgstr "முனையத்தின் தலைப்பைக் காட்டுங்கள் அது ஒரே முனையமாக இருந்தாலும் சரி"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1365
+#: source/gx/ttyx/prefeditor/prefdialog.d:1370
 msgid "Use overlay scrollbars (Application restart required)"
 msgstr "மேலடுக்கு சுருள் பார்களைப் பயன்படுத்தவும் (பயன்பாட்டு மறுதொடக்கம் தேவை)"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1370
+#: source/gx/ttyx/prefeditor/prefdialog.d:1375
 msgid "Use tabs instead of sidebar (Application restart required)"
 msgstr "பக்கப்பட்டிக்கு பதிலாக தாவல்களைப் பயன்படுத்தவும் (பயன்பாடு மறுதொடக்கம் தேவை)"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1402
+#: source/gx/ttyx/prefeditor/prefdialog.d:1407
 msgid "Size"
 msgstr "அளவு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1413
+#: source/gx/ttyx/prefeditor/prefdialog.d:1418
 msgid "Height percent"
 msgstr "உயரம் விழுக்காடு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1424
+#: source/gx/ttyx/prefeditor/prefdialog.d:1429
 msgid "Width percent"
 msgstr "அகலம் விழுக்காடு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1434
+#: source/gx/ttyx/prefeditor/prefdialog.d:1439
 msgid "Alignment"
 msgstr "இருப்புவழி"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1448
+#: source/gx/ttyx/prefeditor/prefdialog.d:1453
 msgid "Window position"
 msgstr "சாளர நிலை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1457
+#: source/gx/ttyx/prefeditor/prefdialog.d:1462
 #: source/gx/ttyx/prefeditor/profileeditor.d:608
 msgid "Options"
 msgstr "விருப்பங்கள்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1465
+#: source/gx/ttyx/prefeditor/prefdialog.d:1470
 msgid "Show terminal on all workspaces"
 msgstr "அனைத்து பணியிடங்களிலும் முனையத்தைக் காட்டு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1477
+#: source/gx/ttyx/prefeditor/prefdialog.d:1482
 msgid "Hide window when focus is lost"
 msgstr "கவனம் இழக்கும்போது சாளரத்தை மறைக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1481
+#: source/gx/ttyx/prefeditor/prefdialog.d:1486
 msgid "Delay hiding window by (ms)"
 msgstr "(எம்.எச்) மூலம் மறைந்த சாளரத்தை தாமதப்படுத்துங்கள்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1494
+#: source/gx/ttyx/prefeditor/prefdialog.d:1499
 msgid "Hide the toolbar of the window"
 msgstr "சாளரத்தின் கருவிப்பட்டியை மறைக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1509
+#: source/gx/ttyx/prefeditor/prefdialog.d:1514
 msgid "Keep window always on top"
 msgstr "சாளரத்தை எப்போதும் மேலே வைத்திருங்கள்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1514
+#: source/gx/ttyx/prefeditor/prefdialog.d:1519
 msgid "Display terminal on active monitor"
 msgstr "செயலில் மானிட்டரில் முனையத்தைக் காண்பி"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1521
+#: source/gx/ttyx/prefeditor/prefdialog.d:1526
 msgid "Display on specific monitor"
 msgstr "குறிப்பிட்ட மானிட்டரில் காண்பி"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1524
+#: source/gx/ttyx/prefeditor/prefdialog.d:1529
 msgid "Primary Monitor"
 msgstr "முதன்மை மானிட்டர்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1527
+#: source/gx/ttyx/prefeditor/prefdialog.d:1532
 msgid "Monitor "
 msgstr "கண்காணிக்கவும் "
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1586
+#: source/gx/ttyx/prefeditor/prefdialog.d:1591
 msgid "Behavior"
 msgstr "நடத்தை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1592
+#: source/gx/ttyx/prefeditor/prefdialog.d:1597
 msgid "Prompt when creating a new session"
 msgstr "புதிய அமர்வை உருவாக்கும்போது வரியில்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1597
+#: source/gx/ttyx/prefeditor/prefdialog.d:1602
 msgid "Focus a terminal when the mouse moves over it"
 msgstr "சுட்டி அதன் மேல் நகரும்போது ஒரு முனையத்தில் கவனம் செலுத்துங்கள்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1602
+#: source/gx/ttyx/prefeditor/prefdialog.d:1607
 msgid "Autohide the mouse pointer when typing"
 msgstr "தட்டச்சு செய்யும் போது சுட்டி சுட்டிக்காட்டி ஆட்டோஐட்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1607
+#: source/gx/ttyx/prefeditor/prefdialog.d:1612
 msgid "Close terminal by clicking middle mouse button on title"
 msgstr "தலைப்பில் நடுத்தர சுட்டி பொத்தானைக் சொடுக்கு செய்வதன் மூலம் முனையத்தை மூடு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1612
+#: source/gx/ttyx/prefeditor/prefdialog.d:1617
 msgid "Zoom the terminal using <Control> and scroll wheel"
 msgstr "<oprod> மற்றும் உருள் சக்கரத்தைப் பயன்படுத்தி முனையத்தை பெரிதாக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1617
+#: source/gx/ttyx/prefeditor/prefdialog.d:1622
 msgid "Require the <Control> modifier to edit title on click"
 msgstr "கிளிக்கில் தலைப்பைத் திருத்த <கட்டுப்பாடு> மாற்றியமைப்பாளர் தேவை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1622
+#: source/gx/ttyx/prefeditor/prefdialog.d:1627
 msgid "Close window when last session is closed"
 msgstr "கடைசி அமர்வு மூடப்படும் போது சாளரத்தை மூடு"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1627
+#: source/gx/ttyx/prefeditor/prefdialog.d:1632
 msgid "Save and restore window state"
 msgstr "சாளர நிலையைச் சேமித்து மீட்டமைக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1632
+#: source/gx/ttyx/prefeditor/prefdialog.d:1637
 msgid "Always search using regular expressions"
 msgstr "வழக்கமான வெளிப்பாடுகளைப் பயன்படுத்தி எப்போதும் தேடுங்கள்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1638
+#: source/gx/ttyx/prefeditor/prefdialog.d:1643
 msgid "Send desktop notification on process complete"
 msgstr "செயல்முறை முடிந்தவரை டெச்க்டாப் அறிவிப்பை அனுப்பவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1646
+#: source/gx/ttyx/prefeditor/prefdialog.d:1651
 msgid "On new instance"
 msgstr "புதிய சந்தர்ப்பத்தில்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1649
+#: source/gx/ttyx/prefeditor/prefdialog.d:1654
 msgid "Focus Window"
 msgstr "கவனம் சாளரம்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1649
+#: source/gx/ttyx/prefeditor/prefdialog.d:1654
 msgid "Split Down"
 msgstr "கீழே பிரிக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1649
+#: source/gx/ttyx/prefeditor/prefdialog.d:1654
 msgid "Split Right"
 msgstr "வலதுபுறம் பிரிந்தது"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1655
-#: source/gx/ttyx/terminal/terminal.d:1933
+#: source/gx/ttyx/prefeditor/prefdialog.d:1660
+#: source/gx/ttyx/terminal/terminal.d:1940
 msgid "Clipboard"
 msgstr "இடைநிலைப் பலகை"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1661
+#: source/gx/ttyx/prefeditor/prefdialog.d:1666
 msgid "Always use advanced paste dialog"
 msgstr "எப்போதும் மேம்பட்ட பேச்ட் உரையாடலைப் பயன்படுத்துங்கள்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1666
+#: source/gx/ttyx/prefeditor/prefdialog.d:1671
 msgid "Strip first character of paste if comment or variable declaration"
 msgstr "கருத்து அல்லது மாறி அறிவிப்பு என்றால் பேச்டின் முதல் எழுத்தை அகற்றவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1671
+#: source/gx/ttyx/prefeditor/prefdialog.d:1676
 msgid "Strip trailing whitespaces and linebreak characters on paste"
 msgstr "உரி பின்திங் வைட்ச்பேச் மற்றும் பேச்டில் வரி முறிவு எழுத்துக்கள்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1676
+#: source/gx/ttyx/prefeditor/prefdialog.d:1681
 #, fuzzy
 msgid "Strip trailing whitespace on copy"
 msgstr "பேச்டில் பின்தங்கிய இடைவெளியை அகற்ற விருப்பத்தைச் சேர்க்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1681
+#: source/gx/ttyx/prefeditor/prefdialog.d:1686
 msgid "Automatically copy text to clipboard when selecting"
 msgstr "தேர்ந்தெடுக்கும்போது தானாக உரையை இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1718
+#: source/gx/ttyx/prefeditor/prefdialog.d:1723
 msgid "Security"
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1726
+#: source/gx/ttyx/prefeditor/prefdialog.d:1731
 msgid ""
 "Paste protection detects dangerous commands (sudo, rm -rf, curl|bash, etc.) "
 "and escape sequence injection attacks. Multi-line paste review lets you "
 "inspect content before it is sent to the shell."
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1729
+#: source/gx/ttyx/prefeditor/prefdialog.d:1734
 #, fuzzy
 msgid "Warn when pasting dangerous commands"
 msgstr "பாதுகாப்பற்ற பேச்ட்டை முயற்சிக்கும்போது எச்சரிக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1735
+#: source/gx/ttyx/prefeditor/prefdialog.d:1740
 msgid "Show review dialog for multi-line paste"
 msgstr ""
 
 #: source/gx/ttyx/prefeditor/prefdialog.d:1741
 msgid ""
+"Skipped when the program receiving the paste has bracketed paste on, as zsh, "
+"bash 5.1+ and fish do at the prompt: nothing then runs until you press Enter."
+msgstr ""
+
+#: source/gx/ttyx/prefeditor/prefdialog.d:1747
+msgid ""
 "Clipboard auto-clear removes copied content after a timeout to prevent "
 "sensitive data (passwords, tokens) from lingering in the clipboard."
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1744
+#: source/gx/ttyx/prefeditor/prefdialog.d:1750
 #, fuzzy
 msgid "Automatically clear clipboard after timeout"
 msgstr "தேர்ந்தெடுக்கும்போது தானாக உரையை இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1751
+#: source/gx/ttyx/prefeditor/prefdialog.d:1757
 msgid "Clear clipboard after (seconds)"
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1762
+#: source/gx/ttyx/prefeditor/prefdialog.d:1768
 msgid ""
 "Visual indicators highlight when a terminal session is running with elevated "
 "privileges or connected to a remote host."
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1765
+#: source/gx/ttyx/prefeditor/prefdialog.d:1771
 msgid "Show visual indicator when running as root"
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1771
+#: source/gx/ttyx/prefeditor/prefdialog.d:1777
 msgid "Show visual indicator for SSH sessions"
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1777
+#: source/gx/ttyx/prefeditor/prefdialog.d:1783
 msgid ""
 "Core dump protection prevents debuggers and other processes from reading "
 "terminal memory. Disable this if you need to debug Kumiko with GDB or "
 "generate core dumps."
 msgstr ""
 
-#: source/gx/ttyx/prefeditor/prefdialog.d:1780
+#: source/gx/ttyx/prefeditor/prefdialog.d:1786
 msgid "Protect against memory dumps (disable core dumps)"
 msgstr ""
 
@@ -2418,7 +2510,7 @@ msgstr "பொருந்தக்கூடிய தன்மை"
 
 #: source/gx/ttyx/prefeditor/profileeditor.d:155
 #: source/gx/ttyx/prefeditor/profileeditor.d:746
-#: source/gx/ttyx/prefeditor/profileeditor.d:1232
+#: source/gx/ttyx/prefeditor/profileeditor.d:1237
 #: source/gx/ttyx/terminal/layout.d:107
 msgid "Badge"
 msgstr "ஒட்டு"
@@ -2489,7 +2581,7 @@ msgid "Unfocused"
 msgstr "கவனம் செலுத்தப்படாதது"
 
 #: source/gx/ttyx/prefeditor/profileeditor.d:431
-#: source/gx/ttyx/prefeditor/profileeditor.d:1256
+#: source/gx/ttyx/prefeditor/profileeditor.d:1261
 msgid "Custom font"
 msgstr "தனிப்பயன் எழுத்துரு"
 
@@ -2540,7 +2632,7 @@ msgid "Notification"
 msgstr "அறிவிப்பு"
 
 #: source/gx/ttyx/prefeditor/profileeditor.d:496
-#: source/gx/ttyx/terminal/terminal.d:532
+#: source/gx/ttyx/terminal/terminal.d:557
 msgid "Terminal bell"
 msgstr "முனைய மணி"
 
@@ -2703,108 +2795,120 @@ msgid "Scroll on keystroke"
 msgstr "விசை அழுத்தப்பட்டால் உருட்டு"
 
 #: source/gx/ttyx/prefeditor/profileeditor.d:1091
+msgid "Mouse wheel sends arrow keys in full-screen programs"
+msgstr ""
+
+#: source/gx/ttyx/prefeditor/profileeditor.d:1092
+msgid ""
+"Lets the wheel scroll less, man and other full-screen programs that do not "
+"use the mouse. Off by default because a program or SSH session that exits "
+"without restoring the screen leaves the wheel typing ^[OA into the next "
+"command. less scrolls with the wheel either way when started with --mouse."
+msgstr ""
+
+#: source/gx/ttyx/prefeditor/profileeditor.d:1096
 #, fuzzy
 msgid "Scrollback lines:"
 msgstr "ச்க்ரோலிங்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1124
+#: source/gx/ttyx/prefeditor/profileeditor.d:1129
 msgid "Backspace key generates"
 msgstr "பேக்ச்பேச் விசை உருவாக்குகிறது"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1127
-#: source/gx/ttyx/prefeditor/profileeditor.d:1136
+#: source/gx/ttyx/prefeditor/profileeditor.d:1132
+#: source/gx/ttyx/prefeditor/profileeditor.d:1141
 msgid "ASCII DEL"
 msgstr "அச்கி டெல்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1127
-#: source/gx/ttyx/prefeditor/profileeditor.d:1136
+#: source/gx/ttyx/prefeditor/profileeditor.d:1132
+#: source/gx/ttyx/prefeditor/profileeditor.d:1141
 msgid "Automatic"
 msgstr "தானியங்கி"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1127
-#: source/gx/ttyx/prefeditor/profileeditor.d:1136
+#: source/gx/ttyx/prefeditor/profileeditor.d:1132
+#: source/gx/ttyx/prefeditor/profileeditor.d:1141
 msgid "Control-H"
 msgstr "கட்டுப்பாடு-எச்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1127
-#: source/gx/ttyx/prefeditor/profileeditor.d:1136
+#: source/gx/ttyx/prefeditor/profileeditor.d:1132
+#: source/gx/ttyx/prefeditor/profileeditor.d:1141
 msgid "Escape sequence"
 msgstr "தப்பிக்கும் வரிசை"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1127
-#: source/gx/ttyx/prefeditor/profileeditor.d:1136
+#: source/gx/ttyx/prefeditor/profileeditor.d:1132
+#: source/gx/ttyx/prefeditor/profileeditor.d:1141
 msgid "TTY"
 msgstr "Tty"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1133
+#: source/gx/ttyx/prefeditor/profileeditor.d:1138
 msgid "Delete key generates"
 msgstr "விசை உருவாக்குகிறது"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1157
+#: source/gx/ttyx/prefeditor/profileeditor.d:1162
 msgid "Ambiguous-width characters"
 msgstr "தெளிவற்ற அகல எழுத்துக்கள்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1160
+#: source/gx/ttyx/prefeditor/profileeditor.d:1165
 msgid "Narrow"
 msgstr "குறுகிய"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1160
+#: source/gx/ttyx/prefeditor/profileeditor.d:1165
 msgid "Wide"
 msgstr "அகலமான"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1181
+#: source/gx/ttyx/prefeditor/profileeditor.d:1186
 msgid "Run command as a login shell"
 msgstr "உள்நுழைவு செல்லாக கட்டளையை இயக்கவும்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1185
+#: source/gx/ttyx/prefeditor/profileeditor.d:1190
 msgid "Run a custom command instead of my shell"
 msgstr "எனது செல்லுக்கு பதிலாக தனிப்பயன் கட்டளையை இயக்கவும்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1204
+#: source/gx/ttyx/prefeditor/profileeditor.d:1209
 msgid "When command exits"
 msgstr "கட்டளை வெளியேறும்போது"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1206
+#: source/gx/ttyx/prefeditor/profileeditor.d:1211
 msgid "Exit the terminal"
 msgstr "முனையத்திலிருந்து வெளியேறவும்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1206
+#: source/gx/ttyx/prefeditor/profileeditor.d:1211
 msgid "Hold the terminal open"
 msgstr "முனையத்தைத் திறந்து வைத்திருங்கள்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1206
+#: source/gx/ttyx/prefeditor/profileeditor.d:1211
 msgid "Restart the command"
 msgstr "கட்டளையை மறுதொடக்கம் செய்யுங்கள்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1246
+#: source/gx/ttyx/prefeditor/profileeditor.d:1251
 msgid "Badge position"
 msgstr "ஒட்டு நிலை"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1250
+#: source/gx/ttyx/prefeditor/profileeditor.d:1255
 msgid "Northeast"
 msgstr "வடகிழக்கு"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1250
+#: source/gx/ttyx/prefeditor/profileeditor.d:1255
 msgid "Northwest"
 msgstr "வடமேற்கு"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1250
+#: source/gx/ttyx/prefeditor/profileeditor.d:1255
 msgid "Southeast"
 msgstr "தென்கிழக்கு"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1250
+#: source/gx/ttyx/prefeditor/profileeditor.d:1255
 msgid "Southwest"
 msgstr "தென்மேற்கு"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1269
+#: source/gx/ttyx/prefeditor/profileeditor.d:1274
 msgid "Choose A Badge Font"
 msgstr "ஒட்டு எழுத்துருவைத் தேர்வுசெய்க"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1307
+#: source/gx/ttyx/prefeditor/profileeditor.d:1312
 msgid "Notify New Activity"
 msgstr "புதிய செயல்பாட்டிற்கு அறிவிக்கவும்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1314
+#: source/gx/ttyx/prefeditor/profileeditor.d:1319
 msgid ""
 "A notification can be raised when new activity occurs after a specified "
 "period of silence."
@@ -2812,11 +2916,11 @@ msgstr ""
 "ஒரு குறிப்பிட்ட கால ம .னத்திற்குப் பிறகு புதிய செயல்பாடு நிகழும்போது ஒரு அறிவிப்பை "
 "எழுப்ப முடியும்."
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1327
+#: source/gx/ttyx/prefeditor/profileeditor.d:1332
 msgid "Automatic Profile Switching"
 msgstr "தானியங்கி சுயவிவர மாறுதல்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1336
+#: source/gx/ttyx/prefeditor/profileeditor.d:1341
 msgid ""
 "Profiles are automatically selected based on the values entered here.\n"
 "Values are entered using a <i>username@hostname:directory</i> format. Either "
@@ -2828,7 +2932,7 @@ msgstr ""
 "உள்ளிடப்படுகின்றன. ஓச்ட்பெயர் அல்லது கோப்பகத்தை தவிர்க்கலாம், ஆனால் பெருங்குடல் இருக்க "
 "வேண்டும். ஓச்ட்பெயர் அல்லது கோப்பகத்துடன் உள்ளீடுகள் அனுமதிக்கப்படவில்லை."
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1338
+#: source/gx/ttyx/prefeditor/profileeditor.d:1343
 msgid ""
 "Profiles are automatically selected based on the values entered here.\n"
 "Values are entered using a <i>hostname:directory</i> format. Either the "
@@ -2840,49 +2944,49 @@ msgstr ""
 "ஓச்ட்பெயர் அல்லது கோப்பகத்தை தவிர்க்கலாம், ஆனால் பெருங்குடல் இருக்க வேண்டும். ஓச்ட்பெயர் அல்லது "
 "கோப்பகத்துடன் உள்ளீடுகள் அனுமதிக்கப்படவில்லை."
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1352
+#: source/gx/ttyx/prefeditor/profileeditor.d:1357
 msgid "Match"
 msgstr "போட்டி"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1371
+#: source/gx/ttyx/prefeditor/profileeditor.d:1376
 msgid "Enter username@hostname:directory to match"
 msgstr "பயனர்பெயரை உள்ளிடவும்@ஓச்ட்பெயர்: பொருந்தக்கூடிய அடைவு"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1373
+#: source/gx/ttyx/prefeditor/profileeditor.d:1378
 msgid "Enter hostname:directory to match"
 msgstr "ஓச்ட்பெயரை உள்ளிடவும்: பொருந்தக்கூடிய கோப்பகம்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1375
+#: source/gx/ttyx/prefeditor/profileeditor.d:1380
 msgid "Add New Match"
 msgstr "புதிய போட்டியைச் சேர்க்கவும்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1393
+#: source/gx/ttyx/prefeditor/profileeditor.d:1398
 msgid "Edit username@hostname:directory to match"
 msgstr "பயனர்பெயரைத் திருத்தவும்@ஓச்ட்பெயர்: பொருந்தக்கூடிய அடைவு"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1395
+#: source/gx/ttyx/prefeditor/profileeditor.d:1400
 msgid "Edit hostname:directory to match"
 msgstr "ஓச்ட்பெயரைத் திருத்து: பொருந்தக்கூடிய அடைவு"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1397
+#: source/gx/ttyx/prefeditor/profileeditor.d:1402
 msgid "Edit Match"
 msgstr "போட்டியைத் திருத்து"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1428
+#: source/gx/ttyx/prefeditor/profileeditor.d:1433
 msgid "Enable by default"
 msgstr "இயல்புநிலையாக இயக்கவும்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1437
+#: source/gx/ttyx/prefeditor/profileeditor.d:1442
 msgid "Threshold for continuous silence"
 msgstr "தொடர்ச்சியான ம .னத்திற்கான வாசல்"
 
-#: source/gx/ttyx/prefeditor/profileeditor.d:1446
+#: source/gx/ttyx/prefeditor/profileeditor.d:1451
 msgid "(seconds)"
 msgstr "(விநாடிகள்)"
 
 #: source/gx/ttyx/prefeditor/titleeditor.d:121
-#: source/gx/ttyx/terminal/terminal.d:432
-#: source/gx/ttyx/terminal/terminal.d:1451
+#: source/gx/ttyx/terminal/terminal.d:466
+#: source/gx/ttyx/terminal/terminal.d:1479
 msgid "Terminal"
 msgstr "முனையத்தில்"
 
@@ -2894,62 +2998,62 @@ msgstr "அமர்வு"
 msgid "Window"
 msgstr "சாளரம்"
 
-#: source/gx/ttyx/prefeditor/titleeditor.d:142
-#: source/gx/ttyx/prefeditor/titleeditor.d:143
+#: source/gx/ttyx/prefeditor/titleeditor.d:144
+#: source/gx/ttyx/prefeditor/titleeditor.d:145
 msgid "Help"
 msgstr "உதவி"
 
-#: source/gx/ttyx/preferences.d:279
+#: source/gx/ttyx/preferences.d:310
 msgid "UpdateState"
 msgstr "புதுப்பிப்பு"
 
-#: source/gx/ttyx/preferences.d:280
+#: source/gx/ttyx/preferences.d:311
 msgid "ExecuteCommand"
 msgstr "நிர்வாகம்"
 
-#: source/gx/ttyx/preferences.d:281
+#: source/gx/ttyx/preferences.d:312
 msgid "SendNotification"
 msgstr "அறிவிப்புஅனுப்பு"
 
-#: source/gx/ttyx/preferences.d:282
+#: source/gx/ttyx/preferences.d:313
 msgid "UpdateTitle"
 msgstr "புதுப்பிப்பு"
 
-#: source/gx/ttyx/preferences.d:283
+#: source/gx/ttyx/preferences.d:314
 msgid "PlayBell"
 msgstr "பிளேபல்"
 
-#: source/gx/ttyx/preferences.d:284
+#: source/gx/ttyx/preferences.d:315
 msgid "SendText"
 msgstr "உரைஅனுப்பு"
 
-#: source/gx/ttyx/preferences.d:285
+#: source/gx/ttyx/preferences.d:316
 msgid "InsertPassword"
 msgstr "இன்செர்ட்பாச் வேர்ட்"
 
-#: source/gx/ttyx/preferences.d:286
+#: source/gx/ttyx/preferences.d:317
 msgid "UpdateBadge"
 msgstr "புதுப்பிப்பு ஒட்டு"
 
-#: source/gx/ttyx/preferences.d:287
+#: source/gx/ttyx/preferences.d:318
 msgid "RunProcess"
 msgstr "ரன் ப்ரோசச்"
 
-#: source/gx/ttyx/preferences.d:397
+#: source/gx/ttyx/preferences.d:428
 #, c-format
 msgid "%s (Copy)"
 msgstr "%s (நகல்)"
 
-#: source/gx/ttyx/session.d:659
+#: source/gx/ttyx/session.d:710
 msgid "Could not locate dropped terminal"
 msgstr "கைவிடப்பட்ட முனையத்தைக் கண்டுபிடிக்க முடியவில்லை"
 
-#: source/gx/ttyx/session.d:664
+#: source/gx/ttyx/session.d:715
 msgid "Could not locate session for dropped terminal"
 msgstr "கைவிடப்பட்ட முனையத்திற்கான அமர்வைக் கண்டுபிடிக்க முடியவில்லை"
 
-#: source/gx/ttyx/sidebar.d:595 source/gx/ttyx/terminal/terminal.d:467
-#: source/gx/ttyx/terminal/terminal.d:1947
+#: source/gx/ttyx/sidebar.d:595 source/gx/ttyx/terminal/terminal.d:501
+#: source/gx/ttyx/terminal/terminal.d:1954
 msgid "Close"
 msgstr "மூடு"
 
@@ -2990,16 +3094,16 @@ msgid "Unsafe Paste"
 msgstr "மேம்பட்ட பேச்ட்"
 
 #: source/gx/ttyx/terminal/advpaste.d:177
-#: source/gx/ttyx/terminal/terminal.d:1907
-#: source/gx/ttyx/terminal/terminal.d:1925
+#: source/gx/ttyx/terminal/terminal.d:1914
+#: source/gx/ttyx/terminal/terminal.d:1932
 msgid "Paste"
 msgstr "ஒட்டு"
 
-#: source/gx/ttyx/terminal/clipboard.d:458
+#: source/gx/ttyx/terminal/clipboard.d:509
 msgid "Don't Paste"
 msgstr "ஒட்ட வேண்டாம்"
 
-#: source/gx/ttyx/terminal/clipboard.d:459
+#: source/gx/ttyx/terminal/clipboard.d:510
 msgid "Paste Anyway"
 msgstr "எப்படியும் ஒட்டவும்"
 
@@ -3027,45 +3131,45 @@ msgstr ""
 msgid "Process monitoring is not enabled, this should never be called"
 msgstr "செயல்முறை கண்காணிப்பு இயக்கப்படவில்லை, இதை ஒருபோதும் அழைக்கக்கூடாது"
 
-#: source/gx/ttyx/terminal/password.d:277
+#: source/gx/ttyx/terminal/password.d:288
 msgid "New"
 msgstr "புதிய"
 
-#: source/gx/ttyx/terminal/password.d:354
-#: source/gx/ttyx/terminal/password.d:360
+#: source/gx/ttyx/terminal/password.d:365
+#: source/gx/ttyx/terminal/password.d:371
 #, fuzzy
 msgid "Delete failed"
 msgstr "சுயவிவரத்தை நீக்கு"
 
-#: source/gx/ttyx/terminal/password.d:354
+#: source/gx/ttyx/terminal/password.d:365
 msgid "Failed to delete password: "
 msgstr ""
 
-#: source/gx/ttyx/terminal/password.d:360
+#: source/gx/ttyx/terminal/password.d:371
 msgid "Password entry could not be deleted from the keyring."
 msgstr ""
 
-#: source/gx/ttyx/terminal/password.d:372
+#: source/gx/ttyx/terminal/password.d:383
 msgid "Include return character with password"
 msgstr "கடவுச்சொல்லுடன் திரும்ப எழுத்தை சேர்க்கவும்"
 
-#: source/gx/ttyx/terminal/password.d:478
+#: source/gx/ttyx/terminal/password.d:495
 msgid "Insert Password"
 msgstr "கடவுச்சொல்லைச் செருகவும்"
 
-#: source/gx/ttyx/terminal/password.d:548
+#: source/gx/ttyx/terminal/password.d:571
 msgid "Password"
 msgstr "கடவுச்சொல்"
 
-#: source/gx/ttyx/terminal/password.d:558
+#: source/gx/ttyx/terminal/password.d:581
 msgid "Confirm Password"
 msgstr "கடவுச்சொல்லை உறுதிப்படுத்தவும்"
 
-#: source/gx/ttyx/terminal/password.d:612
+#: source/gx/ttyx/terminal/password.d:635
 msgid "Add Password"
 msgstr "கடவுச்சொல்லைச் சேர்க்கவும்"
 
-#: source/gx/ttyx/terminal/password.d:617
+#: source/gx/ttyx/terminal/password.d:640
 msgid "Edit Password"
 msgstr "கடவுச்சொல்லைத் திருத்தவும்"
 
@@ -3114,172 +3218,172 @@ msgstr ""
 "'%s' தேடல் செல்லுபடியாகும் ரீசெக்ச் அல்ல\n"
 " %s"
 
-#: source/gx/ttyx/terminal/terminal.d:475
-#: source/gx/ttyx/terminal/terminal.d:1506
-#: source/gx/ttyx/terminal/terminal.d:1946
+#: source/gx/ttyx/terminal/terminal.d:509
+#: source/gx/ttyx/terminal/terminal.d:1525
+#: source/gx/ttyx/terminal/terminal.d:1953
 msgid "Maximize"
 msgstr "அதிகரிக்க"
 
-#: source/gx/ttyx/terminal/terminal.d:485
-#: source/gx/ttyx/terminal/terminal.d:804
+#: source/gx/ttyx/terminal/terminal.d:519
+#: source/gx/ttyx/terminal/terminal.d:829
 msgid "Disable input synchronization for this terminal"
 msgstr "இந்த முனையத்திற்கான உள்ளீட்டு ஒத்திசைவை முடக்கு"
 
-#: source/gx/ttyx/terminal/terminal.d:494
-#: source/gx/ttyx/terminal/terminal.d:945
+#: source/gx/ttyx/terminal/terminal.d:528
+#: source/gx/ttyx/terminal/terminal.d:970
 msgid "Read-Only"
 msgstr "படிக்க மட்டும்"
 
-#: source/gx/ttyx/terminal/terminal.d:500
+#: source/gx/ttyx/terminal/terminal.d:534
 msgid "New output"
 msgstr "புதிய வெளியீடு"
 
-#: source/gx/ttyx/terminal/terminal.d:512
+#: source/gx/ttyx/terminal/terminal.d:542
 msgid "as root"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:513
+#: source/gx/ttyx/terminal/terminal.d:543
 msgid "Running as root"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:524
+#: source/gx/ttyx/terminal/terminal.d:549
 msgid "ssh"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:525
+#: source/gx/ttyx/terminal/terminal.d:550
 msgid "Connected via SSH"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:577
+#: source/gx/ttyx/terminal/terminal.d:602
 msgid "Edit Profile"
 msgstr "சுயவிவரத்தைத் திருத்து"
 
-#: source/gx/ttyx/terminal/terminal.d:595
+#: source/gx/ttyx/terminal/terminal.d:620
 msgid "Edit Encodings"
 msgstr "குறியாக்கங்களைத் திருத்தவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:806
+#: source/gx/ttyx/terminal/terminal.d:831
 msgid "Enable input synchronization for this terminal"
 msgstr "இந்த முனையத்திற்கான உள்ளீட்டு ஒத்திசைவை இயக்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:846
+#: source/gx/ttyx/terminal/terminal.d:871
 msgid "Library Not Loaded"
 msgstr "நூலகம் ஏற்றப்படவில்லை"
 
-#: source/gx/ttyx/terminal/terminal.d:846
+#: source/gx/ttyx/terminal/terminal.d:871
 #, c-format
 msgid ""
 "The library %s could not be loaded, password functionality is unavailable."
 msgstr "நூலகம் %s ஏற்ற முடியவில்லை, கடவுச்சொல் செயல்பாடு கிடைக்கவில்லை."
 
-#: source/gx/ttyx/terminal/terminal.d:944
+#: source/gx/ttyx/terminal/terminal.d:969
 msgid "Find…"
 msgstr "கண்டுபிடி…"
 
-#: source/gx/ttyx/terminal/terminal.d:951
+#: source/gx/ttyx/terminal/terminal.d:976
 msgid "Password..."
 msgstr "கடவுச்சொல் ..."
 
-#: source/gx/ttyx/terminal/terminal.d:952
+#: source/gx/ttyx/terminal/terminal.d:977
 msgid "Bookmark..."
 msgstr "புக்மார்க்கு ..."
 
-#: source/gx/ttyx/terminal/terminal.d:953
+#: source/gx/ttyx/terminal/terminal.d:978
 msgid "Add Bookmark..."
 msgstr "புக்மார்க்கைச் சேர்க்கவும் ..."
 
-#: source/gx/ttyx/terminal/terminal.d:957
+#: source/gx/ttyx/terminal/terminal.d:982
 msgid "Assistants"
 msgstr "உதவியாளர்கள்"
 
-#: source/gx/ttyx/terminal/terminal.d:964
+#: source/gx/ttyx/terminal/terminal.d:989
 msgid "Show File Browser..."
 msgstr "காட்டு கோப்பு Browser..."
 
-#: source/gx/ttyx/terminal/terminal.d:968
+#: source/gx/ttyx/terminal/terminal.d:993
 msgid "Save Output…"
 msgstr "வெளியீட்டைச் சேமிக்கவும்…"
 
-#: source/gx/ttyx/terminal/terminal.d:969
+#: source/gx/ttyx/terminal/terminal.d:994
 msgid "Refresh"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:970
-#: source/gx/ttyx/terminal/terminal.d:1940
+#: source/gx/ttyx/terminal/terminal.d:995
+#: source/gx/ttyx/terminal/terminal.d:1947
 msgid "Secure Clear"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:975
+#: source/gx/ttyx/terminal/terminal.d:1000
 msgid "Layout Options…"
 msgstr "தளவமைப்பு விருப்பங்கள்…"
 
-#: source/gx/ttyx/terminal/terminal.d:979
+#: source/gx/ttyx/terminal/terminal.d:1004
 msgid "Monitor Silence"
 msgstr "ம .னத்தை கண்காணிக்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:982
+#: source/gx/ttyx/terminal/terminal.d:1007
 msgid "Other"
 msgstr "மற்றொன்று"
 
-#: source/gx/ttyx/terminal/terminal.d:991
+#: source/gx/ttyx/terminal/terminal.d:1016
 msgid "Add Right"
 msgstr "வலதுபுறம் சேர்க்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:995
+#: source/gx/ttyx/terminal/terminal.d:1020
 msgid "Add Down"
 msgstr "கீழே சேர்க்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:1107
+#: source/gx/ttyx/terminal/terminal.d:1132
 msgid "Terminal Activity"
 msgstr "முனைய செயல்பாடு"
 
-#: source/gx/ttyx/terminal/terminal.d:1467
+#: source/gx/ttyx/terminal/terminal.d:1492
 msgid "Not Enabled"
 msgstr "இயக்கப்படவில்லை"
 
-#: source/gx/ttyx/terminal/terminal.d:1503
-#: source/gx/ttyx/terminal/terminal.d:1946
+#: source/gx/ttyx/terminal/terminal.d:1522
+#: source/gx/ttyx/terminal/terminal.d:1953
 msgid "Restore"
 msgstr "மீட்டமை"
 
-#: source/gx/ttyx/terminal/terminal.d:1789
+#: source/gx/ttyx/terminal/terminal.d:1796
 #, fuzzy
 msgid "Kumiko Custom Notification"
 msgstr "டிலிக்ச் தனிப்பயன் அறிவிப்பு"
 
-#: source/gx/ttyx/terminal/terminal.d:1892
+#: source/gx/ttyx/terminal/terminal.d:1899
 msgid "Open Link"
 msgstr "இணைப்பை திற"
 
-#: source/gx/ttyx/terminal/terminal.d:1893
+#: source/gx/ttyx/terminal/terminal.d:1900
 msgid "Copy Link Address"
 msgstr "இணைப்பு முகவரியை நகலெடுக்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:1903
-#: source/gx/ttyx/terminal/terminal.d:1913
+#: source/gx/ttyx/terminal/terminal.d:1910
+#: source/gx/ttyx/terminal/terminal.d:1920
 msgid "Copy"
 msgstr "நகலெடு"
 
-#: source/gx/ttyx/terminal/terminal.d:1905
-#: source/gx/ttyx/terminal/terminal.d:1919
+#: source/gx/ttyx/terminal/terminal.d:1912
+#: source/gx/ttyx/terminal/terminal.d:1926
 msgid "Copy as HTML"
 msgstr "உஉகுமொ ஆக நகலெடுக்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:1908
-#: source/gx/ttyx/terminal/terminal.d:1930
+#: source/gx/ttyx/terminal/terminal.d:1915
+#: source/gx/ttyx/terminal/terminal.d:1937
 msgid "Select All"
 msgstr "அனைத்தையும் தெரிவுசெய்"
 
-#: source/gx/ttyx/terminal/terminal.d:1951
+#: source/gx/ttyx/terminal/terminal.d:1958
 msgid "Synchronize input"
 msgstr "உள்ளீட்டை ஒத்திசைக்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:2123
+#: source/gx/ttyx/terminal/terminal.d:2130
 #, c-format
 msgid "Could not check file '%s' due to error '%s'"
 msgstr "பிழை '%s' காரணமாக '%s' கோப்பை சரிபார்க்க முடியவில்லை"
 
-#: source/gx/ttyx/terminal/terminal.d:2130
+#: source/gx/ttyx/terminal/terminal.d:2137
 #, c-format
 msgid ""
 "Remote file URIs are not supported with hyperlinks.\n"
@@ -3288,95 +3392,95 @@ msgstr ""
 "தொலை கோப்பு யூரி கள் ஐப்பர்லிங்க்களுடன் ஆதரிக்கப்படவில்லை.\n"
 " யூரி '%s'"
 
-#: source/gx/ttyx/terminal/terminal.d:2131
+#: source/gx/ttyx/terminal/terminal.d:2138
 msgid "Remote File URI Unsupported"
 msgstr "தொலை கோப்பு யூரி ஆதரிக்கப்படவில்லை"
 
-#: source/gx/ttyx/terminal/terminal.d:2165
-#: source/gx/ttyx/terminal/terminal.d:2547
+#: source/gx/ttyx/terminal/terminal.d:2177
+#: source/gx/ttyx/terminal/terminal.d:2593
 #, c-format
 msgid "Custom link regex '%s' has an error, ignoring"
 msgstr "தனிப்பயன் இணைப்பு ரீசெக்ச் '%s' ஒரு பிழையைக் கொண்டுள்ளது, புறக்கணிக்கிறது"
 
-#: source/gx/ttyx/terminal/terminal.d:2166
+#: source/gx/ttyx/terminal/terminal.d:2178
 msgid "Regular Expression Error"
 msgstr "வழக்கமான வெளிப்பாடு பிழை"
 
-#: source/gx/ttyx/terminal/terminal.d:2189
+#: source/gx/ttyx/terminal/terminal.d:2201
 #, c-format
 msgid ""
 "Refusing to open link with a disallowed scheme.\n"
 "URI was '%s'"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:2190
+#: source/gx/ttyx/terminal/terminal.d:2202
 msgid "Link Scheme Not Allowed"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:2198
+#: source/gx/ttyx/terminal/terminal.d:2210
 #, c-format
 msgid "Could not open match '%s'"
 msgstr "'%s' போட்டியைத் திறக்க முடியவில்லை"
 
-#: source/gx/ttyx/terminal/terminal.d:2199
+#: source/gx/ttyx/terminal/terminal.d:2211
 msgid "Error Opening Match"
 msgstr "பிழை திறக்கும் போட்டி"
 
-#: source/gx/ttyx/terminal/terminal.d:2503
+#: source/gx/ttyx/terminal/terminal.d:2549
 #, c-format
 msgid "Unexpected error occurred when adding link regex: %s"
 msgstr "இணைப்பு ரீசெக்ச் சேர்க்கும்போது எதிர்பாராத பிழை ஏற்பட்டது: %s"
 
-#: source/gx/ttyx/terminal/terminal.d:2717
+#: source/gx/ttyx/terminal/terminal.d:2765
 msgid "Unexpected error occurred, no additional information available"
 msgstr "எதிர்பாராத பிழை ஏற்பட்டது, கூடுதல் தகவல்கள் எதுவும் கிடைக்கவில்லை"
 
-#: source/gx/ttyx/terminal/terminal.d:2727
+#: source/gx/ttyx/terminal/terminal.d:2775
 #, c-format
 msgid "Unexpected error occurred: %s"
 msgstr "எதிர்பாராத பிழை ஏற்பட்டது: %s"
 
-#: source/gx/ttyx/terminal/terminal.d:3167
+#: source/gx/ttyx/terminal/terminal.d:3215
 msgid "Save Terminal Output"
 msgstr "முனைய வெளியீட்டைச் சேமிக்கவும்"
 
-#: source/gx/ttyx/terminal/terminal.d:3177
+#: source/gx/ttyx/terminal/terminal.d:3225
 msgid "All Text Files"
 msgstr "அனைத்து உரை கோப்புகளும்"
 
-#: source/gx/ttyx/terminal/terminal.d:3380
+#: source/gx/ttyx/terminal/terminal.d:3430
 msgid "This session wants to run a command:"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:3383
+#: source/gx/ttyx/terminal/terminal.d:3433
 #, fuzzy
 msgid "Run session command?"
 msgstr "அமர்வு சுமை"
 
-#: source/gx/ttyx/terminal/terminal.d:3395
+#: source/gx/ttyx/terminal/terminal.d:3445
 msgid "Open Shell"
 msgstr ""
 
-#: source/gx/ttyx/terminal/terminal.d:3396
+#: source/gx/ttyx/terminal/terminal.d:3446
 #, fuzzy
 msgid "Run Command"
 msgstr "கட்டளை"
 
-#: source/gx/ttyx/terminal/terminal.d:3872
+#: source/gx/ttyx/terminal/terminal.d:3922
 #, c-format
 msgid "The child process exited normally with status %d"
 msgstr "குழந்தை செயல்முறை பொதுவாக நிலை %d உடன் வெளியேறியது"
 
-#: source/gx/ttyx/terminal/terminal.d:3873
+#: source/gx/ttyx/terminal/terminal.d:3923
 #, c-format
 msgid "The child process was aborted by signal %d."
 msgstr "குழந்தை செயல்முறை சமிக்ஞை %d ஆல் கைவிடப்பட்டது."
 
-#: source/gx/ttyx/terminal/terminal.d:3874
+#: source/gx/ttyx/terminal/terminal.d:3924
 msgid "The child process was aborted."
 msgstr "குழந்தை செயல்முறை கைவிடப்பட்டது."
 
-#: source/gx/ttyx/terminal/terminal.d:3883
+#: source/gx/ttyx/terminal/terminal.d:3933
 msgid "Relaunch"
 msgstr "மீண்டும் தொடங்கவும்"
 
@@ -3474,6 +3578,23 @@ msgstr "மீண்டும் தொடங்கவும்"
 #~ msgid "More appdata -&gt; metainfo move"
 #~ msgstr "மேலும் appdata -& gt; மெட்டேன்ஃபோ நகர்வு"
 
+#, fuzzy
+#~ msgid "Open In ttyx"
+#~ msgstr "டிலிக்சில் திறந்திருக்கும்"
+
+#, fuzzy
+#~ msgid "Open Remote ttyx In This Directory"
+#~ msgstr "இந்த கோப்பகத்தில் தொலைநிலை டிலிக்ச் திறக்கவும்"
+
+#, fuzzy
+#~ msgctxt "shortcut window"
+#~ msgid "Open in ttyx"
+#~ msgstr "டிலிக்சில் திறந்திருக்கும்"
+
+#, fuzzy
+#~ msgid "Open ttyx Here"
+#~ msgstr "இங்கே திறந்திருக்கும் டிலிக்ச்"
+
 #~ msgid "Remove app menu for gnome 3.32"
 #~ msgstr "க்னோம் 3.32 க்கான பயன்பாட்டு மெனுவை அகற்று"
 
@@ -3508,8 +3629,18 @@ msgstr "மீண்டும் தொடங்கவும்"
 #~ "வழிகாட்டுதல்களுக்கு (HIG) இணங்க முயற்சி செய்யப்பட்டது. இதன் விளைவாக, இது கிளையன்ட் "
 #~ "பக்க-அறிமுகங்களைப் பயன்படுத்துகிறது, இருப்பினும் தேவைப்பட்டால் அது முடக்கப்படலாம்."
 
+#~ msgid "This release adds the following features:"
+#~ msgstr "இந்த வெளியீடு பின்வரும் அம்சங்களைச் சேர்க்கிறது:"
+
 #~ msgid "This release fixes the following bug:"
 #~ msgstr "இந்த வெளியீடு பின்வரும் பிழையை சரிசெய்கிறது:"
+
+#~ msgid "This release fixes the following bugs:"
+#~ msgstr "இந்த வெளியீடு பின்வரும் பிழைகளை சரிசெய்கிறது:"
+
+#, fuzzy
+#~ msgid "This release includes the following changes:"
+#~ msgstr "இந்த வெளியீடு பின்வரும் பிழைகளை சரிசெய்கிறது:"
 
 #~ msgid "This release updates translations."
 #~ msgstr "இந்த வெளியீடு மொழிபெயர்ப்புகளைப் புதுப்பிக்கிறது."

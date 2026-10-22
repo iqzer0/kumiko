@@ -1,3 +1,40 @@
+Version 2.0.0
+~~~~~~~~~~~~~
+Released: 2026-10-22
+
+Features:
+ * ttyx_ is now Kumiko: new name, command (kumiko), app ID
+   (io.github.iqzer0.kumiko) and repository. Settings, sessions and saved
+   passwords from ttyx_ carry over on first run, as do Tilix sessions and
+   passwords
+ * Packages for the major distributions: .deb for Ubuntu and Debian, .rpm for
+   Fedora and openSUSE, and AUR packages for Arch, each installed and
+   launched on a clean image of every supported release before it ships
+ * Signed package repositories (kumiko-packages, see the install guide)
+   keep Kumiko updated with apt, dnf and zypper
+ * The paste review appears only when a paste could run something: programs
+   with bracketed paste (zsh, bash 5.1+, fish) and single lines with a
+   trailing newline paste straight in
+ * New profile option "Mouse wheel sends arrow keys in full-screen
+   programs", off by default, so a tab left on the alternate screen no
+   longer types ^[OA into commands
+
+Bugfixes:
+ * Kumiko starts on systems without gsettings-desktop-schemas (minimal
+   installs, some non-GNOME desktops) instead of aborting
+ * kumiko --version works without a display
+ * Wayland is detected reliably under compositors started from a TTY, such
+   as sway and Hyprland
+ * Passwords saved by Tilix were listed but could not be used; they work
+   now, as do ttyx_ ones
+ * Test code was linked into the application and initialised GTK before
+   startup
+
+Miscellaneous:
+ * Continuous integration builds, tests and launches Kumiko under X11 and
+   Wayland on Ubuntu 22.04/24.04/26.04, Debian 12/13/testing, Fedora, Arch
+   Linux and openSUSE Tumbleweed/Leap
+
 Version 1.3.0-beta.1
 ~~~~~~~~~~~~~~~~~~~~
 Released: 2026-08-08
