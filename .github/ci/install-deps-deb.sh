@@ -25,6 +25,7 @@ eatmydata apt-get install -yq \
         appstream \
         ca-certificates \
         curl \
+        dbus \
         desktop-file-utils \
         git \
         libatk1.0-dev \
@@ -36,5 +37,6 @@ eatmydata apt-get install -yq \
         libsecret-1-dev \
         libvte-2.91-dev \
         po4a \
+        weston \
         xvfb \
         xz-utils

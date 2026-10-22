@@ -135,7 +135,7 @@ Key conventions worth knowing:
 1. Fork the repo and create a topic branch off `master`.
 2. Make changes, run the test suite, commit.
 3. Push and open a PR against `master`.
-4. CI runs Dub builds and the unit-test suite on Debian Stable / Testing / Ubuntu LTS, plus an install-layout check via `install.sh`. PRs need green CI before review.
+4. CI builds and runs the unit-test suite in containers of ten distributions (Ubuntu 22.04/24.04/26.04, Debian 12/13/testing, Fedora, Arch, openSUSE Tumbleweed/Leap), then installs into a scratch prefix and launches the installed binary under X11 and Wayland (`.github/ci/run-smoke.sh`). Reproduce any of it locally with `.github/ci/run-local-matrix.sh [distro...]` (podman). PRs need green CI before review.
 
 ### Commit and PR conventions
 
