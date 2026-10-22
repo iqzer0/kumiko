@@ -137,10 +137,12 @@ from the AUR, or build from source — see the Install page (`docs/install.md`).
   it expires, extend it and publish the updated public key:
   `gpg --quick-set-expire 7885F712AEDF0761D231DB0E0E060BBCC4AE5E8C 2y`, then
   `gpg --armor --export 7885F712AEDF0761D231DB0E0E060BBCC4AE5E8C` into
-  kumiko-packages' `maintainers.asc` and `gh gpg-key add`. Earlier
-  releases: v1.2.0 and v1.3.0-beta.1 were signed with `A63B62EC0FB924FC`
-  (also on the iqzer0 GitHub account), releases up to v1.2.0-beta.1 with
-  `2CAAD12074F3C056`.
+  kumiko-packages' `maintainers.asc` and `gh gpg-key add`. Every release
+  tag is signed with this key: the ttyx_-era tags (v1.0.2 to v1.3.0-beta.1)
+  were re-signed with it on 2026-10-22, after a history rewrite. The
+  checksum files attached to those older releases keep their original
+  signatures: `A63B62EC0FB924FC` (also on the iqzer0 GitHub account) for
+  v1.2.0 and v1.3.0-beta.1, `2CAAD12074F3C056` up to v1.2.0-beta.1.
 - The package repositories are signed by a separate key,
   `D5D9 7A22 F23B 9986 B0FC  F84E ED24 5861 5AA0 8E7B`, stored only as the
   `REPO_SIGNING_KEY` secret in kumiko-packages and in the maintainer's
