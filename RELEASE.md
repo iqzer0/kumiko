@@ -142,7 +142,7 @@ from the AUR, or build from source — see the Install page (`docs/install.md`).
   (also on the iqzer0 GitHub account), releases up to v1.2.0-beta.1 with
   `2CAAD12074F3C056`.
 - The package repositories are signed by a separate key,
-  `0BD3 837D 9822 8B91 9200  8ADB E0B2 A83C 41E8 0E48`, stored only as the
+  `D5D9 7A22 F23B 9986 B0FC  F84E ED24 5861 5AA0 8E7B`, stored only as the
   `REPO_SIGNING_KEY` secret in kumiko-packages and in the maintainer's
   offline backup (with its revocation certificate). It does not expire;
   if it is ever exposed, publish the revocation and a new key.

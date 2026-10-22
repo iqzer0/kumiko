@@ -35,7 +35,7 @@ dnf and zypper ask you to trust the repository key the first time. Accept it
 only if its fingerprint is:
 
 ```
-0BD3 837D 9822 8B91 9200  8ADB E0B2 A83C 41E8 0E48
+D5D9 7A22 F23B 9986 B0FC  F84E ED24 5861 5AA0 8E7B
 ```
 
 The repository is rebuilt from Kumiko's signed releases every few hours, and
