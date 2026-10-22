@@ -5,9 +5,9 @@
 # packaging/aur/update.sh sets _ver and the checksum for a release.
 
 pkgname=kumiko
-_ver=1.3.0-beta.1
+_ver=2.0.0
 _gid=0.9.13
-pkgver=1.3.0beta.1
+pkgver=2.0.0
 pkgrel=1
 pkgdesc="Tiling terminal emulator for Linux, built on ttyx_ and Tilix"
 arch=('x86_64')
@@ -21,8 +21,8 @@ provides=('kumiko')
 conflicts=('kumiko-bin')
 source=("kumiko-${_ver}.tar.gz::https://github.com/iqzer0/kumiko/archive/refs/tags/v${_ver}.tar.gz"
         "gid-${_gid}.zip::https://code.dlang.org/packages/gid/${_gid}.zip")
-sha256sums=('SKIP'
-            'SKIP')
+sha256sums=('a80df3e7b4f7290d893e18874c6192f5676a1aa5c256cc9539256aa0eb08a724'
+            '04b537f0a63938d831121af3c2e848564ec99d321e7e710932636e47e00f99aa')
 
 build() {
     cd "kumiko-${_ver}"
