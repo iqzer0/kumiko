@@ -7,14 +7,42 @@ permalink: /install/
 
 # Install
 
-Kumiko installs from source: build with Dub, install with the bundled
-`install.sh`. Releases are GPG-signed git tags — verify with
-`git verify-tag vX.Y.Z` (or check the signed checksums attached to the
-[latest release](https://github.com/iqzer0/kumiko/releases/latest)).
+## Install a package
+
+Each [release](https://github.com/iqzer0/kumiko/releases/latest) carries
+packages built from one tested binary. Download the one for your system,
+then:
+
+```bash
+# Ubuntu, Debian, Linux Mint, Pop!_OS, elementary OS, Zorin OS
+sudo apt install ./kumiko_X.Y.Z_amd64.deb
+
+# Fedora
+sudo dnf install ./kumiko-X.Y.Z-1.x86_64.rpm
+
+# openSUSE (the package is verified by the signed checksums below, not by an RPM signature)
+sudo zypper install --allow-unsigned-rpm ./kumiko-X.Y.Z-1.x86_64.rpm
+
+# Arch Linux, Manjaro, EndeavourOS — from the AUR
+yay -S kumiko-bin     # the release build; or `kumiko` to build from source
+```
+
+Before installing, check the download against the release's signed checksums:
+
+```bash
+gpg --verify SHA256SUMS.asc
+sha256sum --ignore-missing -c SHA256SUMS.asc
+```
+
+The packages pull in GTK 3, VTE and libsecret from your distribution and
+recommend `gsettings-desktop-schemas` and `dconf`. They don't update
+themselves yet: install the newer package when a release comes out.
 
 ---
 
 ## Source build
+
+Releases are GPG-signed git tags — verify with `git verify-tag vX.Y.Z`.
 
 ### Supported distributions
 

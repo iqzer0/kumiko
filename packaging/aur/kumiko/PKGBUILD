@@ -1,0 +1,41 @@
+# Maintainer: iqzer0 <iqzer0@users.noreply.github.com>
+#
+# Kumiko built from source. The giD bindings are a pinned source so the build
+# itself needs no network. The release build is ../kumiko-bin/PKGBUILD.
+# packaging/aur/update.sh sets _ver and the checksum for a release.
+
+pkgname=kumiko
+_ver=1.3.0-beta.1
+_gid=0.9.13
+pkgver=1.3.0beta.1
+pkgrel=1
+pkgdesc="Tiling terminal emulator for Linux, built on ttyx_ and Tilix"
+arch=('x86_64')
+url="https://github.com/iqzer0/kumiko"
+license=('MPL-2.0')
+depends=('glibc' 'gcc-libs' 'gtk3' 'vte3' 'libsecret' 'libx11')
+makedepends=('ldc' 'dub' 'gettext' 'desktop-file-utils' 'gtk-update-icon-cache' 'unzip')
+optdepends=('gsettings-desktop-schemas: system monospace font, dark-mode preference and proxy settings'
+            'dconf: one-time import of ttyx_ settings')
+provides=('kumiko')
+conflicts=('kumiko-bin')
+source=("kumiko-${_ver}.tar.gz::https://github.com/iqzer0/kumiko/archive/refs/tags/v${_ver}.tar.gz"
+        "gid-${_gid}.zip::https://code.dlang.org/packages/gid/${_gid}.zip")
+sha256sums=('SKIP'
+            'SKIP')
+
+build() {
+    cd "kumiko-${_ver}"
+    export DUB_HOME="$srcdir/dub"
+    dub add-local "$srcdir/gid-${_gid}" "${_gid}"
+    dub build --build=release --compiler=ldc2 --skip-registry=all
+}
+
+package() {
+    cd "kumiko-${_ver}"
+    ./install.sh "$pkgdir/usr"
+    # Per-system caches: pacman's hooks rebuild them.
+    rm -f "$pkgdir/usr/share/glib-2.0/schemas/gschemas.compiled" \
+          "$pkgdir/usr/share/icons/hicolor/icon-theme.cache" \
+          "$pkgdir/usr/share/applications/mimeinfo.cache"
+}

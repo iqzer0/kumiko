@@ -1,0 +1,81 @@
+name: Release Packages
+
+# Builds the release binary once (on Ubuntu 22.04, the oldest glibc we
+# support), packages it as .deb, .rpm and a tarball, then installs each
+# package on a clean image of every supported distro and launches it.
+#
+# The packages and SHA256SUMS come out as the workflow artifact
+# "kumiko-packages". Publishing stays manual (RELEASE.md): the maintainer
+# signs SHA256SUMS and creates the release with every asset in one go,
+# because immutable releases refuse uploads after creation.
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  build:
+    name: Build packages
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+    # https://github.com/actions/checkout/tags
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+    - name: Check the tag matches the version in the source
+      if: github.ref_type == 'tag'
+      run: |
+        src=$(sed -n 's/^enum APPLICATION_VERSION = "\(.*\)";/\1/p' source/gx/ttyx/constants.d)
+        tag=${GITHUB_REF_NAME#v}
+        if [ "$src" != "$tag" ]; then
+          echo "::error::tag $GITHUB_REF_NAME does not match APPLICATION_VERSION $src"
+          exit 1
+        fi
+
+    - name: Create Build Environment
+      run: cd .github/ci/ && podman build --build-arg UBUNTU_MIRROR=http://azure.archive.ubuntu.com/ubuntu -t kumiko -f ./Dockerfile-ubuntu-jammy .
+
+    - name: Build release binary and packages
+      run: podman run -e CC=gcc -e CXX=g++ -v `pwd`:/build kumiko ./.github/ci/build-packages.sh
+
+    # https://github.com/actions/upload-artifact/tags
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      with:
+        name: kumiko-packages
+        path: dist/
+        if-no-files-found: error
+
+  test:
+    name: Install on ${{ matrix.image }}
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - docker.io/library/ubuntu:22.04
+          - docker.io/library/ubuntu:24.04
+          - docker.io/library/ubuntu:26.04
+          - docker.io/library/debian:bookworm
+          - docker.io/library/debian:trixie
+          - registry.fedoraproject.org/fedora:latest
+          - registry.opensuse.org/opensuse/leap:16.0
+          - registry.opensuse.org/opensuse/tumbleweed:latest
+          - docker.io/library/archlinux:latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+    # https://github.com/actions/download-artifact/tags
+    - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      with:
+        name: kumiko-packages
+        path: dist
+
+    - name: Install the package on a clean image and launch it
+      run: podman run -e UBUNTU_MIRROR=http://azure.archive.ubuntu.com/ubuntu -v `pwd`:/src:ro -v `pwd`/dist:/dist:ro ${{ matrix.image }} sh /src/.github/ci/test-package.sh
