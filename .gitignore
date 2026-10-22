@@ -31,3 +31,4 @@ data/man/man
 .rundata/
 .vscode
 *~
+/.github/ci/ci-logs/

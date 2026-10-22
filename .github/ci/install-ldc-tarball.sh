@@ -28,16 +28,24 @@ LDC_PREFIX="/opt/ldc2"
 #     LDC binary can dlopen "libxml2.so.2". The libxml2 ABI surface that
 #     LDC actually uses is small enough that this works in practice;
 #     verified by the post-install smoke-test below.
-if apt-get install -yq libxml2 2>/dev/null; then
-    : # legacy SONAME available natively
-else
-    echo ">>> libxml2 (legacy SONAME) unavailable — installing libxml2-16 + compat symlink"
-    apt-get install -yq libxml2-16
-    libdir="/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH 2>/dev/null \
-                       || gcc -print-multiarch 2>/dev/null \
-                       || echo x86_64-linux-gnu)"
-    ln -sf "${libdir}/libxml2.so.16" "${libdir}/libxml2.so.2"
-    ldconfig
+if command -v apt-get >/dev/null 2>&1; then
+    if apt-get install -yq libxml2 2>/dev/null; then
+        : # legacy SONAME available natively
+    else
+        echo ">>> libxml2 (legacy SONAME) unavailable — installing libxml2-16"
+        apt-get install -yq libxml2-16
+    fi
+fi
+# Other distros install libxml2 in their install-deps script. Wherever only
+# the new SONAME is present (Debian Testing, Arch, recent Fedora/openSUSE),
+# add the compat link LDC needs.
+if ! ldconfig -p | grep -q 'libxml2\.so\.2 '; then
+    so16=$(ldconfig -p | awk '/libxml2\.so\.16 /{print $NF; exit}')
+    if [ -n "$so16" ]; then
+        echo ">>> only libxml2.so.16 present — adding libxml2.so.2 compat symlink"
+        ln -sf "$so16" "$(dirname "$so16")/libxml2.so.2"
+        ldconfig
+    fi
 fi
 
 mkdir -p "${LDC_PREFIX}"

@@ -2415,7 +2415,9 @@ private:
         prefRegistry.register([SETTINGS_PROFILE_USE_SYSTEM_FONT_KEY, SETTINGS_PROFILE_FONT_KEY], {
             FontDescription desc;
             if (gsProfile.getBoolean(SETTINGS_PROFILE_USE_SYSTEM_FONT_KEY)) {
-                desc = FontDescription.fromString(gsDesktop.getString(SETTINGS_MONOSPACE_FONT_KEY));
+                // Without the desktop's font setting, fall back to plain monospace.
+                string systemFont = optionalSettingString(gsDesktop, SETTINGS_MONOSPACE_FONT_KEY);
+                desc = FontDescription.fromString(systemFont !is null ? systemFont : "Monospace");
             } else {
                 desc = FontDescription.fromString(gsProfile.getString(SETTINGS_PROFILE_FONT_KEY));
             }
@@ -3369,12 +3371,14 @@ public:
         monitorSilence = gsProfile.getBoolean(SETTINGS_PROFILE_NOTIFY_ENABLED_KEY);
 
         gsShortcuts = new GSettings(SETTINGS_KEY_BINDINGS_ID);
-        gsDesktop = new GSettings(SETTINGS_DESKTOP_ID);
-        gsDesktopChangedHandlerId = gsDesktop.connectChanged(null, delegate(string key, GSettings settings) {
-            if (key == SETTINGS_MONOSPACE_FONT_KEY) {
-                applyPreference(SETTINGS_PROFILE_FONT_KEY);
-            }
-        });
+        gsDesktop = openOptionalSettings(SETTINGS_DESKTOP_ID);
+        if (gsDesktop !is null) {
+            gsDesktopChangedHandlerId = gsDesktop.connectChanged(null, delegate(string key, GSettings settings) {
+                if (key == SETTINGS_MONOSPACE_FONT_KEY) {
+                    applyPreference(SETTINGS_PROFILE_FONT_KEY);
+                }
+            });
+        }
         renderer = new TerminalRenderer(this, &isTerminalWidgetFocused);
         clipboardHandler = new ClipboardHandler(this, this, &scrollToBottom, &focusTerminal);
         processQuery = new TerminalProcessQuery(this);

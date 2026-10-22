@@ -1,0 +1,18 @@
+#
+# Docker file for Kumiko CI tests on archlinux:latest
+#
+FROM archlinux:latest
+
+# prepare
+RUN mkdir -p /build/ci/
+
+# install build dependencies
+COPY install-deps-arch.sh /build/ci/
+RUN chmod +x /build/ci/install-deps-arch.sh && /build/ci/install-deps-arch.sh
+
+# install LDC from upstream tarball — uniform across all CI images
+COPY install-ldc-tarball.sh /build/ci/
+RUN chmod +x /build/ci/install-ldc-tarball.sh && /build/ci/install-ldc-tarball.sh
+
+# finish
+WORKDIR /build

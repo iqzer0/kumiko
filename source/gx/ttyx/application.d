@@ -152,6 +152,7 @@ private:
     enum MAX_BG_HEIGHT = 2160;
 
     GSettings gsDesktop;
+    bool gsProxyLookedUp;
     GSettings gsShortcuts;
     GSettings gsGeneral;
     GSettings gsProxy;
@@ -539,12 +540,14 @@ private:
         loadResources();
         // Before any of our GSettings objects exist, so they read migrated values.
         migrateFromPredecessors();
-        gsDesktop = new GSettings(SETTINGS_DESKTOP_ID);
-        gsDesktop.connectChanged(null, delegate(string key, GSettings settings) {
-            if (key == SETTINGS_COLOR_SCHEME_KEY) {
-                applyPreference(SETTINGS_THEME_VARIANT_KEY);
-            }
-        });
+        gsDesktop = openOptionalSettings(SETTINGS_DESKTOP_ID);
+        if (gsDesktop !is null) {
+            gsDesktop.connectChanged(null, delegate(string key, GSettings settings) {
+                if (key == SETTINGS_COLOR_SCHEME_KEY) {
+                    applyPreference(SETTINGS_THEME_VARIANT_KEY);
+                }
+            });
+        }
         gsShortcuts = new GSettings(SETTINGS_KEY_BINDINGS_ID);
         gsShortcuts.connectChanged(null, delegate(string key, GSettings settings) {
             string actionName = keyToDetailedActionName(key);
@@ -633,7 +636,7 @@ private:
                 if (theme == SETTINGS_THEME_VARIANT_DARK_VALUE || theme == SETTINGS_THEME_VARIANT_LIGHT_VALUE) {
                     darkMode = (SETTINGS_THEME_VARIANT_DARK_VALUE == theme);
                 } else {
-                    string colorSchemePreference = gsDesktop.getString(SETTINGS_COLOR_SCHEME_KEY);
+                    string colorSchemePreference = optionalSettingString(gsDesktop, SETTINGS_COLOR_SCHEME_KEY);
                     if (colorSchemePreference !is null) {
                         darkMode = (colorSchemePreference == SETTINGS_COLOR_SCHEME_PREFER_DARK_VALUE);
                     } else {
@@ -956,8 +959,11 @@ public:
      * don't need to constantly re-create this on their own.
      */
     GSettings getProxySettings() {
-        if (gsProxy is null) {
-            gsProxy = new GSettings(SETTINGS_PROXY_ID);
+        // Null when the desktop's proxy schema is not installed; callers
+        // then set no proxy variables. Looked up once either way.
+        if (!gsProxyLookedUp) {
+            gsProxy = openOptionalSettings(SETTINGS_PROXY_ID);
+            gsProxyLookedUp = true;
         }
         return gsProxy;
     }

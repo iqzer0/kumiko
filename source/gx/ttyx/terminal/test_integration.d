@@ -4,6 +4,11 @@
  */
 module gx.ttyx.terminal.test_integration;
 
+// Test builds only. Without this the module — and its static constructor,
+// which calls gtk_init — was linked into the application, initialising GTK
+// before main() and exiting there when no display was available.
+version (unittest):
+
 /**
  * Integration tests for terminal components that require GTK initialization.
  *
