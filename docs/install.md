@@ -7,11 +7,45 @@ permalink: /install/
 
 # Install
 
-## Install a package
+## Install from the Kumiko repository (recommended)
 
-Each [release](https://github.com/iqzer0/kumiko/releases/latest) carries
-packages built from one tested binary. Download the one for your system,
-then:
+Add the repository once; after that Kumiko updates with the rest of your
+system (`apt upgrade`, `dnf upgrade`, `zypper update`).
+
+```bash
+# Ubuntu, Debian, Linux Mint, Pop!_OS, elementary OS, Zorin OS
+sudo curl -fsSLo /usr/share/keyrings/kumiko.gpg https://iqzer0.github.io/kumiko-packages/kumiko.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/kumiko.sources https://iqzer0.github.io/kumiko-packages/apt/kumiko.sources
+sudo apt update && sudo apt install kumiko
+
+# Fedora
+sudo curl -fsSLo /etc/yum.repos.d/kumiko.repo https://iqzer0.github.io/kumiko-packages/rpm/kumiko.repo
+sudo dnf install kumiko
+
+# openSUSE Tumbleweed and Leap
+sudo zypper addrepo https://iqzer0.github.io/kumiko-packages/rpm/kumiko.repo
+sudo zypper refresh
+sudo zypper install kumiko
+
+# Arch Linux, Manjaro, EndeavourOS — from the AUR
+yay -S kumiko-bin     # the release build; or `kumiko` to build from source
+```
+
+dnf and zypper ask you to trust the repository key the first time. Accept it
+only if its fingerprint is:
+
+```
+D5D9 7A22 F23B 9986 B0FC  F84E ED24 5861 5AA0 8E7B
+```
+
+The repository is rebuilt from Kumiko's signed releases every few hours, and
+only from releases whose checksums carry the maintainer's signature.
+
+## Install a package file
+
+Each [release](https://github.com/iqzer0/kumiko/releases/latest) also carries
+the packages themselves, built from one tested binary. They do not update on
+their own. Download the one for your system, then:
 
 ```bash
 # Ubuntu, Debian, Linux Mint, Pop!_OS, elementary OS, Zorin OS
@@ -34,9 +68,9 @@ gpg --verify SHA256SUMS.asc
 sha256sum --ignore-missing -c SHA256SUMS.asc
 ```
 
+Releases are signed with the maintainer key `7885 F712 AEDF 0761 D231  DB0E 0E06 0BBC C4AE 5E8C`.
 The packages pull in GTK 3, VTE and libsecret from your distribution and
-recommend `gsettings-desktop-schemas` and `dconf`. They don't update
-themselves yet: install the newer package when a release comes out.
+recommend `gsettings-desktop-schemas` and `dconf`.
 
 ---
 

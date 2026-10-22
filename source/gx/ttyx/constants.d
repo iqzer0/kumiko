@@ -60,7 +60,7 @@ enum APPLICATION_ID = "io.github.iqzer0.kumiko";
 
 // Application values used in About Dialog
 enum APPLICATION_NAME = "Kumiko";
-enum APPLICATION_VERSION = "1.3.0-beta.1";
+enum APPLICATION_VERSION = "2.0.0";
 enum APPLICATION_AUTHOR = "iqzer0";
 enum APPLICATION_COPYRIGHT = "Copyright \xc2\xa9 2026 " ~ APPLICATION_AUTHOR;
 enum APPLICATION_COMMENTS = N_("A tiling terminal emulator for Linux, forked from Tilix");
