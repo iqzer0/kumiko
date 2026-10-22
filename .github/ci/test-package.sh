@@ -63,10 +63,19 @@ case "$family" in
     *arch*)
         # Arch users install from the AUR: build the kumiko-bin package from
         # packaging/aur/kumiko-bin with the release tarball, as makepkg would.
+        # The recipe in the repo names the previous release until
+        # packaging/aur/update.sh points it at the new one after publishing,
+        # so point this copy at the tarball under test, the same way.
         pacman -Syu --noconfirm --needed base-devel
         useradd -m builder
         install -d -o builder /home/builder/pkg
         cp /src/packaging/aur/kumiko-bin/PKGBUILD /dist/kumiko-*-linux-x86_64.tar.gz /home/builder/pkg/
+        tarball=$(basename /dist/kumiko-*-linux-x86_64.tar.gz)
+        ver=${tarball#kumiko-}; ver=${ver%-linux-x86_64.tar.gz}
+        sum=$(sha256sum "/dist/$tarball" | cut -d' ' -f1)
+        sed -i -e "s/^_ver=.*/_ver=$ver/" -e "s/^pkgver=.*/pkgver=$(echo "$ver" | tr -d -)/" \
+            -e "s/^sha256sums=('[^']*')/sha256sums=('$sum')/" /home/builder/pkg/PKGBUILD
+        echo ">>> kumiko-bin recipe pointed at $ver"
         chown -R builder /home/builder/pkg
         su builder -c 'cd ~/pkg && makepkg --noconfirm --nodeps --cleanbuild'
         # --nodeps above only skips makepkg's own check; pacman resolves the
