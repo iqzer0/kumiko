@@ -67,6 +67,15 @@ launch_check() {
         exit 0
     " < /dev/null > "$log" 2>&1
     set -e
+    # The test bed, not Kumiko: Xvfb occasionally fails to come up (seen on
+    # Tumbleweed). Retry once when the log says no display was reachable, and
+    # only then, so a failure in Kumiko itself is never retried away.
+    if [ "$(cat "$marker" 2>/dev/null)" != "shell-ran" ] && [ -z "${SMOKE_RETRIED:-}" ] \
+            && grep -q 'cannot open display' "$log"; then
+        echo ">>> [$label] the display did not start; retrying once"
+        SMOKE_RETRIED=1 launch_check "$label" "$@"
+        return
+    fi
     if [ "$(cat "$marker" 2>/dev/null)" != "shell-ran" ]; then
         echo "!!! [$label] FAILED: the terminal's shell never ran"
         cat "$log"
