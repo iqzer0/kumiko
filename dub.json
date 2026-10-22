@@ -1,8 +1,8 @@
 {
-    "name": "ttyx",
-    "description": "A tiling terminal emulator for Linux, forked from Tilix",
-    "copyright": "Copyright © 2026, gwelr",
-    "authors": ["gwelr", "Gerald Nunn and the Tilix contributors"],
+    "name": "kumiko",
+    "description": "A tiling terminal emulator for Linux, built on ttyx_ and Tilix",
+    "copyright": "Copyright © 2026, iqzer0",
+    "authors": ["iqzer0", "gwelr (ttyx_)", "Gerald Nunn and the Tilix contributors"],
     "mainSourceFile": "source/app.d",
     "dflags-ldc": ["-disable-linker-strip-dead","-link-defaultlib-shared=false"],
     "dependencies": {

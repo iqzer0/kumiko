@@ -1,7 +1,7 @@
-title: ttyx_
-description: Documentation for ttyx_, a tiling terminal emulator for Linux
-baseurl: "/ttyx_"
-url: "https://gwelr.github.io"
+title: Kumiko
+description: Documentation for Kumiko, a tiling terminal emulator for Linux
+baseurl: "/kumiko"
+url: "https://iqzer0.github.io"
 
 remote_theme: just-the-docs/just-the-docs
 
@@ -20,12 +20,12 @@ search:
 # Navigation
 heading_anchors: true
 nav_external_links:
-  - title: ttyx_ on GitHub
-    url: https://github.com/gwelr/ttyx_
+  - title: Kumiko on GitHub
+    url: https://github.com/iqzer0/kumiko
     hide_icon: false
 
 # Footer
-footer_content: "Manual content adapted from the original <a href=\"https://github.com/gnunn1/tilix\">Tilix</a> by Gerald Nunn under <a href=\"https://github.com/gwelr/ttyx_/blob/master/LICENSE\">MPL-2.0</a>."
+footer_content: "Manual content adapted from the original <a href=\"https://github.com/gnunn1/tilix\">Tilix</a> by Gerald Nunn under <a href=\"https://github.com/iqzer0/kumiko/blob/master/LICENSE\">MPL-2.0</a>."
 
 # Jekyll settings
 permalink: pretty

@@ -348,7 +348,7 @@ public:
         lbSessions = new ListBox();
         lbSessions.setCanFocus(true);
         lbSessions.setSelectionMode(SelectionMode.Browse);
-        lbSessions.getStyleContext().addClass("ttyx-session-sidebar");
+        lbSessions.getStyleContext().addClass("kumiko-session-sidebar");
         lbSessions.connectRowActivated(&onRowActivated);
         //lbSessions.addOnKeynavFailed(&onKeyNavFailed);
 
@@ -556,7 +556,7 @@ private:
         setAllMargins(lblNCount, 4);
         evNotification = new EventBox();
         evNotification.add(lblNCount);
-        afNotification = wrapWidget(evNotification, "ttyx-notification-count");
+        afNotification = wrapWidget(evNotification, "kumiko-notification-count");
         afNotification.setNoShowAll(true);
         grid.attach(afNotification, 0, 2, 1, 1);
 
@@ -576,7 +576,7 @@ private:
         lblName.setHalign(Align.Center);
         lblName.setHexpand(true);
         lblName.setSensitive(false);
-        lblName.getStyleContext().addClass("ttyx-session-name");
+        lblName.getStyleContext().addClass("kumiko-session-name");
         Box b = new Box(Orientation.Horizontal, 4);
         b.setHexpand(true);
         b.add(lblName);
@@ -587,11 +587,11 @@ private:
         lblIndex.setVexpand(false);
         setAllMargins(lblIndex, 4);
         lblIndex.setWidthChars(2);
-        grid.attach(wrapWidget(lblIndex, "ttyx-session-index"), 2, 2, 1, 1);
+        grid.attach(wrapWidget(lblIndex, "kumiko-session-index"), 2, 2, 1, 1);
 
         //Add Close Button
         btnClose = Button.newFromIconName("window-close-symbolic", IconSize.Menu);
-        btnClose.getStyleContext().addClass("ttyx-sidebar-close-button");
+        btnClose.getStyleContext().addClass("kumiko-sidebar-close-button");
         btnClose.setTooltipText(_("Close"));
         btnClose.setRelief(ReliefStyle.None);
         btnClose.setFocusOnClick(false);

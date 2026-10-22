@@ -1,4 +1,4 @@
-# ttyx_ Roadmap
+# Kumiko Roadmap
 
 ## Vision
 
@@ -67,7 +67,7 @@ not incremental. Approach: a parallel giD rewrite that grows to parity (reusing
 the GtkD-free logic unchanged), then a single build swap.
 
 ### Phase 2a — GtkD → giD, staying on GTX3
-- [x] Grow a parallel giD tree into a giD-based ttyx_ (staging tree since folded into `source/` and removed)
+- [x] Grow a parallel giD tree into a giD-based Kumiko (staging tree since folded into `source/` and removed)
 - [x] Port the widget layer (app → window → session → terminal → prefs) to `gid:gtk3` + `gid:vte2` — 44/44 modules; full app builds and runs
 - [x] Reuse `gx/util/*` and pure logic unchanged; collapse `exvte.d` into native giD VTE calls
 - [x] Drop vendored `secret/`/`secretc/` for `gid:secret1` (vendored `x11/` kept — giD's xlib2 lacks the raw event types x11.d needs)
@@ -90,7 +90,7 @@ which sit on the security-critical paste path.
 that 2.91 has. `text-deleted` is a **hard compile error** (`gid:vte3` generates
 no `connectTextDeleted`; the existing guard is runtime-only) and must be fixed
 in WP0. `notification-received` would be a silent feature loss. But measuring
-before deciding changed the answer: `ttyx --version` against **stock VTE 0.84 on
+before deciding changed the answer: `kumiko --version` against **stock VTE 0.84 on
 GTK3 today** already reports
 
 ```
@@ -210,7 +210,7 @@ A potential security-hardened fork for enterprise/compliance use cases:
 
 ## Competitive positioning
 
-| Feature | GNOME Terminal | Ptyxis | ttyx_ |
+| Feature | GNOME Terminal | Ptyxis | Kumiko |
 |---------|---------------|--------|-------|
 | Tiling | No | No | **Yes** |
 | Security hardening | No | Some (VTE improvements) | **Comprehensive** |
@@ -218,9 +218,9 @@ A potential security-hardened fork for enterprise/compliance use cases:
 | GTK version | GTK4 | GTK4 | GTK3 (migration planned) |
 | Maintained by | GNOME team | Christian Hergert | Community |
 
-**ttyx_ wins on:** tiling + security, for sysadmins who SSH into production all day and want their terminal to actively protect them.
+**Kumiko wins on:** tiling + security, for sysadmins who SSH into production all day and want their terminal to actively protect them.
 
-**Ptyxis wins on:** GNOME integration, container support, modern stack. But Hergert maintains 5+ major GNOME projects — focused effort on ttyx_ can outpace Ptyxis on specific features.
+**Ptyxis wins on:** GNOME integration, container support, modern stack. But Hergert maintains 5+ major GNOME projects — focused effort on Kumiko can outpace Ptyxis on specific features.
 
 ## Known issues
 
@@ -244,5 +244,5 @@ A potential security-hardened fork for enterprise/compliance use cases:
   session could come up with focus in no terminal at all. `parseSession` now
   seeds `currentTerminal`, and `getDisplayText` blanks unresolved
   terminal-scope variables instead of passing them through. Verified
-  before/after on a real `--session` load: `ttyx_: ${title}` →
-  `ttyx_: user@host:~`.
+  before/after on a real `--session` load: `Kumiko: ${title}` →
+  `Kumiko: user@host:~`.

@@ -7,7 +7,7 @@ layout: default
 
 ## Overview
 
-ttyx_ supports themes for configuring the color scheme of the terminal, one theme per JSON file. Each theme specifies colors for each element and declares whether certain colors should be used or left to the GTK theme. Here is an example of a theme file:
+Kumiko supports themes for configuring the color scheme of the terminal, one theme per JSON file. Each theme specifies colors for each element and declares whether certain colors should be used or left to the GTK theme. Here is an example of a theme file:
 
 {% highlight json %}
 {
@@ -47,16 +47,16 @@ ttyx_ supports themes for configuring the color scheme of the terminal, one them
 
 ## Where themes are loaded from
 
-ttyx_ looks for theme files in two locations, in order:
+Kumiko looks for theme files in two locations, in order:
 
-1. `~/.config/ttyx/schemes/` — user-installed themes. Drop any JSON file here and it will appear in the theme picker.
-2. `/usr/share/ttyx/schemes/` — themes shipped with ttyx_.
+1. `~/.config/kumiko/schemes/` — user-installed themes. Drop any JSON file here and it will appear in the theme picker.
+2. `/usr/share/kumiko/schemes/` — themes shipped with Kumiko.
 
 If a theme with the same name exists in both locations, the user version wins. This fix shipped in v1.1.1; before then, duplicates could appear in the theme picker.
 
 ## Bundled themes
 
-ttyx_ ships 17 schemes out of the box, covering the most commonly-requested palettes:
+Kumiko ships 17 schemes out of the box, covering the most commonly-requested palettes:
 
 - **Catppuccin** — Latte, Mocha
 - **Dracula**
@@ -73,9 +73,9 @@ ttyx_ ships 17 schemes out of the box, covering the most commonly-requested pale
 
 ## Installing additional themes
 
-Any JSON file following the structure above works. Two community theme repositories originally built for Tilix use the same format and install into `~/.config/ttyx/schemes/`:
+Any JSON file following the structure above works. Two community theme repositories originally built for Tilix use the same format and install into `~/.config/kumiko/schemes/`:
 
 - [**Tilix-Themes**](https://github.com/storm119/Tilix-Themes) — a large collection of pre-built palettes.
 - [**gogh-to-tilix**](https://github.com/isacikgoz/gogh-to-tilix) — a converter for the [gogh](https://github.com/Gogh-Co/Gogh) theme ecosystem.
 
-After dropping a new `.json` file into `~/.config/ttyx/schemes/`, it appears in **Preferences → Profile → Color → Color scheme** without a restart.
+After dropping a new `.json` file into `~/.config/kumiko/schemes/`, it appears in **Preferences → Profile → Color → Color scheme** without a restart.

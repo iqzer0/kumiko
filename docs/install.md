@@ -7,10 +7,10 @@ permalink: /install/
 
 # Install
 
-ttyx_ installs from source: build with Dub, install with the bundled
+Kumiko installs from source: build with Dub, install with the bundled
 `install.sh`. Releases are GPG-signed git tags — verify with
 `git verify-tag vX.Y.Z` (or check the signed checksums attached to the
-[latest release](https://github.com/gwelr/ttyx_/releases/latest)).
+[latest release](https://github.com/iqzer0/kumiko/releases/latest)).
 
 ---
 
@@ -25,7 +25,7 @@ ttyx_ installs from source: build with Dub, install with the bundled
 
 ### Building with Dub (the build system)
 
-ttyx_ builds with [Dub](https://dub.pm/) against the [giD](https://github.com/Kymorphia/gid)
+Kumiko builds with [Dub](https://dub.pm/) against the [giD](https://github.com/Kymorphia/gid)
 GObject-Introspection bindings (`gid:gtk3`, `gid:vte2`, `gid:secret1`). giD is a
 source-only Dub package compiled into the binary, so — unlike the old GtkD
 bindings — nothing D-specific needs to be installed system-wide. (The Meson
@@ -68,7 +68,7 @@ dub build --build=release --compiler=ldc2 --skip-registry=all
 
 On first run:
 
-- If you previously used Tilix, ttyx_ [automatically migrates]({{ site.baseurl }}/migrating/) your session files and reads existing saved passwords.
+- If you previously used Tilix, Kumiko [automatically migrates]({{ site.baseurl }}/migrating/) your session files and reads existing saved passwords.
 - The terminal opens with the default profile. Preferences live under **Hamburger menu → Preferences** (or `Ctrl+,`).
 - Security options are consolidated under **Preferences → Advanced → Security**.
 
@@ -84,7 +84,7 @@ Typically a stale icon cache from a previous install. Refresh the icon cache for
 sudo gtk-update-icon-cache -f /usr/share/icons/hicolor/
 ```
 
-Then relaunch ttyx_.
+Then relaunch Kumiko.
 
 ### Quake mode doesn't position correctly on Wayland
 

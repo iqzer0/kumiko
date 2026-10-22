@@ -500,7 +500,7 @@ Label createErrorLabel() {
     Label lblErrors = new Label("");
     lblErrors.setHalign(Align.Start);
     lblErrors.setMarginTop(12);
-    lblErrors.getStyleContext().addClass("ttyx-error");
+    lblErrors.getStyleContext().addClass("kumiko-error");
     lblErrors.setNoShowAll(true);
 
     return lblErrors;

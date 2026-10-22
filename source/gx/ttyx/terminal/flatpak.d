@@ -181,7 +181,7 @@ bool sendHostCommand(string workingDir, string[] args, string[] envv, int[] stdi
 }
 
 /**
- * Run a ttyx-flatpak-toolbox command on the host and capture its stdout output.
+ * Run a kumiko-flatpak-toolbox command on the host and capture its stdout output.
  *
  * This is a thin wrapper over sendHostCommand that launches the toolbox binary
  * from the Flatpak app-path and waits for it to complete.
@@ -193,7 +193,7 @@ string captureHostToolboxCommand(string command, string arg, int[] extra_fds) {
     kf.loadFromFile("/.flatpak-info", KeyFileFlags.None);
 
     string hostRoot = kf.getString("Instance", "app-path");
-    string[] args = [format("%s/bin/ttyx-flatpak-toolbox", hostRoot), command, arg];
+    string[] args = [format("%s/bin/kumiko-flatpak-toolbox", hostRoot), command, arg];
 
     Pipe output = pipe();
     scope(exit) output.close();

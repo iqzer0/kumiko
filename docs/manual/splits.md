@@ -10,7 +10,7 @@ permalink: /manual/splits/
 
 ## Equal-size panes (auto-equalize)
 
-By default, ttyx_ automatically redistributes pane space whenever you split or close a terminal. Each pane in a same-orientation chain ends up with an equal share of the available space:
+By default, Kumiko automatically redistributes pane space whenever you split or close a terminal. Each pane in a same-orientation chain ends up with an equal share of the available space:
 
 - Three horizontal splits → 33% / 33% / 33%
 - Closing one of three equal panes → 50% / 50%

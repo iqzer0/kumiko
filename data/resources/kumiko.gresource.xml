@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/github/iqzer0/kumiko">
+    <file preprocess="to-pixdata">icons/16x16/actions/kumiko-add-horizontal-symbolic.symbolic.png</file>
+    <file preprocess="to-pixdata">icons/16x16/actions/kumiko-add-vertical-symbolic.symbolic.png</file>
+    <file preprocess="to-pixdata">icons/32x32/actions/kumiko-add-horizontal-symbolic.symbolic.png</file>
+    <file preprocess="to-pixdata">icons/32x32/actions/kumiko-add-vertical-symbolic.symbolic.png</file>
+    <file>css/kumiko.base.css</file>
+    <file>css/kumiko.base320.css</file>
+    <file>css/kumiko.base.theme.css</file>
+    <file>css/kumiko.Ambiance.css</file>
+    <file>css/kumiko.Radiance.css</file>
+    <file>css/kumiko.Adwaita.scrollbar.css</file>
+    <file>css/kumiko.Lavender.scrollbar.css</file>
+    <file>css/kumiko.Ambiance.scrollbar.css</file>
+    <file>css/kumiko.Radiance.scrollbar.css</file>
+    <file>css/kumiko.Arc.scrollbar.css</file>
+    <file>css/kumiko.Arc-Dark.scrollbar.css</file>
+    <file>css/kumiko.Arc-Darker.scrollbar.css</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/shortcuts.ui</file>
+  </gresource>
+</gresources>

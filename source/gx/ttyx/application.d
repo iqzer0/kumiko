@@ -200,7 +200,7 @@ private:
                 }
             }
 
-            //Check if ttyx_ has a theme specific CSS file to load
+            //Check if Kumiko has a theme specific CSS file to load
             string theme = getGtkTheme();
             string cssURI = themeCssResourceURI(theme);
             themeCssProvider = addCssProvider(cssURI, ProviderPriority.APPLICATION);
@@ -367,7 +367,7 @@ private:
     }
 
     ProcessInformation getProcessesInformation() {
-        ProcessInformation result = ProcessInformation(ProcessInfoSource.APPLICATION, _("ttyx_"), "", []);
+        ProcessInformation result = ProcessInformation(ProcessInfoSource.APPLICATION, _("Kumiko"), "", []);
         foreach(window; appWindows) {
             ProcessInformation winInfo = window.getProcessInformation();
             if (winInfo.children.length > 0) {
@@ -406,7 +406,7 @@ private:
             acl.setExitStatus(cp.exitCode);
             // GtkD passed Scoped!ApplicationCommandLine, which unref'd the
             // command-line object when the handler returned — that final unref
-            // is what signals a remote `ttyx -a ...` invocation to exit. giD's
+            // is what signals a remote `kumiko -a ...` invocation to exit. giD's
             // wrapper holds its ref until GC, leaving the remote hanging, so
             // drop it eagerly (wrapper dtor → g_object_unref).
             acl.destroy();
@@ -524,7 +524,7 @@ private:
             StyleContext.removeProviderForScreen(Screen.getDefault(), themeCssProvider);
             themeCssProvider = null;
         }
-        //Check if ttyx_ has a theme specific CSS file to load
+        //Check if Kumiko has a theme specific CSS file to load
         string cssURI = themeCssResourceURI(theme);
         themeCssProvider = addCssProvider(cssURI, ProviderPriority.APPLICATION);
         if (!themeCssProvider) {
@@ -537,6 +537,8 @@ private:
         trace("Startup App Signal");
         Settings.getDefault.connectNotify("gtk-theme-name", &handleThemeChange, Yes.After);
         loadResources();
+        // Before any of our GSettings objects exist, so they read migrated values.
+        migrateFromPredecessors();
         gsDesktop = new GSettings(SETTINGS_DESKTOP_ID);
         gsDesktop.connectChanged(null, delegate(string key, GSettings settings) {
             if (key == SETTINGS_COLOR_SCHEME_KEY) {
@@ -557,7 +559,6 @@ private:
             applyPreference(key);
         });
 
-        migrateConfigFromTilix();
         initProfileManager();
         initBookmarkManager();
         bmMgr.load();
@@ -603,14 +604,18 @@ private:
     }
 
     /**
-     * Migrate config directory from ~/.config/tilix/ to ~/.config/ttyx/
-     * on first run after switching from Tilix. Delegates to the
-     * testable free function migrateConfigBetween.
+     * On first run, carry over settings and the config directory (sessions,
+     * bookmarks, color schemes) from the projects Kumiko descends from.
+     * Both steps refuse to touch anything that already exists, so later
+     * runs are no-ops.
      */
-    void migrateConfigFromTilix() {
-        string oldConfig = buildPath(getUserConfigDir(), "tilix");
+    void migrateFromPredecessors() {
+        migrateSettingsBetween(TTYX_SETTINGS_PATH, SETTINGS_BASE_PATH ~ "/");
         string newConfig = buildPath(getUserConfigDir(), APPLICATION_CONFIG_FOLDER);
-        migrateConfigBetween(oldConfig, newConfig);
+        // ttyx_ first: a ttyx_ user's tree already holds what it took from Tilix.
+        if (!migrateConfigBetween(buildPath(getUserConfigDir(), "ttyx"), newConfig)) {
+            migrateConfigBetween(buildPath(getUserConfigDir(), "tilix"), newConfig);
+        }
     }
 
     void applyPreferences() {
@@ -741,7 +746,7 @@ private:
         addMainOption(CMD_TITLE, 't', OptionFlags.None, OptionArg.String, _("Set the title of the new terminal"), _("TITLE"));
         addMainOption(CMD_SESSION, 's', OptionFlags.None, OptionArg.StringArray, _("Open the specified session"), _("SESSION_NAME"));
         if (checkVersion(3, 16, 0).length == 0) {
-            addMainOption(CMD_ACTION, 'a', OptionFlags.None, OptionArg.String, _("Send an action to current ttyx_ instance"), _("ACTION_NAME"));
+            addMainOption(CMD_ACTION, 'a', OptionFlags.None, OptionArg.String, _("Send an action to current Kumiko instance"), _("ACTION_NAME"));
         }
         addMainOption(CMD_COMMAND, 'e', OptionFlags.None, OptionArg.String, _("Execute the parameter as a command"), _("COMMAND"));
         addMainOption(CMD_MAXIMIZE, '\0', OptionFlags.None, OptionArg.None, _("Maximize the terminal window"), null);
@@ -752,9 +757,9 @@ private:
         addMainOption(CMD_NEW_PROCESS, '\0', OptionFlags.None, OptionArg.None, _("Start additional instance as new process (Not Recommended)"), null);
         addMainOption(CMD_GEOMETRY, '\0', OptionFlags.None, OptionArg.String, _("Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X+Y)"), _("GEOMETRY"));
         addMainOption(CMD_QUAKE, 'q', OptionFlags.None, OptionArg.None, _("Opens a window in quake mode or toggles existing quake mode window visibility"), null);
-        addMainOption(CMD_VERSION, 'v', OptionFlags.None, OptionArg.None, _("Show ttyx_ and dependent component versions"), null);
-        addMainOption(CMD_PREFERENCES, '\0', OptionFlags.None, OptionArg.None, _("Show the ttyx_ preferences dialog directly"), null);
-        addMainOption(CMD_GROUP, 'g', OptionFlags.None, OptionArg.String, _("Group ttyx_ instances into different processes (Experimental, not recommended)"), _("GROUP_NAME"));
+        addMainOption(CMD_VERSION, 'v', OptionFlags.None, OptionArg.None, _("Show Kumiko and dependent component versions"), null);
+        addMainOption(CMD_PREFERENCES, '\0', OptionFlags.None, OptionArg.None, _("Show the Kumiko preferences dialog directly"), null);
+        addMainOption(CMD_GROUP, 'g', OptionFlags.None, OptionArg.String, _("Group Kumiko instances into different processes (Experimental, not recommended)"), _("GROUP_NAME"));
 
         //Hidden options used to communicate with primary instance
         addMainOption(CMD_TERMINAL_UUID, '\0', OptionFlags.Hidden, OptionArg.String, _("Hidden argument to pass terminal UUID"), _("TERMINAL_UUID"));
@@ -768,7 +773,7 @@ public:
         super(APPLICATION_ID, flags);
 
         if (group.length > 0) {
-            string id = "io.github.gwelr.ttyx." ~ group;
+            string id = "io.github.iqzer0.kumiko." ~ group;
             if (GApplication.idIsValid(id)) {
                 tracef("Setting app id to %s", id);
                 setApplicationId(id);
@@ -776,7 +781,7 @@ public:
                 // The %s argument was missing, which made std.format throw
                 // FormatException ("Orphan format specifier") out of this
                 // constructor — and main() calls `new Tilix` outside its
-                // try/catch, so `ttyx -g <invalid-id>` aborted instead of
+                // try/catch, so `kumiko -g <invalid-id>` aborted instead of
                 // warning and falling back to the default application ID.
                 warningf(_("The application ID %s is not valid"), id);
             }
@@ -984,7 +989,7 @@ public:
             messageArea.add(new Label(msg));
             // Was gnunn1.github.io/tilix-web — upstream Tilix's site, which
             // this fork does not control. Point at our own copy of the page.
-            messageArea.add(new LinkButton("https://github.com/iqzer0/ttyx_/blob/master/docs/manual/vteconfig.md"));
+            messageArea.add(new LinkButton("https://github.com/iqzer0/kumiko/blob/master/docs/manual/vteconfig.md"));
             CheckButton cb = CheckButton.newWithLabel(_("Do not show this message again"));
             messageArea.add(cb);
             dlg.setImage(Image.newFromIconName("dialog-warning", IconSize.Dialog));
@@ -1028,6 +1033,41 @@ public:
  * Returns true if the migration ran to completion, false otherwise.
  * See #49 for the attack vectors this guards against.
  */
+/// dconf path of ttyx_'s settings, the tree Kumiko's own settings come from.
+enum TTYX_SETTINGS_PATH = "/io/github/gwelr/ttyx/";
+
+/**
+ * Copy a dconf settings tree to a new path; used on first run to carry over
+ * ttyx_'s settings. GSettings cannot read keys whose schema is no longer
+ * installed, so this goes through the dconf CLI, as a manual migration would.
+ * Runs only while newPath holds no settings, and never touches oldPath, so a
+ * ttyx_ install keeps working and a failed copy is retried on the next start.
+ *
+ * Returns true if settings were copied. Without dconf it does nothing and
+ * Kumiko starts with defaults.
+ */
+package bool migrateSettingsBetween(string oldPath, string newPath) {
+    import std.string : strip;
+    try {
+        auto existing = execute(["dconf", "dump", newPath]);
+        if (existing.status != 0 || existing.output.strip.length > 0) return false;
+        auto dump = execute(["dconf", "dump", oldPath]);
+        if (dump.status != 0 || dump.output.strip.length == 0) return false;
+        auto load = pipeProcess(["dconf", "load", newPath], Redirect.stdin);
+        load.stdin.write(dump.output);
+        load.stdin.close();
+        if (wait(load.pid) != 0) {
+            warning("Settings migration from " ~ oldPath ~ " failed");
+            return false;
+        }
+        info("Migrated settings from " ~ oldPath ~ " to " ~ newPath);
+        return true;
+    } catch (Exception e) {
+        trace("Settings migration skipped: " ~ e.msg);
+        return false;
+    }
+}
+
 package bool migrateConfigBetween(string oldConfig, string newConfig) {
     import std.file : exists, getLinkAttributes, attrIsSymlink, mkdir;
 
@@ -1121,7 +1161,7 @@ version (unittest) {
 
 /// Source symlinks are skipped, regular files are copied.
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
@@ -1141,7 +1181,7 @@ unittest {
 
 /// Existing files at the destination are preserved, not overwritten.
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
@@ -1160,7 +1200,7 @@ unittest {
 
 /// Nested directories are mirrored correctly.
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
@@ -1179,7 +1219,7 @@ unittest {
 
 /// Symlinked directories in source are skipped entirely (not traversed).
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
@@ -1205,12 +1245,12 @@ unittest {
 
 /// Normal case: src has content, dst doesn't exist, migration runs.
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
     string src = buildPath(tmpRoot, "tilix");
-    string dst = buildPath(tmpRoot, "ttyx");
+    string dst = buildPath(tmpRoot, "kumiko");
 
     mkdirRecurse(src);
     write(buildPath(src, "config.json"), "{}");
@@ -1221,13 +1261,13 @@ unittest {
 
 /// Refuses if source root is itself a symlink (attack: symlink ~/.config/tilix to /etc).
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
     string realDir = buildPath(tmpRoot, "real");
     string srcLink = buildPath(tmpRoot, "tilix");
-    string dst = buildPath(tmpRoot, "ttyx");
+    string dst = buildPath(tmpRoot, "kumiko");
 
     mkdirRecurse(realDir);
     write(buildPath(realDir, "sensitive.txt"), "secret");
@@ -1237,14 +1277,14 @@ unittest {
     assert(!exists(dst), "dst should not have been created when src is a symlink");
 }
 
-/// Refuses if dest is a dangling symlink (attack: symlink ~/.config/ttyx to attacker-writable path).
+/// Refuses if dest is a dangling symlink (attack: symlink ~/.config/kumiko to attacker-writable path).
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
     string src = buildPath(tmpRoot, "tilix");
-    string dst = buildPath(tmpRoot, "ttyx");
+    string dst = buildPath(tmpRoot, "kumiko");
     string target = buildPath(tmpRoot, "nonexistent");
 
     mkdirRecurse(src);
@@ -1258,12 +1298,12 @@ unittest {
 
 /// Refuses if destination already exists as a regular directory.
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
     string src = buildPath(tmpRoot, "tilix");
-    string dst = buildPath(tmpRoot, "ttyx");
+    string dst = buildPath(tmpRoot, "kumiko");
 
     mkdirRecurse(src);
     write(buildPath(src, "a.txt"), "new");
@@ -1278,12 +1318,12 @@ unittest {
 
 /// Returns false when source doesn't exist (no migration needed).
 unittest {
-    string tmpRoot = buildPath(tempDir(), "ttyx-migration-test-" ~ randomUUID.toString);
+    string tmpRoot = buildPath(tempDir(), "kumiko-migration-test-" ~ randomUUID.toString);
     scope(exit) {
         if (exists(tmpRoot)) rmdirRecurse(tmpRoot);
     }
     string src = buildPath(tmpRoot, "tilix");
-    string dst = buildPath(tmpRoot, "ttyx");
+    string dst = buildPath(tmpRoot, "kumiko");
 
     // src is never created.
     assert(!migrateConfigBetween(src, dst));
