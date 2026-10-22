@@ -18,6 +18,7 @@ Features:
  * New profile option "Mouse wheel sends arrow keys in full-screen
    programs", off by default, so a tab left on the alternate screen no
    longer types ^[OA into commands
+ * A new icon: a square kumiko panel in the asanoha (hemp-leaf) pattern
 
 Bugfixes:
  * Kumiko starts on systems without gsettings-desktop-schemas (minimal
