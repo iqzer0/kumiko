@@ -17,14 +17,28 @@ echo ">>> testing the Kumiko package on $PRETTY_NAME"
 case "$family" in
     *debian*|*ubuntu*)
         export DEBIAN_FRONTEND=noninteractive
-        # Optional faster Ubuntu mirror, as in install-deps-deb.sh.
-        if [ -n "${UBUNTU_MIRROR:-}" ] && [ "$ID" = ubuntu ]; then
+        # CI passes Azure's Ubuntu mirror (next to GitHub's runners) in
+        # UBUNTU_MIRROR. It is fast when it answers; when it does not (refused
+        # connections, seen in CI on 2026-10-22), apt_try switches every source back
+        # to the main archive and runs the failed command once more. Timeouts and a
+        # couple of retries keep a stalled transfer from hanging the job.
+        printf 'Acquire::Retries "2";\nAcquire::http::Timeout "30";\n' > /etc/apt/apt.conf.d/80kumiko-ci
+        if [ -n "${UBUNTU_MIRROR:-}" ] && [ "$(. /etc/os-release; echo "$ID")" = ubuntu ]; then
             for f in /etc/apt/sources.list /etc/apt/sources.list.d/*.sources; do
                 [ -f "$f" ] && sed -i "s|http://archive.ubuntu.com/ubuntu|$UBUNTU_MIRROR|g" "$f"
             done
         fi
-        apt-get update -qq
-        apt-get install -yq /dist/kumiko_*_amd64.deb
+        apt_try() {
+            "$@" && return 0
+            [ -n "${UBUNTU_MIRROR:-}" ] && grep -qs "$UBUNTU_MIRROR" /etc/apt/sources.list /etc/apt/sources.list.d/*.sources || return 1
+            echo ">>> $UBUNTU_MIRROR failed; switching to ${UBUNTU_FALLBACK:-the main archive} and retrying"
+            for f in /etc/apt/sources.list /etc/apt/sources.list.d/*.sources; do
+                [ -f "$f" ] && sed -i "s|$UBUNTU_MIRROR|${UBUNTU_FALLBACK:-http://archive.ubuntu.com/ubuntu}|g" "$f"
+            done
+            apt-get update -qq && "$@"
+        }
+        apt_try apt-get update -qq
+        apt_try apt-get install -yq /dist/kumiko_*_amd64.deb
         ;;
     *fedora*)
         dnf -y install /dist/kumiko-*.x86_64.rpm
