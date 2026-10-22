@@ -14,15 +14,19 @@ set -e
 #   - Wayland, on a headless Weston, with XDG_SESSION_TYPE unset the way
 #     compositors started from a TTY leave it, and no DISPLAY to fall back on.
 
-ROOT=/tmp/smoke_root
-PREFIX=$ROOT/usr
-rm -rf "$ROOT"
-
-./install.sh "$PREFIX" > /tmp/kumiko-smoke-install.log 2>&1 || {
-    cat /tmp/kumiko-smoke-install.log; exit 1; }
-
-export GSETTINGS_SCHEMA_DIR="$PREFIX/share/glib-2.0/schemas"
-export XDG_DATA_DIRS="$PREFIX/share:/usr/local/share:/usr/share"
+# SMOKE_INSTALLED=/usr tests a system-wide install (a distro package)
+# instead of installing the source tree into a scratch prefix.
+if [ -n "${SMOKE_INSTALLED:-}" ]; then
+    PREFIX=$SMOKE_INSTALLED
+else
+    ROOT=/tmp/smoke_root
+    PREFIX=$ROOT/usr
+    rm -rf "$ROOT"
+    ./install.sh "$PREFIX" > /tmp/kumiko-smoke-install.log 2>&1 || {
+        cat /tmp/kumiko-smoke-install.log; exit 1; }
+    export GSETTINGS_SCHEMA_DIR="$PREFIX/share/glib-2.0/schemas"
+    export XDG_DATA_DIRS="$PREFIX/share:/usr/local/share:/usr/share"
+fi
 export XDG_CONFIG_HOME=/tmp/smoke_config XDG_CACHE_HOME=/tmp/smoke_cache
 export XDG_RUNTIME_DIR=/tmp/smoke_runtime
 mkdir -p "$XDG_RUNTIME_DIR" && chmod 700 "$XDG_RUNTIME_DIR"
@@ -37,7 +41,7 @@ if command -v fc-match >/dev/null && [ -z "$(fc-match -f '%{family}' monospace 2
 fi
 
 echo ">>> $PREFIX/bin/kumiko --version"
-"$PREFIX/bin/kumiko" --version
+timeout -k 5 30 "$PREFIX/bin/kumiko" --version < /dev/null
 
 # launch_check <label> <wrapper...>: run the installed kumiko under the given
 # wrapper command and require its shell to write the marker. SMOKE_IGNORE may
@@ -49,7 +53,11 @@ launch_check() {
     rm -f "$marker"
     echo ">>> [$label] launching the installed kumiko"
     set +e
-    timeout 60 "$@" dbus-run-session -- sh -c "
+    # No terminal input, and a hard kill after the grace period: with a TTY
+    # attached (podman run -t in CI), anything in timeout's background process
+    # group that touches the terminal is stopped by the kernel, and a stopped
+    # process ignores SIGTERM, so a plain timeout could hang the job.
+    timeout -k 10 60 "$@" dbus-run-session -- sh -c "
         '$PREFIX/bin/kumiko' --new-process -e \"sh -c 'echo shell-ran > $marker; sleep 3'\" &
         pid=\$!
         for i in \$(seq 1 300); do [ -s '$marker' ] && break; sleep 0.1; done
@@ -57,7 +65,7 @@ launch_check() {
         kill \$pid 2>/dev/null
         wait \$pid 2>/dev/null
         exit 0
-    " > "$log" 2>&1
+    " < /dev/null > "$log" 2>&1
     set -e
     if [ "$(cat "$marker" 2>/dev/null)" != "shell-ran" ]; then
         echo "!!! [$label] FAILED: the terminal's shell never ran"
@@ -81,7 +89,7 @@ command -v weston >/dev/null || { echo "!!! weston not installed: cannot run the
 WL=kumiko-smoke-wl
 started=
 for backend in headless headless-backend.so; do
-    weston --backend=$backend --socket=$WL --idle-time=0 > /tmp/weston.log 2>&1 &
+    weston --backend=$backend --socket=$WL --idle-time=0 < /dev/null > /tmp/weston.log 2>&1 &
     weston_pid=$!
     for i in $(seq 1 50); do [ -S "$XDG_RUNTIME_DIR/$WL" ] && break; sleep 0.1; done
     if [ -S "$XDG_RUNTIME_DIR/$WL" ]; then started=$backend; break; fi

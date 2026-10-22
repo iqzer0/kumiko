@@ -61,7 +61,9 @@ jobs:
         restore-keys: dub-${{ matrix.distro }}-
 
     - name: Create Build Environment
-      run: cd .github/ci/ && podman build -t kumiko -f ./Dockerfile-${{ matrix.distro }} .
+      # Ubuntu images use Azure's Ubuntu mirror, next to the runners; the
+      # default archive was 10-40x slower from them (other distros ignore it).
+      run: cd .github/ci/ && podman build --build-arg UBUNTU_MIRROR=http://azure.archive.ubuntu.com/ubuntu -t kumiko -f ./Dockerfile-${{ matrix.distro }} .
 
     - name: Build
       run: |
@@ -75,8 +77,9 @@ jobs:
            -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko
            ./.github/ci/run-tests.sh
 
+    # No -t: the launch check must not inherit a terminal (see run-smoke.sh).
     - name: Launch smoke test
-      run: podman run -t -e CC=gcc -e CXX=g++
+      run: podman run -e CC=gcc -e CXX=g++
            -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko
            ./.github/ci/run-smoke.sh
 
