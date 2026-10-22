@@ -23,14 +23,15 @@ Kumiko is inspired by and built on **[ttyx_](https://github.com/gwelr/ttyx_/)** 
 
 ## Install
 
-Kumiko installs from source — build with Dub, install with the bundled `install.sh`:
+Every [release](https://github.com/iqzer0/kumiko/releases/latest) has packages for Ubuntu and Debian (`.deb`), Fedora and openSUSE (`.rpm`), and Arch is covered by the AUR (`kumiko-bin`, or `kumiko` to build from source). Each package is installed and launched on a clean image of every supported distribution before a release goes out.
 
 ```bash
-dub build --build=release --compiler=ldc2
-sudo ./install.sh
+sudo apt install ./kumiko_X.Y.Z_amd64.deb      # Ubuntu, Debian, Mint, Pop!_OS
+sudo dnf install ./kumiko-X.Y.Z-1.x86_64.rpm   # Fedora
+yay -S kumiko-bin                               # Arch, Manjaro, EndeavourOS
 ```
 
-The [Install page](docs/install.md) has the full walkthrough, including dependencies. Releases are GPG-signed tags.
+The [Install page](docs/install.md) covers openSUSE, verifying the signed checksums, and building from source with Dub.
 
 ## Coming from ttyx_ or Tilix
 
