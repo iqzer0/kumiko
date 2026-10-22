@@ -40,7 +40,7 @@ import std.string;
 
 import glib.global : chdir, getCurrentDir, getHomeDir, setPrgname;
 
-import gtk.c.functions : gtk_init;
+import gtk.c.functions : gtk_init_check;
 import gtk.global : checkVersion, getMajorVersion, getMinorVersion, getMicroVersion;
 import gtk.message_dialog : MessageDialog;
 import gtk.types : MessageType, ResponseType;
@@ -102,11 +102,12 @@ private string resolveLogPath() {
 }
 
 /**
- * GtkD's Main.init(args) equivalent: hand-marshal args to gtk_init and
+ * GtkD's Main.init(args) equivalent: hand-marshal args to gtk_init_check and
  * rebuild args from whatever GTK leaves behind (GTK strips the arguments
- * it consumes, e.g. --display).
+ * it consumes, e.g. --display). Returns false when no display could be
+ * opened; unlike gtk_init, that does not exit the process.
  */
-private void initGtk(ref string[] args) {
+private bool initGtk(ref string[] args) {
     import std.string : toStringz, fromStringz;
 
     int argc = cast(int) args.length;
@@ -117,13 +118,14 @@ private void initGtk(ref string[] args) {
     }
     argv ~= null;
     char** argvPtr = argv.ptr;
-    gtk_init(&argc, &argvPtr);
+    bool opened = gtk_init_check(&argc, &argvPtr) != 0;
     string[] result;
     result.reserve(argc);
     foreach (i; 0 .. argc) {
         result ~= fromStringz(argvPtr[i]).idup;
     }
     args = result;
+    return opened;
 }
 
 private MessageDialog createErrorDialog(string message) {
@@ -213,7 +215,17 @@ int main(string[] args) {
     setPrgname(APPLICATION_ID);
     // Init GTK early so localization is available
     // Note used to pass empty args but was interfering with GTK default args
-    initGtk(args);
+    if (!initGtk(args)) {
+        // --version only reads library versions, so answer it without a
+        // display (over SSH, in packaging scripts); anything else needs one.
+        import std.algorithm.searching : canFind;
+        if (args.canFind("-v") || args.canFind("--version")) {
+            outputVersions();
+            return 0;
+        }
+        stderr.writeln("kumiko: cannot open display");
+        return 1;
+    }
 
     trace(format("Starting kumiko with %d arguments...", args.length));
     foreach(i, arg; args) {

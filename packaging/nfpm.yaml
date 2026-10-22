@@ -1,0 +1,48 @@
+# Package definition for Kumiko, built by nfpm into .deb and .rpm.
+# .github/ci/build-packages.sh stages the install (install.sh into
+# ./stage/usr) and sets KUMIKO_VERSION; see that script.
+#
+# GTK, VTE and libsecret are loaded at runtime rather than linked, so the
+# binary's ELF dependencies do not name them: the depends below must.
+name: kumiko
+arch: amd64
+platform: linux
+version: ${KUMIKO_VERSION}
+version_schema: semver
+section: x11
+priority: optional
+maintainer: iqzer0 <iqzer0@users.noreply.github.com>
+description: |-
+  Tiling terminal emulator for Linux
+  Split terminals horizontally and vertically, nest them arbitrarily, and
+  save and restore layouts as sessions, with a focus on security hardening.
+  Kumiko is built on ttyx_ and Tilix.
+vendor: Kumiko
+homepage: https://github.com/iqzer0/kumiko
+license: MPL-2.0
+contents:
+  - src: ./stage/usr/
+    dst: /usr/
+    type: tree
+scripts:
+  postinstall: ./packaging/scripts/refresh-caches.sh
+  postremove: ./packaging/scripts/refresh-caches.sh
+overrides:
+  deb:
+    depends:
+      - libgtk-3-0 | libgtk-3-0t64
+      - libvte-2.91-0 | libvte-2.91-0t64
+      - libsecret-1-0
+      - libx11-6
+    recommends:
+      - gsettings-desktop-schemas
+      - dconf-cli
+  rpm:
+    depends:
+      - libgtk-3.so.0()(64bit)
+      - libvte-2.91.so.0()(64bit)
+      - libsecret-1.so.0()(64bit)
+      - libX11.so.6()(64bit)
+    recommends:
+      - gsettings-desktop-schemas
+      - dconf

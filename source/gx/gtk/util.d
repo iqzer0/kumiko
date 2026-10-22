@@ -95,11 +95,22 @@ void activateWindow(Window window) {
 }
 
 /**
- * Returns true if running under Wayland, right now
- * it just uses a simple environment variable check to detect it.
+ * Returns true if not running on the X11 backend: Wayland in practice.
+ *
+ * Asks GDK rather than the environment. XDG_SESSION_TYPE is unset under
+ * compositors started from a TTY (sway, Hyprland), and believing X11 there
+ * sends X11 calls to a Wayland display. Without a realized window, the
+ * default display decides; the environment is only a last resort before GDK
+ * has opened one.
  */
 bool isWayland(Window window) {
     if (window is null || window.getWindow() is null) {
+        import gdk.display : GdkDisplayWrap = Display;
+        GdkDisplayWrap display = GdkDisplayWrap.getDefault();
+        if (display !is null) {
+            scope dinstance = new TypeInstance(display._cPtr, No.Take);
+            return !typeCheckInstanceIsA(dinstance, gdk_x11_display_get_type());
+        }
         return (environment.get("XDG_SESSION_TYPE","x11") == "wayland" && environment.get("GDK_BACKEND")!="x11");
     }
 
@@ -432,3 +443,4 @@ private:
 // giD does not bind the GDK X11 backend; resolves at link time from libgdk-3
 // (same pattern as gx.gtk.x11).
 extern(C) GType gdk_x11_window_get_type();
+extern(C) GType gdk_x11_display_get_type();

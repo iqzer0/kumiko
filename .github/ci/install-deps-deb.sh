@@ -7,6 +7,14 @@ set -x
 
 export DEBIAN_FRONTEND=noninteractive
 
+# Optional faster mirror for Ubuntu (CI passes Azure's, next to GitHub's
+# runners). Covers both the classic sources.list and the deb822 format.
+if [ -n "${UBUNTU_MIRROR:-}" ] && [ "$(. /etc/os-release; echo "$ID")" = ubuntu ]; then
+    for f in /etc/apt/sources.list /etc/apt/sources.list.d/*.sources; do
+        [ -f "$f" ] && sed -i "s|http://archive.ubuntu.com/ubuntu|$UBUNTU_MIRROR|g" "$f"
+    done
+fi
+
 # update caches
 apt-get update -qq
 
@@ -25,6 +33,7 @@ eatmydata apt-get install -yq \
         appstream \
         ca-certificates \
         curl \
+        dbus \
         desktop-file-utils \
         git \
         libatk1.0-dev \
@@ -36,5 +45,6 @@ eatmydata apt-get install -yq \
         libsecret-1-dev \
         libvte-2.91-dev \
         po4a \
+        weston \
         xvfb \
         xz-utils

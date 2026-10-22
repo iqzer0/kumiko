@@ -7,21 +7,63 @@ permalink: /install/
 
 # Install
 
-Kumiko installs from source: build with Dub, install with the bundled
-`install.sh`. Releases are GPG-signed git tags — verify with
-`git verify-tag vX.Y.Z` (or check the signed checksums attached to the
-[latest release](https://github.com/iqzer0/kumiko/releases/latest)).
+## Install a package
+
+Each [release](https://github.com/iqzer0/kumiko/releases/latest) carries
+packages built from one tested binary. Download the one for your system,
+then:
+
+```bash
+# Ubuntu, Debian, Linux Mint, Pop!_OS, elementary OS, Zorin OS
+sudo apt install ./kumiko_X.Y.Z_amd64.deb
+
+# Fedora
+sudo dnf install ./kumiko-X.Y.Z-1.x86_64.rpm
+
+# openSUSE (the package is verified by the signed checksums below, not by an RPM signature)
+sudo zypper install --allow-unsigned-rpm ./kumiko-X.Y.Z-1.x86_64.rpm
+
+# Arch Linux, Manjaro, EndeavourOS — from the AUR
+yay -S kumiko-bin     # the release build; or `kumiko` to build from source
+```
+
+Before installing, check the download against the release's signed checksums:
+
+```bash
+gpg --verify SHA256SUMS.asc
+sha256sum --ignore-missing -c SHA256SUMS.asc
+```
+
+The packages pull in GTK 3, VTE and libsecret from your distribution and
+recommend `gsettings-desktop-schemas` and `dconf`. They don't update
+themselves yet: install the newer package when a release comes out.
 
 ---
 
 ## Source build
 
+Releases are GPG-signed git tags — verify with `git verify-tag vX.Y.Z`.
+
+### Supported distributions
+
+Every change is built, unit-tested, installed into a scratch prefix and launched — under X11 and under Wayland — in CI containers of:
+
+| Family | Releases | Also covers |
+|---|---|---|
+| Ubuntu | 22.04 LTS, 24.04 LTS, 26.04 LTS | Linux Mint, Pop!_OS, elementary OS, Zorin OS |
+| Debian | 12 (bookworm), 13 (trixie), testing | |
+| Fedora | latest release | |
+| Arch Linux | rolling | Manjaro, EndeavourOS |
+| openSUSE | Tumbleweed, Leap 16 | |
+
+Run the same checks on your machine with `.github/ci/run-local-matrix.sh [distro...]` (needs podman).
+
 ### Requirements
 
-- GTK 3.18+
-- VTE 0.46+ (0.76+ recommended — some features like triggers depend on newer VTE releases)
-- dconf / GSettings
-- A D compiler (LDC recommended for release builds, DMD also supported)
+- GTK 3.24 and VTE 0.68 or newer (the oldest tested combination is Ubuntu 22.04's)
+- libsecret, for the password manager
+- Recommended at runtime: `gsettings-desktop-schemas` (system monospace font, dark-mode preference, proxy settings — Kumiko falls back to defaults without it) and the `dconf` command-line tool (one-time import of ttyx_ settings)
+- To build: LDC 1.40 or newer. CI installs the upstream [1.40.0 release](https://github.com/ldc-developers/ldc/releases/tag/v1.40.0) on every distro; a distro `ldc` package works if it is at least that new.
 
 ### Building with Dub (the build system)
 
@@ -31,12 +73,24 @@ source-only Dub package compiled into the binary, so — unlike the old GtkD
 bindings — nothing D-specific needs to be installed system-wide. (The Meson
 build was retired together with GtkD.)
 
-**Debian / Ubuntu build dependencies:**
+**Build dependencies** (the same packages CI installs, minus its test-only tools):
 
 ```bash
-sudo apt-get install libgtk-3-dev libvte-2.91-dev libatk1.0-dev \
-  libcairo2-dev libpango1.0-dev librsvg2-dev libglib2.0-dev \
-  libsecret-1-dev
+# Debian / Ubuntu
+sudo apt-get install build-essential libgtk-3-dev libvte-2.91-dev libsecret-1-dev \
+  gettext desktop-file-utils gtk-update-icon-cache xdg-utils
+
+# Fedora
+sudo dnf install gcc gtk3-devel vte291-devel libsecret-devel \
+  gettext desktop-file-utils xdg-utils
+
+# Arch Linux
+sudo pacman -S --needed base-devel gtk3 vte3 libsecret \
+  gettext desktop-file-utils xdg-utils
+
+# openSUSE
+sudo zypper install gcc gtk3-devel vte-devel libsecret-devel \
+  gettext-tools desktop-file-utils xdg-utils
 ```
 
 **Build, test, install:**
@@ -68,7 +122,7 @@ dub build --build=release --compiler=ldc2 --skip-registry=all
 
 On first run:
 
-- If you previously used Tilix, Kumiko [automatically migrates]({{ site.baseurl }}/migrating/) your session files and reads existing saved passwords.
+- If you previously used ttyx_ or Tilix, Kumiko [carries over]({{ site.baseurl }}/migrating/) your settings, sessions and saved passwords.
 - The terminal opens with the default profile. Preferences live under **Hamburger menu → Preferences** (or `Ctrl+,`).
 - Security options are consolidated under **Preferences → Advanced → Security**.
 

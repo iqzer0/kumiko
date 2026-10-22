@@ -23,10 +23,29 @@ permissions:
 
 jobs:
 
-  build-debian-stable:
-    name: Debian Stable
+  # One job per distro family we support. Each builds in a container of that
+  # distro, runs the unit tests, then installs into a throwaway prefix and
+  # launches the installed binary (run-smoke.sh). Add a distro by adding a
+  # Dockerfile-<distro> in .github/ci and a line here; reproduce locally with
+  # .github/ci/run-local-matrix.sh <distro>.
+  build-distro:
+    name: ${{ matrix.name }}
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { distro: debian-oldstable,    name: "Debian 12 (oldstable)" }
+          - { distro: debian-stable,       name: "Debian Stable" }
+          - { distro: debian-testing,      name: "Debian Testing" }
+          - { distro: ubuntu-jammy,        name: "Ubuntu 22.04 LTS" }
+          - { distro: ubuntu-noble,        name: "Ubuntu 24.04 LTS", memory: true }
+          - { distro: ubuntu-26.04,        name: "Ubuntu 26.04 LTS" }
+          - { distro: fedora,              name: "Fedora" }
+          - { distro: arch,                name: "Arch Linux" }
+          - { distro: opensuse-tumbleweed, name: "openSUSE Tumbleweed" }
+          - { distro: opensuse-leap,       name: "openSUSE Leap" }
     steps:
     # Pin actions to commit SHAs to prevent supply chain attacks
     # via mutable tags. Verify SHAs at:
@@ -38,85 +57,34 @@ jobs:
       uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
       with:
         path: ~/.dub-container
-        key: dub-debian-stable-${{ hashFiles('dub.selections.json', 'dub.json') }}
-        restore-keys: dub-debian-stable-
+        key: dub-${{ matrix.distro }}-${{ hashFiles('dub.selections.json', 'dub.json') }}
+        restore-keys: dub-${{ matrix.distro }}-
 
     - name: Create Build Environment
-      run: cd .github/ci/ && podman build -t kumiko -f ./Dockerfile-debian-stable .
+      # Ubuntu images use Azure's Ubuntu mirror, next to the runners; the
+      # default archive was 10-40x slower from them (other distros ignore it).
+      run: cd .github/ci/ && podman build --build-arg UBUNTU_MIRROR=http://azure.archive.ubuntu.com/ubuntu -t kumiko -f ./Dockerfile-${{ matrix.distro }} .
 
     - name: Build
       run: |
         mkdir -p $HOME/.dub-container
-        podman run -t -e COMPILER_VENDOR=$CVENDOR -e CC=gcc -e CXX=g++ \
+        podman run -t -e CC=gcc -e CXX=g++ \
           -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko \
           ./.github/ci/run-build.sh
 
     - name: Test
-      run: podman run -t -e COMPILER_VENDOR=$CVENDOR -e CC=gcc -e CXX=g++
+      run: podman run -t -e CC=gcc -e CXX=g++
            -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko
            ./.github/ci/run-tests.sh
 
-
-  build-debian-testing:
-    name: Debian Testing
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-    - name: Restore dub cache
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-      with:
-        path: ~/.dub-container
-        key: dub-debian-testing-${{ hashFiles('dub.selections.json', 'dub.json') }}
-        restore-keys: dub-debian-testing-
-
-    - name: Create Build Environment
-      run: cd .github/ci/ && podman build -t kumiko -f ./Dockerfile-debian-testing .
-
-    - name: Build
-      run: |
-        mkdir -p $HOME/.dub-container
-        podman run -t -e COMPILER_VENDOR=$CVENDOR -e CC=gcc -e CXX=g++ \
-          -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko \
-          ./.github/ci/run-build.sh
-
-    - name: Test
-      run: podman run -t -e COMPILER_VENDOR=$CVENDOR -e CC=gcc -e CXX=g++
+    # No -t: the launch check must not inherit a terminal (see run-smoke.sh).
+    - name: Launch smoke test
+      run: podman run -e CC=gcc -e CXX=g++
            -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko
-           ./.github/ci/run-tests.sh
-
-
-  build-ubuntu:
-    name: Ubuntu LTS
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-    - name: Restore dub cache
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-      with:
-        path: ~/.dub-container
-        key: dub-ubuntu-noble-${{ hashFiles('dub.selections.json', 'dub.json') }}
-        restore-keys: dub-ubuntu-noble-
-
-    - name: Create Build Environment
-      run: cd .github/ci/ && podman build -t kumiko -f ./Dockerfile-ubuntu-noble .
-
-    - name: Build
-      run: |
-        mkdir -p $HOME/.dub-container
-        podman run -t -e COMPILER_VENDOR=$CVENDOR -e CC=gcc -e CXX=g++ \
-          -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko \
-          ./.github/ci/run-build.sh
-
-    - name: Test
-      run: podman run -t -e COMPILER_VENDOR=$CVENDOR -e CC=gcc -e CXX=g++
-           -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko
-           ./.github/ci/run-tests.sh
+           ./.github/ci/run-smoke.sh
 
     - name: Memory Footprint
+      if: matrix.memory
       continue-on-error: true
       run: podman run -t -e CC=gcc -e CXX=g++
            -v `pwd`:/build -v $HOME/.dub-container:/root/.dub kumiko
