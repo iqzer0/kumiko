@@ -1,32 +1,48 @@
-[![Build Test](https://github.com/iqzer0/ttyx_/actions/workflows/build-test.yml/badge.svg)](https://github.com/iqzer0/ttyx_/actions/workflows/build-test.yml)
+[![Build Test](https://github.com/iqzer0/kumiko/actions/workflows/build-test.yml/badge.svg)](https://github.com/iqzer0/kumiko/actions/workflows/build-test.yml)
 
 <p align="center">
-  <img src="data/hey-ttyx.svg" alt="ttyx_ logo" width="128">
+  <img src="data/kumiko.svg" alt="Kumiko logo" width="128">
 </p>
 
-# ttyx_
+# Kumiko
 
-**Tilix, but with a pulse.**
+**A tiling terminal for Linux — many panes, one frame.**
 
-ttyx_ is an actively maintained fork of [Tilix](https://github.com/gnunn1/tilix), the tiling terminal emulator for Linux. The original project did amazing work, but with development stalled and a growing list of unaddressed bugs, ttyx_ picks up where it left off — with a focus on security hardening and responsiveness to modern Linux desktops.
+*Kumiko* is the Japanese woodworking craft of fitting thin wooden pieces into a lattice without nails. Kumiko the terminal does the same with your shells: split horizontally and vertically, nest as deep as you like, and every pane locks into one window.
 
-📖 **[Documentation site](https://github.com/iqzer0/ttyx_)** — install, manual, security reference, migration guide, changelog.
+Kumiko is inspired by and built on **[ttyx_](https://github.com/gwelr/ttyx_/)** by gwelr and **[Tilix](https://github.com/gnunn1/tilix/)** by Gerald Nunn. It started as a fork of ttyx_, which is itself a fork of Tilix, and carries both forward with a focus on security hardening and on behaving well on modern Linux desktops.
+
+📖 **[Documentation](docs/index.md)** — install, manual, security reference, migration guide, changelog.
 
 ## What you get
 
 - **Tiling terminal** — split horizontally, vertically, nest arbitrarily. Drag and drop between windows. Save and restore layouts as sessions. Synchronized input across terminals.
-- **Security-conscious by default** — multi-line paste review, bracketed-paste escape stripping, shell-quoted trigger substitutions, root/SSH visual indicators, core-dump protection and in-memory-only scrollback are all on out of the box; clipboard auto-clear and the dangerous-command paste alert are one toggle away. Plus a one-shortcut `Secure Clear`. Full list, including what is *not* covered, on the [Security features page](https://github.com/iqzer0/ttyx_/blob/master/docs/security.md).
-- **Actively maintained** — crash fixes, new color schemes, release-build optimizations, a growing unit-test suite. See [What's new vs Tilix](https://github.com/iqzer0/ttyx_/blob/master/docs/whats-new.md) for the feature-level comparison and the [changelog](https://github.com/iqzer0/ttyx_/blob/master/docs/changelog.md) for per-release notes.
+- **Security-conscious by default** — paste review whenever a paste could run commands, bracketed-paste escape stripping, shell-quoted trigger substitutions, root/SSH visual indicators, core-dump protection and in-memory-only scrollback are all on out of the box; clipboard auto-clear and the dangerous-command paste alert are one toggle away. Plus a one-shortcut `Secure Clear`. Full list, including what is *not* covered, on the [Security features page](docs/security.md).
+- **No terminal junk** — the mouse wheel never types stray escape codes like `^[OA` into your commands, even in a tab a crashed program or dropped SSH session left in a bad state.
+- **Actively maintained** — crash fixes, new color schemes, release-build optimizations, a growing unit-test suite. See [What's new vs Tilix](docs/whats-new.md) for the feature-level comparison and the [changelog](CHANGELOG.md) for per-release notes.
 
 ## Install
 
-ttyx_ installs from source — build with Dub, install with the bundled `install.sh`. The [Install page](https://github.com/iqzer0/ttyx_/blob/master/docs/install.md) has the full walkthrough; releases are GPG-signed tags.
+Every [release](https://github.com/iqzer0/kumiko/releases/latest) has packages for Ubuntu and Debian (`.deb`), Fedora and openSUSE (`.rpm`), and Arch is covered by the AUR (`kumiko-bin`, or `kumiko` to build from source). Each package is installed and launched on a clean image of every supported distribution before a release goes out.
 
-Distro packagers and developers: the same page covers source builds with Dub (giD bindings, no system-wide D packages needed).
+The easiest way is the signed Kumiko repository, which keeps Kumiko updated with the rest of your system — for example on Ubuntu or Debian:
 
-## Migrating from Tilix
+```bash
+sudo curl -fsSLo /usr/share/keyrings/kumiko.gpg https://iqzer0.github.io/kumiko-packages/kumiko.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/kumiko.sources https://iqzer0.github.io/kumiko-packages/apt/kumiko.sources
+sudo apt update && sudo apt install kumiko
+```
 
-ttyx_ migrates your session files and reads existing saved passwords automatically on first run; both `TTYX_ID` and `TILIX_ID` are set so existing shell-integration scripts keep working. See [Migrating from Tilix](https://github.com/iqzer0/ttyx_/blob/master/docs/migrating.md) for the full checklist and rollback steps.
+The [Install page](docs/install.md) has the commands for Fedora, openSUSE and Arch (AUR: `kumiko-bin`), the repository key's fingerprint, single package downloads, and building from source with Dub.
+
+## Coming from ttyx_ or Tilix
+
+On first run Kumiko carries over what you had:
+
+- **From ttyx_** — your settings (profiles, keybindings, preferences), saved sessions, bookmarks and color schemes, and saved passwords. Nothing of ttyx_'s is deleted, so it keeps working if you go back.
+- **From Tilix** — saved sessions and saved passwords.
+
+Terminals get `KUMIKO_ID`, and also `TTYX_ID` and `TILIX_ID`, so existing shell-integration scripts keep working. See [Migrating](docs/migrating.md) for the full checklist and rollback steps.
 
 ## Contributing
 
@@ -40,8 +56,12 @@ This is a freetime project. No support is provided.
 
 ## Credits
 
-ttyx_ is built on the shoulders of [Tilix](https://github.com/gnunn1/tilix) by Gerald Nunn and its contributors. Huge thanks to everyone who made the original project what it is.
+Kumiko stands on the work of others:
+
+- **[ttyx_](https://github.com/gwelr/ttyx_/)** by gwelr — the actively maintained, security-hardened fork of Tilix that Kumiko grew out of.
+- **[Tilix](https://github.com/gnunn1/tilix/)** by Gerald Nunn and its contributors — the original tiling terminal, and the source of much of the manual.
+- **[VTE](https://gitlab.gnome.org/GNOME/vte)**, the terminal widget underneath, and **[giD](https://github.com/Kymorphia/gid)**, the D bindings for GTK.
 
 ## License
 
-[MPL-2.0](LICENSE)
+[MPL-2.0](LICENSE). Source files keep the copyright notices of ttyx_ and Tilix, as the license requires.

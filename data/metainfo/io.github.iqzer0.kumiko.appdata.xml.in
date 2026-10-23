@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.iqzer0.kumiko</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MPL-2.0</project_license>
+
+  <name>Kumiko</name>
+  <summary>A tiling terminal for Linux, forked from Tilix</summary>
+
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
+
+  <description>
+    <p>
+      Kumiko is an actively maintained fork of Tilix, the tiling terminal emulator
+      for Linux. It keeps Tilix's tiling model — split terminals horizontally or
+      vertically, nest them arbitrarily, save and restore layouts — and adds a
+      focus on security hardening for people who spend the day on remote shells.
+    </p>
+    <p>
+      Kumiko is built on ttyx_ by gwelr, itself a fork of Tilix by Gerald Nunn.
+    </p>
+    <p>It lets you:</p>
+    <ul>
+      <li>Layout terminals in any fashion by splitting them horizontally or vertically</li>
+      <li>Terminals can be re-arranged using drag and drop both within and between windows</li>
+      <li>Terminals can be detached into a new window via drag and drop</li>
+      <li>Input can be synchronized between terminals so commands typed in one terminal are replicated to the others</li>
+      <li>The grouping of terminals can be saved and loaded from disk</li>
+      <li>Terminals support custom titles</li>
+      <li>Color schemes are stored in files and custom color schemes can be created by simply creating a new file</li>
+      <li>Transparent background</li>
+      <li>Supports notifications when processes are completed out of view</li>
+    </ul>
+  </description>
+
+  <url type="homepage">https://github.com/iqzer0/kumiko</url>
+  <url type="bugtracker">https://github.com/iqzer0/kumiko/issues</url>
+  <url type="vcs-browser">https://github.com/iqzer0/kumiko</url>
+
+  <translation type="gettext">kumiko</translation>
+  <launchable type="desktop-id">io.github.iqzer0.kumiko.desktop</launchable>
+
+  <content_rating type="oars-1.1"/>
+  <developer id="io.github.iqzer0">
+    <name translate="no">iqzer0</name>
+  </developer>
+
+  <provides>
+    <binary>kumiko</binary>
+  </provides>
+</component>

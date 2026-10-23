@@ -64,7 +64,7 @@ import gx.ttyx.constants : USE_COMMIT_SYNCHRONIZATION;
 import gx.ttyx.preferences;
 import gx.ttyx.terminal.advpaste;
 import gx.ttyx.terminal.context;
-import gx.ttyx.terminal.exvte : vtePasteText;
+import gx.ttyx.terminal.exvte : isBracketedPasteActive, vtePasteText;
 import gx.ttyx.terminal.types;
 
 /// Module-level auto-clear state. Shared across all ClipboardHandler instances
@@ -116,6 +116,31 @@ package:
  */
 bool containsLineBreak(string text) {
     return text.indexOf('\n') >= 0 || text.indexOf('\r') >= 0;
+}
+
+/**
+ * If `text` is a single line followed only by line breaks, return the line
+ * without them; otherwise return `text` unchanged.
+ *
+ * A trailing line break is what makes a copied single line run the moment
+ * it is pasted, and triple-click selections and web "copy" buttons usually
+ * include one. Without it the line waits at the prompt until the user
+ * presses Enter: the same protection the review dialog gives, minus the
+ * dialog. A line that still contains a control character is returned
+ * unchanged so it keeps going to review — without bracketed paste the line
+ * editor acts on control characters as keystrokes, and some submit the
+ * line (Ctrl+O in bash and zsh).
+ */
+string stripSingleLineTerminator(string text) {
+    import std.algorithm : any;
+    import std.string : representation;
+
+    string line = text.stripRight("\r\n");
+    if (line.length == text.length) return text;
+    // Bytes below 0x80 are ASCII in UTF-8, so a byte scan finds every C0
+    // control and DEL without decoding.
+    if (line.representation.any!(b => (b < 0x20 && b != '\t') || b == 0x7f)) return text;
+    return line;
 }
 
 /**
@@ -232,6 +257,25 @@ private:
     void delegate() _scrollToBottom;
     void delegate() _focusTerminal;
 
+    /**
+     * Whether a multi-line paste has to be reviewed before it is sent.
+     *
+     * Not when the receiving program has bracketed paste on: it takes the
+     * text as one block and runs none of it until the user presses Enter,
+     * which is the protection the dialog exists to give. Shells turn it on
+     * at the prompt (zsh, bash 5.1+, fish), and over SSH the mode VTE holds
+     * is the remote program's. Still reviewed:
+     *  - under synchronized input, because the other terminals are fed the
+     *    text raw, without bracketing;
+     *  - when the opt-in unsafe-paste alert is on and the text matches one
+     *    of its patterns.
+     */
+    bool multilineNeedsReview(string text) {
+        if (_sync.isSynchronizedInput()) return true;
+        if (_ctx.contextGsSettings().getBoolean(SETTINGS_UNSAFE_PASTE_ALERT_KEY) && isPasteUnsafe(text)) return true;
+        return !isBracketedPasteActive(_ctx.contextVte());
+    }
+
 public:
     /**
      * Construct a ClipboardHandler.
@@ -341,11 +385,18 @@ public:
             pasteText = pasteText.stripRight();
         }
 
+        bool reviewMultiline = _ctx.contextGsSettings().getBoolean(SETTINGS_WARN_MULTILINE_PASTE_KEY);
+        // A single line is pasted without its trailing line break rather than
+        // sent to review. Users who turned review off get their text as-is.
+        if (reviewMultiline) {
+            pasteText = stripSingleLineTerminator(pasteText);
+        }
+
         if (pasteText.length == 0) return;
 
         // Multi-line paste: show review dialog (takes precedence over sudo warning
         // since the review dialog already flags unsafe content and lets the user edit)
-        if (containsLineBreak(pasteText) && _ctx.contextGsSettings().getBoolean(SETTINGS_WARN_MULTILINE_PASTE_KEY)) {
+        if (containsLineBreak(pasteText) && reviewMultiline && multilineNeedsReview(pasteText)) {
             AdvancedPasteDialog dialog = new AdvancedPasteDialog(
                 cast(Window) _ctx.toplevelWidget(), pasteText, isPasteUnsafe(pasteText));
             scope(exit) {
@@ -541,6 +592,43 @@ unittest {
     assert(containsLineBreak("a\rb"));
     assert(!containsLineBreak("cmd"));
     assert(!containsLineBreak(""));
+}
+
+// ---------------------------------------------------------------------------
+// Unit tests for stripSingleLineTerminator
+// ---------------------------------------------------------------------------
+
+/// Test: a single line loses any run of trailing LF/CR, and nothing else.
+unittest {
+    assert(stripSingleLineTerminator("ls -la\n") == "ls -la");
+    assert(stripSingleLineTerminator("ls -la\r\n") == "ls -la");
+    assert(stripSingleLineTerminator("ls -la\r") == "ls -la");
+    assert(stripSingleLineTerminator("ls -la\n\n") == "ls -la");
+    assert(stripSingleLineTerminator("rm -rf ~ \n") == "rm -rf ~ ");
+    assert(stripSingleLineTerminator("printf 'a\tb'\n") == "printf 'a\tb'");
+    assert(stripSingleLineTerminator("echo héllo\n") == "echo héllo");
+    assert(stripSingleLineTerminator("\n") == "");
+}
+
+/// Test: text without a trailing line break is untouched.
+unittest {
+    assert(stripSingleLineTerminator("ls -la") == "ls -la");
+    assert(stripSingleLineTerminator("") == "");
+}
+
+/// Test: genuinely multi-line text is untouched, so it still goes to review.
+unittest {
+    assert(stripSingleLineTerminator("echo a\necho b\n") == "echo a\necho b\n");
+    assert(stripSingleLineTerminator("echo a\necho b") == "echo a\necho b");
+    assert(stripSingleLineTerminator("echo a\recho b\n") == "echo a\recho b\n");
+}
+
+/// Test: a control character in the line keeps the text in review, since
+/// without bracketed paste the line editor would act on it as a keystroke.
+unittest {
+    assert(stripSingleLineTerminator("rm -rf ~\x0f\n") == "rm -rf ~\x0f\n");   // Ctrl+O submits
+    assert(stripSingleLineTerminator("x\x1b[A\n") == "x\x1b[A\n");             // cursor key
+    assert(stripSingleLineTerminator("abc\x7f\n") == "abc\x7f\n");             // DEL
 }
 
 /// Test: CR-terminated dangerous commands are flagged. Previously they

@@ -4,6 +4,11 @@
  */
 module gx.ttyx.terminal.test_integration;
 
+// Test builds only. Without this the module — and its static constructor,
+// which calls gtk_init — was linked into the application, initialising GTK
+// before main() and exiting there when no display was available.
+version (unittest):
+
 /**
  * Integration tests for terminal components that require GTK initialization.
  *
@@ -357,4 +362,38 @@ unittest {
     // D associative arrays don't guarantee order, but within a single
     // run the order should be consistent. We just verify all were called.
     assert(order.length == 3);
+}
+
+// ---------------------------------------------------------------------------
+// Integration tests for isBracketedPasteActive (real VTE)
+// ---------------------------------------------------------------------------
+
+/// Test: the empty-paste probe follows DECSET/DECRST 2004.
+unittest {
+    if (!gtkInitialized()) return;
+
+    import core.time : MonoTime, msecs;
+    import gtk.global : mainIterationDo;
+    import gtk.offscreen_window : OffscreenWindow;
+    import gx.ttyx.terminal.exvte : ExtendedVTE, isBracketedPasteActive;
+
+    auto vte = new ExtendedVTE();
+    auto win = new OffscreenWindow();
+    win.add(vte);
+    win.showAll();
+    scope(exit) win.destroy();
+
+    // VTE parses fed bytes on a timeout, not synchronously.
+    void settle() {
+        auto end = MonoTime.currTime + 300.msecs;
+        while (MonoTime.currTime < end) mainIterationDo(false);
+    }
+
+    assert(!isBracketedPasteActive(vte));
+    vte.feed(cast(ubyte[]) "\x1b[?2004h".dup);
+    settle();
+    assert(isBracketedPasteActive(vte));
+    vte.feed(cast(ubyte[]) "\x1b[?2004l".dup);
+    settle();
+    assert(!isBracketedPasteActive(vte));
 }

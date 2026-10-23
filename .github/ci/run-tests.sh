@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# This script is supposed to run inside the ttyx Docker container
+# This script is supposed to run inside the kumiko Docker container
 # on the CI system.
 #
 # dub test compiles the unittest configuration and runs every module's

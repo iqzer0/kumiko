@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512">
-  <title>ttyx_</title>
-  <rect width="100" height="100" rx="22" fill="#15181E"/>
-  <path d="M30 28L50 46L30 64" fill="none" stroke="#4ADE80" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M70 28L50 46L70 64" fill="none" stroke="#4ADE80" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="38" y="72" width="24" height="6" rx="3" fill="#4ADE80" opacity="0.55"/>
-</svg>

@@ -1,0 +1,19 @@
+#
+# Docker file for Kumiko CI tests on ubuntu:26.04
+#
+FROM ubuntu:26.04
+
+# prepare
+RUN mkdir -p /build/ci/
+
+# install build dependencies
+ARG UBUNTU_MIRROR
+COPY install-deps-deb.sh /build/ci/
+RUN chmod +x /build/ci/install-deps-deb.sh && /build/ci/install-deps-deb.sh
+
+# install LDC from upstream tarball — uniform across all CI images
+COPY install-ldc-tarball.sh /build/ci/
+RUN chmod +x /build/ci/install-ldc-tarball.sh && /build/ci/install-ldc-tarball.sh
+
+# finish
+WORKDIR /build

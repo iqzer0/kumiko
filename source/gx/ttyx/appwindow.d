@@ -291,9 +291,9 @@ private:
         nb.setShowTabs(false);
         nb.setShowBorder(false);
         if (useTabs) {
-            nb.getStyleContext().addClass("ttyx-background");
+            nb.getStyleContext().addClass("kumiko-background");
             nb.setScrollable(true);
-            nb.setGroupName("ttyx");
+            nb.setGroupName("kumiko");
             nb.connectCreateWindow(&onCreateWindow);
             nb.setCanFocus(false);
         }
@@ -351,13 +351,13 @@ private:
         hb = createHeaderBar();
 
         if (isQuake() || isCSDDisabled()) {
-            hb.getStyleContext().addClass("ttyx-embedded-headerbar");
+            hb.getStyleContext().addClass("kumiko-embedded-headerbar");
             Box box = new Box(Orientation.Vertical, 0);
             box.add(hb);
             if (overlay !is null) box.add(overlay);
             else box.add(nb);
             if (isQuake()) {
-                box.getStyleContext().addClass("ttyx-quake-frame");
+                box.getStyleContext().addClass("kumiko-quake-frame");
             }
             add(box);
             hb.setNoShowAll(hideToolbar());
@@ -428,12 +428,12 @@ private:
         mbSessionActions.add(iHamburger);
         mbSessionActions.setPopover(createPopover(mbSessionActions));
 
-        Button btnAddHorizontal = Button.newFromIconName("ttyx-add-horizontal-symbolic", IconSize.Menu);
+        Button btnAddHorizontal = Button.newFromIconName("kumiko-add-horizontal-symbolic", IconSize.Menu);
         btnAddHorizontal.setDetailedActionName(getActionDetailedName(ACTION_PREFIX, ACTION_SESSION_ADD_RIGHT));
         btnAddHorizontal.setFocusOnClick(false);
         btnAddHorizontal.setTooltipText(_("Add terminal right"));
 
-        Button btnAddVertical = Button.newFromIconName("ttyx-add-vertical-symbolic", IconSize.Menu);
+        Button btnAddVertical = Button.newFromIconName("kumiko-add-vertical-symbolic", IconSize.Menu);
         btnAddVertical.setDetailedActionName(getActionDetailedName(ACTION_PREFIX, ACTION_SESSION_ADD_DOWN));
         btnAddVertical.setTooltipText(_("Add terminal down"));
         btnAddVertical.setFocusOnClick(false);
@@ -778,7 +778,7 @@ private:
         GMenu mPrefSection = new GMenu();
         mPrefSection.appendItem(new GMenuItem(_("Preferences"), getActionDetailedName(ACTION_PREFIX_APP, ACTION_PREFERENCES)));
         mPrefSection.appendItem(new GMenuItem(_("Keyboard Shortcuts"), getActionDetailedName(ACTION_PREFIX_APP, ACTION_SHORTCUTS)));
-        mPrefSection.append(_("About ttyx_"), getActionDetailedName(ACTION_PREFIX_APP, ACTION_ABOUT));
+        mPrefSection.append(_("About Kumiko"), getActionDetailedName(ACTION_PREFIX_APP, ACTION_ABOUT));
 
 
         model.appendSection(null, mPrefSection);
@@ -1793,8 +1793,8 @@ public:
         gsSettings.connectChanged(null, delegate(string key, GSettings settings) {
             applyPreference(key);
         });
-        setTitle(_("ttyx_"));
-        setIconName("io.github.gwelr.ttyx");
+        setTitle(_("Kumiko"));
+        setIconName("io.github.iqzer0.kumiko");
         setWindowStyle();
         loadRecentSessionFileList();
         gsSettings.connectChanged(null, delegate(string key, GSettings settings) {
@@ -2229,7 +2229,7 @@ public:
 
         evNotifications = new EventBox();
         evNotifications.add(lblNotifications);
-        evNotifications.getStyleContext().addClass("ttyx-notification-count");
+        evNotifications.getStyleContext().addClass("kumiko-notification-count");
 
         afNotifications = new AspectFrame(null, 0.5, 0.5, 1.0, false);
         afNotifications.setShadowType(ShadowType.None);
@@ -2302,7 +2302,7 @@ public:
         add(imgNewOutput);
 
 		button = Button.newFromIconName("window-close-symbolic", IconSize.Menu);
-        button.getStyleContext().addClass("ttyx-small-button");
+        button.getStyleContext().addClass("kumiko-small-button");
 		button.setRelief(ReliefStyle.None);
 		button.setFocusOnClick(false);
         button.setTooltipText(_("Close session"));

@@ -1,4 +1,4 @@
-ttyx_ Release Process
+Kumiko Release Process
 =====================
 
 ## Pre-release
@@ -43,23 +43,31 @@ ttyx_ Release Process
    git push
    ```
 
-## Build and verify the release binary
+## Build and test the packages
 
-7. Clean release build + test, and verify the install layout:
+7. Tag the release (signed) and push the tag. That starts the **Release
+   Packages** workflow: it builds the release binary once on Ubuntu 22.04,
+   packages it as `.deb`, `.rpm` and a tarball, then installs each package on
+   a clean image of every supported distro and launches it under X11 and
+   Wayland. It refuses a tag that does not match `APPLICATION_VERSION`.
     ```
-    dub build --build=release --compiler=ldc2
-    dub test --compiler=ldc2
-    ./install.sh /tmp/ttyx-install-check/usr && rm -r /tmp/ttyx-install-check
+    git tag -s vX.Y.Z -m "Kumiko X.Y.Z"
+    git push origin vX.Y.Z
+    gh run watch -R iqzer0/kumiko "$(gh run list -R iqzer0/kumiko -w 'Release Packages' -L 1 --json databaseId -q '.[0].databaseId')"
     ```
+   Do not publish unless every job is green. To try the pipeline without a
+   tag, run the workflow by hand (Actions → Release Packages → Run workflow).
 
 ## Sign and checksum
 
-8. Create the source archive and signed checksums (the signed git tag is
-   the primary integrity anchor; the checksums cover the exported archive):
+8. Download the packages, add the source archive, and sign one checksum
+   file covering everything (the signed tag stays the primary anchor):
     ```
-    git archive --format=tar.gz --prefix=ttyx-X.Y.Z/ -o /tmp/ttyx-X.Y.Z.tar.gz vX.Y.Z
-    sha256sum /tmp/ttyx-X.Y.Z.tar.gz > /tmp/ttyx-X.Y.Z_SHA256SUMS
-    gpg --clearsign /tmp/ttyx-X.Y.Z_SHA256SUMS
+    mkdir -p /tmp/kumiko-X.Y.Z && cd /tmp/kumiko-X.Y.Z
+    gh run download -R iqzer0/kumiko <run-id> -n kumiko-packages
+    git -C ~/path/to/kumiko archive --format=tar.gz --prefix=kumiko-X.Y.Z/ -o "$PWD/kumiko-X.Y.Z.tar.gz" vX.Y.Z
+    rm SHA256SUMS && sha256sum -- *.deb *.rpm *.tar.gz > SHA256SUMS
+    gpg --clearsign SHA256SUMS
     ```
 
 ## Publish
@@ -68,20 +76,40 @@ ttyx_ Release Process
     upload assets after creation — GitHub's immutable releases will
     block subsequent uploads):
     ```
-    gh release create vX.Y.Z -R gwelr/ttyx_ \
-      --title "ttyx_ vX.Y.Z" \
-      --target master \
+    gh release create vX.Y.Z -R iqzer0/kumiko \
+      --title "Kumiko vX.Y.Z" \
+      --verify-tag \
       --notes-file /path/to/release-notes.md \
-      /tmp/ttyx-X.Y.Z.tar.gz \
-      /tmp/ttyx-X.Y.Z_SHA256SUMS.asc
+      kumiko_*.deb kumiko-*.rpm kumiko-*-linux-x86_64.tar.gz \
+      kumiko-X.Y.Z.tar.gz SHA256SUMS.asc
+    ```
+
+10. Publish to the package repositories: run **Publish package
+    repositories** in [kumiko-packages](https://github.com/iqzer0/kumiko-packages/actions)
+    (Actions → Run workflow), or wait — it runs every 6 hours. It only
+    picks up releases whose `SHA256SUMS.asc` verifies against
+    `maintainers.asc` there. Check the site lists the new version:
+    ```
+    curl -fsSL https://iqzer0.github.io/kumiko-packages/apt/dists/stable/main/binary-amd64/Packages | grep ^Version
+    ```
+
+11. Update the AUR packages (`kumiko-bin` installs the release tarball,
+    `kumiko` builds from source). In clones of their AUR repositories:
+    ```
+    packaging/aur/update.sh X.Y.Z /tmp/kumiko-X.Y.Z
+    # copy packaging/aur/kumiko-bin/PKGBUILD into the kumiko-bin AUR clone,
+    # packaging/aur/kumiko/PKGBUILD into the kumiko one, then in each:
+    updpkgsums            # kumiko only: fills the source checksums
+    makepkg --printsrcinfo > .SRCINFO
+    git commit -am "Update to X.Y.Z" && git push
     ```
 
 ## Post-release
 
-10. Bump version to next development version in:
+12. Bump version to next development version in:
     - `source/gx/ttyx/constants.d`
 
-11. Commit and push:
+13. Commit and push:
     ```
     git commit -a -m "chore: Post-release version bump to X.Y.Z+1"
     git push
@@ -94,17 +122,32 @@ Users can verify release integrity with:
 # Verify the signed tag (primary)
 git verify-tag vX.Y.Z
 
-# Or verify the archive: signature, then checksum
-gpg --verify ttyx-X.Y.Z_SHA256SUMS.asc
-sha256sum -c ttyx-X.Y.Z_SHA256SUMS.asc 2>/dev/null
+# Or verify downloads: signature, then checksums
+gpg --verify SHA256SUMS.asc
+sha256sum --ignore-missing -c SHA256SUMS.asc 2>/dev/null
 ```
 
-Users install from source — see the Install page (`docs/install.md`).
+Users install the `.deb`/`.rpm` from the release, `kumiko-bin` or `kumiko`
+from the AUR, or build from source — see the Install page (`docs/install.md`).
 
 ## Notes
 
-- Release tags from v1.2.0 on are GPG-signed with key `A63B62EC0FB924FC`
-  (releases up to v1.2.0-beta.1 were signed with `2CAAD12074F3C056`)
+- Kumiko release tags and checksums are signed with the maintainer key
+  `7885 F712 AEDF 0761 D231  DB0E 0E06 0BBC C4AE 5E8C` (ed25519, expires 2028-10-21). Before
+  it expires, extend it and publish the updated public key:
+  `gpg --quick-set-expire 7885F712AEDF0761D231DB0E0E060BBCC4AE5E8C 2y`, then
+  `gpg --armor --export 7885F712AEDF0761D231DB0E0E060BBCC4AE5E8C` into
+  kumiko-packages' `maintainers.asc` and `gh gpg-key add`. Every release
+  tag is signed with this key: the ttyx_-era tags (v1.0.2 to v1.3.0-beta.1)
+  were re-signed with it on 2026-10-22, after a history rewrite. The
+  checksum files attached to those older releases keep their original
+  signatures: `A63B62EC0FB924FC` (also on the iqzer0 GitHub account) for
+  v1.2.0 and v1.3.0-beta.1, `2CAAD12074F3C056` up to v1.2.0-beta.1.
+- The package repositories are signed by a separate key,
+  `D5D9 7A22 F23B 9986 B0FC  F84E ED24 5861 5AA0 8E7B`, stored only as the
+  `REPO_SIGNING_KEY` secret in kumiko-packages and in the maintainer's
+  offline backup (with its revocation certificate). It does not expire;
+  if it is ever exposed, publish the revocation and a new key.
 - `-inline` is a DMD-only flag and must stay in dub.json's `dflags-dmd`,
   never the compiler-agnostic `dflags` — plain `ldc2` rejects it (LDC's
   `-O3` already enables inlining). Getting this wrong breaks CI and the

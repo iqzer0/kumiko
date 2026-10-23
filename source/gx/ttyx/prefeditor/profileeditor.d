@@ -1088,6 +1088,11 @@ private:
         bh.bind(SETTINGS_PROFILE_SCROLL_ON_INPUT_KEY, cbScrollOnKeystroke, "active", SettingsBindFlags.Default);
         add(cbScrollOnKeystroke);
 
+        CheckButton cbAlternateScroll = CheckButton.newWithLabel(_("Mouse wheel sends arrow keys in full-screen programs"));
+        cbAlternateScroll.setTooltipText(_("Lets the wheel scroll less, man and other full-screen programs that do not use the mouse. Off by default because a program or SSH session that exits without restoring the screen leaves the wheel typing ^[OA into the next command. less scrolls with the wheel either way when started with --mouse."));
+        bh.bind(SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY, cbAlternateScroll, "active", SettingsBindFlags.Default);
+        add(cbAlternateScroll);
+
         Label lblScrollback = new Label(_("Scrollback lines:"));
         lblScrollback.setHalign(Align.Start);
         SpinButton sbScrollbackSize = SpinButton.newWithRange(256.0, to!double(SETTINGS_PROFILE_SCROLLBACK_LINES_MAX), 256.0);

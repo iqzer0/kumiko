@@ -5,20 +5,20 @@ nav_order: 3
 permalink: /whats-new/
 ---
 
-# What's new in ttyx_ vs Tilix
+# What's new in Kumiko vs Tilix
 
-ttyx_ is a fork of [Tilix](https://github.com/gnunn1/tilix) that picks up where upstream development stalled. This page summarizes what has changed: new features, security hardening, bug fixes, and infrastructure work.
+Kumiko is built on [ttyx_](https://github.com/gwelr/ttyx_/) by gwelr, itself a fork of [Tilix](https://github.com/gnunn1/tilix/) that picks up where upstream development stalled. This page summarizes what has changed relative to Tilix: new features, security hardening, bug fixes, and infrastructure work.
 
 For version-by-version release notes, see the [changelog]({{ site.baseurl }}/changelog/).
 
 ## Security hardening
 
-The headline difference. ttyx_ adds a **Preferences → Advanced → Security** panel and ships the following protections; none of them exist in upstream Tilix.
+The headline difference. Kumiko adds a **Preferences → Advanced → Security** panel and ships the following protections; none of them exist in upstream Tilix.
 
 ### Paste protection
 
 - **Bracketed paste escape stripping** silently removes `ESC[200~` / `ESC[201~` sequences that could break out of the shell's paste-mode and inject commands. Always active, no option to disable.
-- **Multi-line paste review** shows a review dialog before pasting multi-line content, so you can inspect and edit before the text reaches the shell. Default: on.
+- **Multi-line paste review** shows a review dialog before pasting multi-line content into a program that would run it line by line, so you can inspect and edit before the text reaches the shell. Programs with bracketed paste on, such as modern shells at the prompt, skip the dialog because they run nothing until Enter. Default: on.
 - **Dangerous command detection** flags pastes containing `sudo`, `su`, `rm -rf`, `curl | bash`, `dd if=`, `mkfs`, `chmod 777`, fork bombs, and similar patterns.
 - **Per-paste warnings** — the unsafe-paste warning now appears every time, not just once per session.
 
@@ -41,11 +41,11 @@ The headline difference. ttyx_ adds a **Preferences → Advanced → Security** 
 
 - Sensitive environment variables (proxy URLs, tokens, passwords, secrets) are redacted before being written to trace logs.
 - Command-line arguments and clicked-hyperlink traces have their URL userinfo stripped before logging.
-- When file logging is enabled, the log file is written to `$XDG_RUNTIME_DIR/ttyx.log` (mode 0700 by systemd convention) instead of world-readable `/tmp/ttyx.log`.
+- When file logging is enabled, the log file is written to `$XDG_RUNTIME_DIR/kumiko.log` (mode 0700 by systemd convention) instead of world-readable `/tmp/kumiko.log`.
 
 ## Fixed bugs carried over from upstream
 
-Upstream Tilix development stalled with known issues unresolved. ttyx_ ships fixes for:
+Upstream Tilix development stalled with known issues unresolved. Kumiko ships fixes for:
 
 - **Crash on malformed OSC 7 URIs** and drag-and-drop payloads.
 - **Color schemes incorrectly shown as "Custom"** when `use-theme-colors` was enabled.
@@ -58,7 +58,7 @@ Upstream Tilix development stalled with known issues unresolved. ttyx_ ships fix
 - **Password-manager delete** silently failing for legacy-schema entries and claiming success even when the keyring operation failed.
 - **Malformed proxy URL** with a redundant leading `@`, plus unencoded credentials that broke the URL if they contained `@`, `:`, or `/`.
 - **`https_proxy` never received authentication credentials** even when configured.
-- **Symlink-attack susceptibility** during the Tilix → ttyx_ config migration.
+- **Symlink-attack susceptibility** during the Tilix → Kumiko config migration.
 
 ## New features and quality-of-life improvements
 
@@ -81,9 +81,9 @@ Upstream Tilix development stalled with known issues unresolved. ttyx_ ships fix
 
 ## Identity and migration
 
-- ttyx_ uses its own schema identifier (`io.github.gwelr.ttyx`) for GSettings.
-- libsecret entries use `io.github.gwelr.ttyx.Password`; legacy entries stored under `com.gexperts.tilix.Password` are still read on first run.
-- Shells inside terminals get both `TTYX_ID` and `TILIX_ID` set, so existing shell-integration scripts continue to work.
-- On first run, `~/.config/tilix/` is copied to `~/.config/ttyx/`; the original is left in place as a backup.
+- Kumiko uses its own schema identifier (`io.github.iqzer0.kumiko`) for GSettings.
+- libsecret entries use `io.github.iqzer0.kumiko.Password`; legacy entries stored under `com.gexperts.tilix.Password` are still read on first run.
+- Shells inside terminals get `KUMIKO_ID`, plus `TTYX_ID` and `TILIX_ID`, so existing shell-integration scripts continue to work.
+- On first run, `~/.config/tilix/` is copied to `~/.config/kumiko/`; the original is left in place as a backup.
 
-See [Migrating from Tilix]({{ site.baseurl }}/migrating/) for the full migration checklist.
+See [Migrating to Kumiko]({{ site.baseurl }}/migrating/) for the full migration checklist.

@@ -290,7 +290,7 @@ enum TerminalURLFlavor {
 };
 
 /**
- * Built-in URL regex pattern shipped with ttyx (HTTP, file://, mailto:, etc.).
+ * Built-in URL regex pattern shipped with kumiko (HTTP, file://, mailto:, etc.).
  * Carries the URL flavor so a click can be routed to the right opener.
  *
  * The variant pair (`BuiltinRegex`, `CustomRegex`) replaces an earlier flat

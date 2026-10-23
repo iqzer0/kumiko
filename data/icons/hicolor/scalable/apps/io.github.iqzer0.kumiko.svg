@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512">
+  <title>Kumiko</title>
+  <rect width="100" height="100" rx="22" fill="#15181E"/>
+  <rect x="50" y="50" width="30" height="30" fill="#4ADE80" opacity="0.22"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 50L40 30 M20 20L40 30 M50 20L40 30 M50 50L30 40 M20 20L30 40 M20 50L30 40 M50 50L70 40 M80 20L70 40 M80 50L70 40 M50 50L60 30 M80 20L60 30 M50 20L60 30 M50 50L60 70 M80 80L60 70 M50 80L60 70 M50 50L70 60 M80 80L70 60 M80 50L70 60 M50 50L30 60 M20 80L30 60 M20 50L30 60 M50 50L40 70 M20 80L40 70 M50 80L40 70" stroke="#C9A97C" stroke-width="1.6"/>
+    <path d="M50 50L20 20 M50 50L80 20 M50 50L80 80 M50 50L20 80" stroke="#E9D2AE" stroke-width="2.2"/>
+    <path d="M50 20L50 80 M20 50L80 50 M50 17L50 20 M83 50L80 50 M50 83L50 80 M17 50L20 50" stroke="#E9D2AE" stroke-width="3.6"/>
+    <path d="M20 20H80V80H20Z" stroke="#E9D2AE" stroke-width="3.6"/>
+  </g>
+</svg>

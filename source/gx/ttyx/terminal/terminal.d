@@ -421,8 +421,8 @@ private:
         indicatorCssInstalled = true;
 
         static immutable string[] rules = [
-            ".ttyx-root-title { background: rgba(204, 0, 0, 0.45); }",
-            ".ttyx-ssh-title { background: rgba(26, 95, 180, 0.50); }",
+            ".kumiko-root-title { background: rgba(204, 0, 0, 0.45); }",
+            ".kumiko-ssh-title { background: rgba(26, 95, 180, 0.50); }",
         ];
 
         Screen screen = Display.getDefault().getDefaultScreen();
@@ -464,7 +464,7 @@ private:
         bTitle.setVexpand(false);
 
         lblTitle = new Label(_("Terminal"));
-        lblTitle.getStyleContext().addClass("ttyx-terminal-title");
+        lblTitle.getStyleContext().addClass("kumiko-terminal-title");
         lblTitle.setEllipsize(EllipsizeMode.Start);
         lblTitle.setUseMarkup(true);
 
@@ -555,7 +555,7 @@ private:
         spBell = new Spinner();
         spBell.setNoShowAll(true);
         spBell.setTooltipText(_("Terminal bell"));
-        spBell.getStyleContext().addClass("ttyx-bell");
+        spBell.getStyleContext().addClass("kumiko-bell");
         bTitle.packEnd(spBell, false, false, 0);
 
         EventBox evtTitle = new EventBox();
@@ -804,14 +804,14 @@ private:
 
         //Clear Terminal && Reset and Clear Terminal
         registerActionWithSettings(group, ACTION_PREFIX, ACTION_RESET, gsShortcuts, delegate(GVariant value, SimpleAction sa) {
-            vte.reset(false, false);
+            resetVte(false, false);
             if (isSynchronizedInput()) {
                 SyncInputEvent se = SyncResetEvent(_terminalUUID);
                 onSyncInput.emit(this, se);
             }
         });
         registerActionWithSettings(group, ACTION_PREFIX, ACTION_RESET_AND_CLEAR, gsShortcuts, delegate(GVariant value, SimpleAction sa) {
-            vte.reset(true, true);
+            resetVte(true, true);
             // Clear history of prompts
             checkPromptBuffer();
             if (isSynchronizedInput()) {
@@ -1012,11 +1012,11 @@ private:
      */
     GMenuItem createAddButtons() {
         GMenuItem addH = new GMenuItem(null, "session.add-right");
-        addH.setAttributeValue("verb-icon", new GVariant("ttyx-add-horizontal-symbolic"));
+        addH.setAttributeValue("verb-icon", new GVariant("kumiko-add-horizontal-symbolic"));
         addH.setAttributeValue("label", new GVariant(_("Add Right")));
 
         GMenuItem addV = new GMenuItem(null, "session.add-down");
-        addV.setAttributeValue("verb-icon", new GVariant("ttyx-add-vertical-symbolic"));
+        addV.setAttributeValue("verb-icon", new GVariant("kumiko-add-vertical-symbolic"));
         addV.setAttributeValue("label", new GVariant(_("Add Down")));
 
         GMenu addSection = new GMenu();
@@ -1277,7 +1277,7 @@ private:
             // giD binds no ScrolledWindow(child) convenience ctor.
             sw = new ScrolledWindow();
             sw.add(vte);
-            sw.getStyleContext.addClass("ttyx-terminal-scrolledwindow");
+            sw.getStyleContext.addClass("kumiko-terminal-scrolledwindow");
             sw.setPropagateNaturalHeight(true);
             sw.setPropagateNaturalWidth(true);
             sw.getVadjustment().connectValueChanged(&updateNewOutputIndicator);
@@ -1294,7 +1294,7 @@ private:
         // overlay scrollbars look awesome with VTE
         if (!useOverlayScrollbar) {
             sb = new Scrollbar(Orientation.Vertical, vte.getVadjustment());
-            sb.getStyleContext().addClass("ttyx-terminal-scrollbar");
+            sb.getStyleContext().addClass("kumiko-terminal-scrollbar");
             sb.getAdjustment().connectValueChanged(&updateNewOutputIndicator);
             terminalBox.add(sb);
 
@@ -1793,7 +1793,7 @@ private:
             case TriggerAction.SEND_NOTIFICATION:
                 string[string] parameters = parsePairs(replaceMatchTokens(params, groups));
                 tracef("Parameters count: %d", parameters.length);
-                string title = _("ttyx_ Custom Notification");
+                string title = _("Kumiko Custom Notification");
                 string _body;
                 if ("title" in parameters) title = parameters["title"];
                 if ("body" in parameters) _body = parameters["body"];
@@ -2275,6 +2275,24 @@ private:
      */
     gulong scrollEventHandlerId;
 
+    /**
+     * True once the profile has switched VTE's alternate-scroll mode off.
+     * The mode lives inside the emulator, so a reset turns it back on and
+     * resetVte() has to restore it.
+     */
+    bool alternateScrollDisabled;
+
+    /**
+     * Reset the emulator, then restore emulator state that belongs to the
+     * profile rather than to the running program.
+     */
+    void resetVte(bool clearTabstops, bool clearHistory) {
+        vte.reset(clearTabstops, clearHistory);
+        if (alternateScrollDisabled) {
+            vte.feed(cast(ubyte[]) alternateScrollSequence(false).dup);
+        }
+    }
+
     /// Dispatch a preference change through the registry.
     void applyPreference(string key) {
         if (vte is null) return;
@@ -2356,6 +2374,20 @@ private:
             vte.setScrollOnKeystroke(gsProfile.getBoolean(SETTINGS_PROFILE_SCROLL_ON_INPUT_KEY));
         });
 
+        prefRegistry.register([SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY], {
+            // With the mode on, the wheel on the alternate screen types Up/Down
+            // keys. A tab left on the alternate screen by a program or ssh
+            // session that died without restoring it then echoes ^[OA into
+            // whatever runs next, and no terminal can tell that state apart
+            // from a live pager. The profile default is off and VTE's is on,
+            // so a new terminal normally feeds DECRST 1007 here, before its
+            // child is spawned; nothing is fed while both agree on on.
+            bool enabled = gsProfile.getBoolean(SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY);
+            if (enabled != alternateScrollDisabled) return;
+            alternateScrollDisabled = !enabled;
+            vte.feed(cast(ubyte[]) alternateScrollSequence(enabled).dup);
+        });
+
         prefRegistry.register([SETTINGS_PROFILE_SCROLLBACK_LINES_KEY], {
             vte.setScrollbackLines(clampScrollbackLines(gsProfile.getInt(SETTINGS_PROFILE_SCROLLBACK_LINES_KEY)));
         });
@@ -2383,7 +2415,9 @@ private:
         prefRegistry.register([SETTINGS_PROFILE_USE_SYSTEM_FONT_KEY, SETTINGS_PROFILE_FONT_KEY], {
             FontDescription desc;
             if (gsProfile.getBoolean(SETTINGS_PROFILE_USE_SYSTEM_FONT_KEY)) {
-                desc = FontDescription.fromString(gsDesktop.getString(SETTINGS_MONOSPACE_FONT_KEY));
+                // Without the desktop's font setting, fall back to plain monospace.
+                string systemFont = optionalSettingString(gsDesktop, SETTINGS_MONOSPACE_FONT_KEY);
+                desc = FontDescription.fromString(systemFont !is null ? systemFont : "Monospace");
             } else {
                 desc = FontDescription.fromString(gsProfile.getString(SETTINGS_PROFILE_FONT_KEY));
             }
@@ -2687,9 +2721,11 @@ private:
                 flags = cast(SpawnFlags)(flags | SpawnFlags.FileAndArgvZero);
             }
         }
-        string[] envv = ["TTYX_ID=" ~ uuid, "TILIX_ID=" ~ uuid];
+        // TTYX_* and TILIX_* are kept for shell scripts written for the
+        // projects Kumiko descends from.
+        string[] envv = ["KUMIKO_ID=" ~ uuid, "TTYX_ID=" ~ uuid, "TILIX_ID=" ~ uuid];
         if (tilix.isQuake) {
-            envv ~= ["TTYX_QUAKE=1", "TILIX_QUAKE=1"];
+            envv ~= ["KUMIKO_QUAKE=1", "TTYX_QUAKE=1", "TILIX_QUAKE=1"];
         }
         foreach (arg; args)
             trace("Argument: " ~ arg);
@@ -3248,20 +3284,20 @@ private:
         if (lblSSHIndicator !is null) {
             if (showSSH) {
                 lblSSHIndicator.show();
-                bTitle.getStyleContext().addClass("ttyx-ssh-title");
+                bTitle.getStyleContext().addClass("kumiko-ssh-title");
             } else {
                 lblSSHIndicator.hide();
-                bTitle.getStyleContext().removeClass("ttyx-ssh-title");
+                bTitle.getStyleContext().removeClass("kumiko-ssh-title");
             }
         }
 
         if (lblRootIndicator !is null) {
             if (showRoot) {
                 lblRootIndicator.show();
-                bTitle.getStyleContext().addClass("ttyx-root-title");
+                bTitle.getStyleContext().addClass("kumiko-root-title");
             } else {
                 lblRootIndicator.hide();
-                bTitle.getStyleContext().removeClass("ttyx-root-title");
+                bTitle.getStyleContext().removeClass("kumiko-root-title");
             }
         }
     }
@@ -3335,12 +3371,14 @@ public:
         monitorSilence = gsProfile.getBoolean(SETTINGS_PROFILE_NOTIFY_ENABLED_KEY);
 
         gsShortcuts = new GSettings(SETTINGS_KEY_BINDINGS_ID);
-        gsDesktop = new GSettings(SETTINGS_DESKTOP_ID);
-        gsDesktopChangedHandlerId = gsDesktop.connectChanged(null, delegate(string key, GSettings settings) {
-            if (key == SETTINGS_MONOSPACE_FONT_KEY) {
-                applyPreference(SETTINGS_PROFILE_FONT_KEY);
-            }
-        });
+        gsDesktop = openOptionalSettings(SETTINGS_DESKTOP_ID);
+        if (gsDesktop !is null) {
+            gsDesktopChangedHandlerId = gsDesktop.connectChanged(null, delegate(string key, GSettings settings) {
+                if (key == SETTINGS_MONOSPACE_FONT_KEY) {
+                    applyPreference(SETTINGS_PROFILE_FONT_KEY);
+                }
+            });
+        }
         renderer = new TerminalRenderer(this, &isTerminalWidgetFocused);
         clipboardHandler = new ClipboardHandler(this, this, &scrollToBottom, &focusTerminal);
         processQuery = new TerminalProcessQuery(this);
@@ -3612,10 +3650,10 @@ public:
                 vte.event(newEvent);
             },
             (SyncResetEvent e) {
-                vte.reset(false, false);
+                resetVte(false, false);
             },
             (SyncResetAndClearEvent e) {
-                vte.reset(true, true);
+                resetVte(true, true);
                 checkPromptBuffer();
             }
         );

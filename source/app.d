@@ -4,7 +4,7 @@
  */
 
 /*
- * giD port of source/app.d — the real ttyx_ entry point. This REPLACES the
+ * giD port of source/app.d — the real Kumiko entry point. This REPLACES the
  * original giD migration seed (the proof-of-concept ApplicationWindow+VTE
  * skeleton) that used to live in this file; nothing from the skeleton is
  * load-bearing beyond having a main() for `dub build`.
@@ -25,7 +25,7 @@
  *  - MessageDialog has no varargs ctor in giD: builder().build() + property
  *    setters + addButton (same pattern as the ported gx.gtk.dialog); enums
  *    are PascalCase in gtk.types (MessageType.Error, ResponseType.Ok).
- *  - Everything else (log-path resolution, -x/-e rewrite, TTYX_ID/TILIX_ID
+ *  - Everything else (log-path resolution, -x/-e rewrite, KUMIKO_ID/TTYX_ID/TILIX_ID
  *    UUID forwarding, DBusActivatable CWD fix, version output) is unchanged.
  */
 import std.stdio;
@@ -40,7 +40,7 @@ import std.string;
 
 import glib.global : chdir, getCurrentDir, getHomeDir, setPrgname;
 
-import gtk.c.functions : gtk_init;
+import gtk.c.functions : gtk_init_check;
 import gtk.global : checkVersion, getMajorVersion, getMinorVersion, getMicroVersion;
 import gtk.message_dialog : MessageDialog;
 import gtk.types : MessageType, ResponseType;
@@ -57,10 +57,10 @@ import gx.util.redact : stripUrlUserinfo;
 /**
  * Resolve the file path for the debug log (only used when USE_FILE_LOGGING is on).
  *
- * Prefers `$XDG_RUNTIME_DIR/ttyx.log` (typically /run/user/$UID, mode 0700
+ * Prefers `$XDG_RUNTIME_DIR/kumiko.log` (typically /run/user/$UID, mode 0700
  * and owned by the user) so the log is unreadable by other local users.
- * Falls back to `$HOME/.cache/ttyx/ttyx.log` (also created mode 0700),
- * and only then to `/tmp/ttyx.log` as a last resort when neither is
+ * Falls back to `$HOME/.cache/kumiko/kumiko.log` (also created mode 0700),
+ * and only then to `/tmp/kumiko.log` as a last resort when neither is
  * available.
  */
 private string resolveLogPath() {
@@ -69,7 +69,7 @@ private string resolveLogPath() {
     import core.sys.posix.sys.stat : S_IRWXU;
 
     // Tighten permissions to 0700 on every call, not just on creation —
-    // another tool may have created `~/.cache/ttyx` with looser perms.
+    // another tool may have created `~/.cache/kumiko` with looser perms.
     string tryDir(string dir, bool enforcePerms) {
         if (dir.length == 0) return null;
         try {
@@ -79,7 +79,7 @@ private string resolveLogPath() {
                 return null;
             }
             if (enforcePerms) setAttributes(dir, S_IRWXU);
-            return buildPath(dir, "ttyx.log");
+            return buildPath(dir, "kumiko.log");
         } catch (Exception) {
             return null;
         }
@@ -92,21 +92,22 @@ private string resolveLogPath() {
 
     string home = environment.get("HOME");
     if (home.length > 0) {
-        if (auto p = tryDir(buildPath(home, ".cache", "ttyx"), true)) return p;
+        if (auto p = tryDir(buildPath(home, ".cache", "kumiko"), true)) return p;
     }
 
     // Last-resort fallback — world-readable directory. USE_FILE_LOGGING
     // defaults off, so this only matters for developer/debug builds where
     // neither XDG_RUNTIME_DIR nor HOME is resolvable.
-    return "/tmp/ttyx.log";
+    return "/tmp/kumiko.log";
 }
 
 /**
- * GtkD's Main.init(args) equivalent: hand-marshal args to gtk_init and
+ * GtkD's Main.init(args) equivalent: hand-marshal args to gtk_init_check and
  * rebuild args from whatever GTK leaves behind (GTK strips the arguments
- * it consumes, e.g. --display).
+ * it consumes, e.g. --display). Returns false when no display could be
+ * opened; unlike gtk_init, that does not exit the process.
  */
-private void initGtk(ref string[] args) {
+private bool initGtk(ref string[] args) {
     import std.string : toStringz, fromStringz;
 
     int argc = cast(int) args.length;
@@ -117,13 +118,14 @@ private void initGtk(ref string[] args) {
     }
     argv ~= null;
     char** argvPtr = argv.ptr;
-    gtk_init(&argc, &argvPtr);
+    bool opened = gtk_init_check(&argc, &argvPtr) != 0;
     string[] result;
     result.reserve(argc);
     foreach (i; 0 .. argc) {
         result ~= fromStringz(argvPtr[i]).idup;
     }
     args = result;
+    return opened;
 }
 
 private MessageDialog createErrorDialog(string message) {
@@ -208,14 +210,24 @@ int main(string[] args) {
     }
 
     //textdomain
-    textdomain(TTYX_DOMAIN);
+    textdomain(GETTEXT_DOMAIN);
     // Set application ID for GTK3 on Wayland
     setPrgname(APPLICATION_ID);
     // Init GTK early so localization is available
     // Note used to pass empty args but was interfering with GTK default args
-    initGtk(args);
+    if (!initGtk(args)) {
+        // --version only reads library versions, so answer it without a
+        // display (over SSH, in packaging scripts); anything else needs one.
+        import std.algorithm.searching : canFind;
+        if (args.canFind("-v") || args.canFind("--version")) {
+            outputVersions();
+            return 0;
+        }
+        stderr.writeln("kumiko: cannot open display");
+        return 1;
+    }
 
-    trace(format("Starting ttyx with %d arguments...", args.length));
+    trace(format("Starting kumiko with %d arguments...", args.length));
     foreach(i, arg; args) {
         trace(format("arg[%d] = %s", i, stripUrlUserinfo(arg)));
         // Workaround issue with Unity and older Gnome Shell when DBusActivatable sometimes CWD is set to /, see #285
@@ -228,7 +240,7 @@ int main(string[] args) {
         } else if (arg == "--new-process") {
             newProcess = true;
         } else if (arg == "-g" || arg == "--group") {
-            // Value is the following argument. Guard the index: `ttyx -g` with
+            // Value is the following argument. Guard the index: `kumiko -g` with
             // no value used to read past the end of args, and a bare
             // `--group` used to slice arg[8..$] out of a 7-char string, which
             // segfaulted with no diagnostic. GLib's own option parser reports
@@ -244,12 +256,12 @@ int main(string[] args) {
             return 0;
         }
     }
-    //append terminal UUID to args if present (check TTYX_ID first, TILIX_ID for backwards compat)
+    //append terminal UUID to args if present (KUMIKO_ID first; TTYX_ID and TILIX_ID for backwards compat)
     try {
         string terminalUUID;
-        try { terminalUUID = environment["TTYX_ID"]; } catch (Exception) {}
-        if (terminalUUID is null) {
-            try { terminalUUID = environment["TILIX_ID"]; } catch (Exception) {}
+        foreach (var; ["KUMIKO_ID", "TTYX_ID", "TILIX_ID"]) {
+            if (terminalUUID !is null) break;
+            try { terminalUUID = environment[var]; } catch (Exception) {}
         }
         if (terminalUUID !is null) {
             trace("Inserting terminal UUID " ~ terminalUUID);
@@ -301,10 +313,10 @@ private:
         import gx.gtk.vte: getVTEVersion, checkVTEFeature, TerminalFeature, isVTEBackgroundDrawEnabled;
 
         writeln(_("Versions"));
-        writeln("\t" ~ format(_("ttyx_ version: %s"), APPLICATION_VERSION));
+        writeln("\t" ~ format(_("Kumiko version: %s"), APPLICATION_VERSION));
         writeln("\t" ~ format(_("VTE version: %s"), getVTEVersion()));
         writeln("\t" ~ format(_("GTK Version: %d.%d.%d") ~ "\n", getMajorVersion(), getMinorVersion(), getMicroVersion()));
-        writeln(_("ttyx_ Special Features"));
+        writeln(_("Kumiko Special Features"));
         writeln("\t" ~ format(_("Notifications enabled=%b"), checkVTEFeature(TerminalFeature.EVENT_NOTIFICATION)));
         writeln("\t" ~ format(_("Triggers enabled=%b"), checkVTEFeature(TerminalFeature.EVENT_SCREEN_CHANGED)));
         writeln("\t" ~ format(_("Badges enabled=%b"), isVTEBackgroundDrawEnabled));

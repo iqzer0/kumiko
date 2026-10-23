@@ -7,7 +7,7 @@ layout: default
 
 ## Overview
 
-ttyx_ can switch profiles automatically based on context — useful for switching users, connecting to different hosts, or marking sensitive directories. Profile changes can be triggered on any of:
+Kumiko can switch profiles automatically based on context — useful for switching users, connecting to different hosts, or marking sensitive directories. Profile changes can be triggered on any of:
 
 * **username** — extracted from the shell prompt via a trigger
 * **hostname** — reported by the shell (local, or OSC 7 from a remote)
@@ -29,18 +29,18 @@ Any one of `username`, `hostname`, or `directory` may be omitted, but at least o
 
 ## Remote configuration
 
-To enable profile changes when SSHing into remote systems, the remote shell needs to report the working directory and/or hostname back to ttyx_. Two options:
+To enable profile changes when SSHing into remote systems, the remote shell needs to report the working directory and/or hostname back to Kumiko. Two options:
 
 ### 1. Use the bundled integration script (recommended)
 
-ttyx_ ships `/usr/share/ttyx/scripts/ttyx_int.sh`, which reports the current directory back via OSC 7 escape sequences. Copy it to the remote host and source it from your shell rc:
+Kumiko ships `/usr/share/kumiko/scripts/kumiko_int.sh`, which reports the current directory back via OSC 7 escape sequences. Copy it to the remote host and source it from your shell rc:
 
 {% highlight bash %}
 # On your local system:
-scp /usr/share/ttyx/scripts/ttyx_int.sh user@remote:~/
+scp /usr/share/kumiko/scripts/kumiko_int.sh user@remote:~/
 
 # On the remote system, add to ~/.bashrc or ~/.zshrc:
-. ~/ttyx_int.sh
+. ~/kumiko_int.sh
 {% endhighlight %}
 
 If you switch users on the remote system, source the script somewhere available to all users (e.g. `/etc/profile.d/`) so it applies to every shell.

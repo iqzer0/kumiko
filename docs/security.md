@@ -7,29 +7,33 @@ permalink: /security/
 
 # Security features
 
-ttyx_ is designed as a **security-conscious** tiling terminal emulator. This page describes what ttyx_ protects against, how to configure each protection, and — importantly — what it does **not** protect against. Security is defense in depth, not a guarantee.
+Kumiko is designed as a **security-conscious** tiling terminal emulator. This page describes what Kumiko protects against, how to configure each protection, and — importantly — what it does **not** protect against. Security is defense in depth, not a guarantee.
 
 All security-related preferences are consolidated under **Preferences → Advanced → Security**.
 
 ## Threat model
 
-ttyx_'s protections target three broad classes of threat you can realistically defend against from inside a terminal emulator:
+Kumiko's protections target three broad classes of threat you can realistically defend against from inside a terminal emulator:
 
 1. **Accidental command execution from untrusted input** — pasting content that contains hidden newlines, paste-mode escape sequences, or dangerous commands you didn't notice.
 2. **Data lingering after you thought it was gone** — passwords in the clipboard, credentials scrolled back into the buffer, process memory exposed via core dumps.
 3. **Lost situational awareness** — forgetting you're on a root shell, or that your terminal is connected to a remote host over SSH.
 
-ttyx_ does **not** try to defend against a compromised shell, a malicious program running inside the terminal, kernel-level attacks, or a hostile OS. Those are outside what a user-space terminal emulator can see.
+Kumiko does **not** try to defend against a compromised shell, a malicious program running inside the terminal, kernel-level attacks, or a hostile OS. Those are outside what a user-space terminal emulator can see.
 
 ## Paste protection
 
 ### Bracketed-paste escape stripping
 
-Always on, no setting. ttyx_ strips `ESC[200~` / `ESC[201~` sequences from clipboard content before it reaches the shell. These sequences tell the shell's paste-mode where paste content begins and ends; if a malicious webpage puts them into your clipboard, copy-pasting a single line can break out of paste mode and execute subsequent clipboard content as commands.
+Always on, no setting. Kumiko strips `ESC[200~` / `ESC[201~` sequences from clipboard content before it reaches the shell. These sequences tell the shell's paste-mode where paste content begins and ends; if a malicious webpage puts them into your clipboard, copy-pasting a single line can break out of paste mode and execute subsequent clipboard content as commands.
 
 ### Multi-line paste review
 
-When the clipboard contains multi-line content, ttyx_ shows a review dialog before sending anything to the shell. You can inspect, edit, or cancel — no text reaches the shell until you click **Paste**.
+When the clipboard contains multi-line content and the receiving program would treat each line break as Enter, Kumiko shows a review dialog before sending anything. You can inspect, edit, or cancel — no text reaches the program until you click **Paste**.
+
+The dialog is skipped when the receiving program has turned on *bracketed paste*: it then takes the whole paste as one block and runs none of it until you press Enter. Shells turn it on at the prompt — zsh, bash 5.1 and later, fish — and over SSH it is the remote program's setting that counts. VTE has no API for the mode, so Kumiko checks it at paste time by sending an empty bracketed paste, which the program discards. The dialog still appears under synchronized input, where the other terminals receive the text without bracketing, and — if you enabled the dangerous-command alert below — whenever the text matches one of its patterns. One caveat: a program that exits without turning bracketed paste off leaves it set, and a program that does not understand it would then run the pasted lines.
+
+A single line followed only by a line break — what a triple-click selection or a web page's "copy" button usually gives you — is pasted without the trailing line break, so it waits at the prompt until you press Enter. A line that contains any other control character is handled by the multi-line rules above instead. (VTE 0.84 shows pasted control characters as visible symbols — Ctrl+O arrives as `␏` — rather than passing them on as keystrokes; older VTE versions may not.) With review turned off, pastes are sent unchanged, trailing line break included.
 
 - GSetting: `warn-multiline-paste` (boolean)
 - Default: **on**
@@ -42,7 +46,7 @@ When the pasted text matches patterns for privilege escalation, destructive file
 - Destructive file operations: `rm -rf`, `rm -fr`, `mkfs`, `dd if=`, `chmod 777`, `chmod -R 777`
 - Remote code execution: piping to a shell — `| bash`, `|bash`, `| sh`, `|sh` (so `curl ... | bash` and `wget ... | sh` both match), and the classic fork bomb `:(){ :|:& };:`
 
-Matching is plain substring matching against the pasted text, and it only fires when the text also contains a line break (`\n` or `\r`) — without one, nothing auto-executes on paste. Being substring-based, it both over-matches (`visudo` contains `sudo`) and is trivially evaded by an adversary who knows about it. It is a guard against *your own* careless paste, not a security boundary; the always-on escape stripping and the multi-line review dialog are the load-bearing protections.
+Matching is plain substring matching against the pasted text, and it only fires when the text also contains a line break (`\n` or `\r`) — without one, nothing auto-executes on paste. Being substring-based, it both over-matches (`visudo` contains `sudo`) and is trivially evaded by an adversary who knows about it. It is a guard against *your own* careless paste, not a security boundary; the always-on escape stripping, bracketed paste and the multi-line review dialog are the load-bearing protections.
 
 When enabled, the warning fires **every time** a dangerous pattern is detected — unlike some terminal emulators that show it once per session and then suppress it.
 
@@ -55,7 +59,7 @@ When enabled, the warning fires **every time** a dangerous pattern is detected �
 
 When enabled, the clipboard is cleared after a configurable timeout following a copy-from-terminal operation. This prevents passwords, tokens, and other sensitive data from lingering in the clipboard long after you pasted it where you meant to.
 
-Important safeguard: ttyx_ only clears the clipboard if it still contains the exact content it copied. If another application overwrote the clipboard in the meantime, ttyx_ leaves it alone — it won't wipe someone else's copied text.
+Important safeguard: Kumiko only clears the clipboard if it still contains the exact content it copied. If another application overwrote the clipboard in the meantime, Kumiko leaves it alone — it won't wipe someone else's copied text.
 
 - GSetting: `clipboard-auto-clear` (boolean) — default **off**
 - GSetting: `clipboard-auto-clear-timeout` (unsigned int, seconds, range 5–300) — default **30**
@@ -88,12 +92,12 @@ Both indicators require the process monitor to be enabled (`process-monitor`, de
 
 ### Core-dump protection
 
-On startup, ttyx_ calls `prctl(PR_SET_DUMPABLE, 0)` to mark the process as non-dumpable. This has two effects:
+On startup, Kumiko calls `prctl(PR_SET_DUMPABLE, 0)` to mark the process as non-dumpable. This has two effects:
 
 - The kernel refuses to generate a core dump if the process crashes.
 - `/proc/pid/mem` and `/proc/pid/maps` become readable only by root, preventing other processes owned by the same user from reading memory (including scrollback contents).
 
-Disable this only if you need to attach GDB or generate core dumps for debugging — and be aware that doing so exposes scrollback to anything that can ptrace ttyx_.
+Disable this only if you need to attach GDB or generate core dumps for debugging — and be aware that doing so exposes scrollback to anything that can ptrace Kumiko.
 
 - GSetting: `core-dump-protection` (boolean)
 - Default: **on**
@@ -118,7 +122,7 @@ The reset is the VTE reset sequence (equivalent to `reset`), followed by an expl
 
 ## Triggers and custom links — shell injection from terminal output
 
-ttyx_ supports two user-configurable features that turn terminal content into shell commands:
+Kumiko supports two user-configurable features that turn terminal content into shell commands:
 
 - **Triggers** (Profile preferences → Advanced) — regular expressions that match against terminal output. The `ExecuteCommand` and `RunProcess` actions run a shell command using a template like `notify-send "Build failed" "$1"`, where `$1` is substituted with a regex capture group.
 - **Custom links** (Preferences → Advanced) — clickable regex matches whose template runs through `spawnShell` when the user clicks them.
@@ -154,7 +158,7 @@ Two related notes:
 
 Remaining caveats:
 
-- ttyx_ ships with **no default triggers and no default custom links**. The attack surface is exactly what you opt into.
+- Kumiko ships with **no default triggers and no default custom links**. The attack surface is exactly what you opt into.
 - The trigger and custom-link editor dialogs surface the warning at the point of editing.
 - Quoting makes a captured value inert *as shell syntax*. It does not make it a safe **argument**: a capture group that lands in a position where the receiving program treats it as an option (`rm $1` matching `-rf`) or a path is still your responsibility.
 
@@ -166,16 +170,16 @@ Remaining caveats:
 
 ## Log hygiene
 
-ttyx_ writes debug logs only when file logging is explicitly compiled in (`USE_FILE_LOGGING`, default off). Even so, when logging is enabled:
+Kumiko writes debug logs only when file logging is explicitly compiled in (`USE_FILE_LOGGING`, default off). Even so, when logging is enabled:
 
 - **Environment variables with sensitive keys** (`password`, `token`, `secret`, `auth`) are replaced with `[redacted]` before they reach any log sink.
 - **Proxy URLs have their userinfo segment stripped** — the log shows `http://proxy.example.com:8080/` rather than `http://alice:secret@proxy.example.com:8080/`.
-- **Command-line arguments and hyperlink click events** pass through the same URL-userinfo stripper, so launching `ttyx -e "psql postgresql://user:pw@db/app"` or clicking a private-docker-registry URL in terminal output doesn't leak credentials.
-- **Log file location** — when `USE_FILE_LOGGING` is enabled, the log file is written to `$XDG_RUNTIME_DIR/ttyx.log` (mode 0700 by systemd convention) in preference to `/tmp/ttyx.log`. The `/tmp` path is retained only as a last-resort fallback on systems where neither `$XDG_RUNTIME_DIR` nor `$HOME` resolves.
+- **Command-line arguments and hyperlink click events** pass through the same URL-userinfo stripper, so launching `kumiko -e "psql postgresql://user:pw@db/app"` or clicking a private-docker-registry URL in terminal output doesn't leak credentials.
+- **Log file location** — when `USE_FILE_LOGGING` is enabled, the log file is written to `$XDG_RUNTIME_DIR/kumiko.log` (mode 0700 by systemd convention) in preference to `/tmp/kumiko.log`. The `/tmp` path is retained only as a last-resort fallback on systems where neither `$XDG_RUNTIME_DIR` nor `$HOME` resolves.
 
 ## Configuration reference
 
-All keys live under the `io.github.gwelr.ttyx.Settings` schema.
+All keys live under the `io.github.iqzer0.kumiko.Settings` schema.
 
 | Feature | GSetting key | Default | Range |
 |---------|--------------|---------|-------|
@@ -190,20 +194,20 @@ All keys live under the `io.github.gwelr.ttyx.Settings` schema.
 | Scrollback lines | `scrollback-lines` | 8192 | 256–999,999 |
 | Secure Clear shortcut | `terminal-reset-and-clear` (Keybindings schema) | `<Ctrl><Shift>L` | string |
 
-Read with `gsettings get io.github.gwelr.ttyx.Settings <key>`; set with `gsettings set io.github.gwelr.ttyx.Settings <key> <value>`.
+Read with `gsettings get io.github.iqzer0.kumiko.Settings <key>`; set with `gsettings set io.github.iqzer0.kumiko.Settings <key> <value>`.
 
 ## Limitations and non-goals
 
 Being explicit so you don't rely on protections that aren't there:
 
-- **No defense against a compromised shell or malicious program running inside the terminal.** Everything that runs under your shell can do anything your user can do. ttyx_ protects the *boundary* (paste, clipboard, memory exposure, indicators) — not the contents.
+- **No defense against a compromised shell or malicious program running inside the terminal.** Everything that runs under your shell can do anything your user can do. Kumiko protects the *boundary* (paste, clipboard, memory exposure, indicators) — not the contents.
 - **No kernel-level or hardware-level protection.** A root attacker on the local machine, a hypervisor, or anything with ptrace capability is out of scope.
-- **ttyx_ ships unsandboxed (source install).** If sandbox isolation matters for your threat model, wrap it in your preferred containment (bubblewrap, firejail, or a Flatpak you build yourself from a pinned manifest) — sandboxing complements, but does not replace, the protections above.
-- **No remote-audit features.** ttyx_ doesn't log what you type, what you see, or what you paste — by design. If you need forensic recording, that's a different category of tool.
+- **Kumiko ships unsandboxed (source install).** If sandbox isolation matters for your threat model, wrap it in your preferred containment (bubblewrap, firejail, or a Flatpak you build yourself from a pinned manifest) — sandboxing complements, but does not replace, the protections above.
+- **No remote-audit features.** Kumiko doesn't log what you type, what you see, or what you paste — by design. If you need forensic recording, that's a different category of tool.
 - **Scrollback is user-memory-only, not locked memory.** A privileged process can still read it before Secure Clear runs. Core-dump protection closes the usual leak path but can't defend against an attacker with `ptrace` or kernel access.
 
 ## Reporting security issues
 
-If you find a security-sensitive bug — something that could leak sensitive data, bypass one of the protections listed here, or enable injection attacks — please report it via the [issue tracker](https://github.com/gwelr/ttyx_/issues) with enough detail to reproduce. For vulnerabilities where public disclosure first would put users at risk, reach out via a private channel before filing the issue.
+If you find a security-sensitive bug — something that could leak sensitive data, bypass one of the protections listed here, or enable injection attacks — please report it via the [issue tracker](https://github.com/iqzer0/kumiko/issues) with enough detail to reproduce. For vulnerabilities where public disclosure first would put users at risk, reach out via a private channel before filing the issue.
 
 For a per-version summary of security-relevant fixes, see the [changelog]({{ site.baseurl }}/changelog/); for how the feature set compares to upstream Tilix, see [What's new vs Tilix]({{ site.baseurl }}/whats-new/).

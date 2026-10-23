@@ -32,12 +32,42 @@ enum SETTINGS_COLOR_SCHEME_KEY = "color-scheme";
 enum SETTINGS_COLOR_SCHEME_PREFER_DARK_VALUE = "prefer-dark";
 enum SETTINGS_MONOSPACE_FONT_KEY = "monospace-font-name";
 
+/**
+ * GSettings for a schema Kumiko does not ship, or null when it is not
+ * installed. Constructing GSettings for a missing schema aborts the process,
+ * and org.gnome.desktop.interface (gsettings-desktop-schemas) is absent on
+ * minimal installs and on some non-GNOME desktops.
+ */
+GSettings openOptionalSettings(string schemaId) {
+    import gio.settings_schema_source : SettingsSchemaSource;
+    import std.experimental.logger : warning;
+    auto source = SettingsSchemaSource.getDefault();
+    if (source is null || source.lookup(schemaId, true) is null) {
+        warning("GSettings schema " ~ schemaId ~ " is not installed; using built-in defaults");
+        return null;
+    }
+    return new GSettings(schemaId);
+}
+
+/**
+ * A string key from optional settings, or null when the settings or the key
+ * are missing. Keys come and go between schema versions: color-scheme first
+ * appeared in gsettings-desktop-schemas 42, and reading a key the installed
+ * schema lacks aborts too.
+ */
+string optionalSettingString(GSettings settings, string key) {
+    if (settings is null) return null;
+    auto schema = settings.settingsSchema;
+    if (schema is null || !schema.hasKey(key)) return null;
+    return settings.getString(key);
+}
+
 //Gnome Proxy Settings
 enum SETTINGS_PROXY_ID = "org.gnome.system.proxy";
 
 //Preference Constants
-enum SETTINGS_ID = "io.github.gwelr.ttyx.Settings";
-enum SETTINGS_BASE_PATH = "/io/github/gwelr/ttyx";
+enum SETTINGS_ID = "io.github.iqzer0.kumiko.Settings";
+enum SETTINGS_BASE_PATH = "/io/github/iqzer0/kumiko";
 
 // Settings for links and triggers that can be set at both global and profile level
 enum SETTINGS_ALL_CUSTOM_HYPERLINK_KEY = "custom-hyperlinks";
@@ -168,8 +198,8 @@ enum SETTINGS_CORE_DUMP_PROTECTION = "core-dump-protection";
 enum SETTINGS_SET_PROXY_ENV_KEY = "set-proxy-env";
 
 //Profile Preference Constants
-enum SETTINGS_PROFILE_LIST_ID = "io.github.gwelr.ttyx.ProfilesList";
-enum SETTINGS_PROFILE_ID = "io.github.gwelr.ttyx.Profile";
+enum SETTINGS_PROFILE_LIST_ID = "io.github.iqzer0.kumiko.ProfilesList";
+enum SETTINGS_PROFILE_ID = "io.github.iqzer0.kumiko.Profile";
 enum SETTINGS_PROFILE_PATH = SETTINGS_BASE_PATH ~ "/profiles/";
 enum SETTINGS_PROFILE_DEFAULT_KEY = "default";
 enum SETTINGS_PROFILE_LIST_KEY = "list";
@@ -223,6 +253,7 @@ enum SETTINGS_PROFILE_USE_BOLD_COLOR_KEY = "bold-color-set";
 enum SETTINGS_PROFILE_SHOW_SCROLLBAR_KEY = "show-scrollbar";
 enum SETTINGS_PROFILE_SCROLL_ON_OUTPUT_KEY = "scroll-on-output";
 enum SETTINGS_PROFILE_SCROLL_ON_INPUT_KEY = "scroll-on-keystroke";
+enum SETTINGS_PROFILE_ALTERNATE_SCROLL_KEY = "alternate-scroll";
 enum SETTINGS_PROFILE_SCROLLBACK_LINES_KEY = "scrollback-lines";
 enum SETTINGS_PROFILE_SCROLLBACK_LINES_MAX = 999_999;
 enum SETTINGS_PROFILE_SCROLLBACK_LINES_MIN = 256;
@@ -264,7 +295,7 @@ enum SETTINGS_PROFILE_NOTIFY_SILENCE_THRESHOLD_KEY = "notify-silence-threshold";
 enum SETTINGS_PROFILE_MARGIN_KEY = "draw-margin";
 
 //Shortcuts
-enum SETTINGS_KEY_BINDINGS_ID = "io.github.gwelr.ttyx.Keybindings";
+enum SETTINGS_KEY_BINDINGS_ID = "io.github.iqzer0.kumiko.Keybindings";
 
 /**
  * The default value to use for the name of the default profile
